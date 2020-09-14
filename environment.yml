@@ -1,4 +1,4 @@
-name: hsfm
+name: hsfm-geomorph
 channels:
   - conda-forge
   - defaults
@@ -296,5 +296,5 @@ dependencies:
     - tifffile==2020.8.13
     - toml==0.10.1
     - wget==3.2
-prefix: /home/elilouis/.conda/envs/hsfm
+prefix: /home/elilouis/.conda/envs/hsfm-geomorph
 
