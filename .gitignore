@@ -1,3 +1,4 @@
 **.ipynb
 **.DS_Store
 **/.ipynb_checkpoints/**
+.jupyter_symlinks/**
