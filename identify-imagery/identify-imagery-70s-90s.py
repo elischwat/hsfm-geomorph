@@ -128,7 +128,8 @@ aoi_frames_and_paths = gpd.sjoin(df, aoi_gdf)
 # Format date column...
 
 # +
-aoi_frames_and_paths.date = pd.to_datetime(aoi_frames_and_paths.date)
+aoi_frames_and_paths['datetime'] = pd.to_datetime(aoi_frames_and_paths.date)
+aoi_frames_and_paths.date = aoi_frames_and_paths.datetime.dt.date
 
 aoi_frames_df = aoi_frames_and_paths[
     aoi_frames_and_paths.geometry.type=='Point']
@@ -238,13 +239,28 @@ plt.gcf().set_size_inches(14,14)
 
 rainier_sub_aois = gpd.read_file("rainier_sub_aois.geojson")
 rainier_sub_aois = rainier_sub_aois.to_crs(epsg=3857)
+nisqually_polygon = rainier_sub_aois[rainier_sub_aois.name=='nisqually'].geometry.iloc[0]
+carbon_polygon = rainier_sub_aois[rainier_sub_aois.name=='carbon'].geometry.iloc[0]
+nisqually_frames = rainier_frames_gdf[rainier_frames_gdf.geometry.within(nisqually_polygon)]
+carbon_frames = rainier_frames_gdf[rainier_frames_gdf.geometry.within(carbon_polygon)]
 
-local_frames_gdf = rainier_frames_gdf[rainier_frames_gdf.geometry.within(rainier_sub_aois.geometry.iloc[0])]
-ax = rainier_sub_aois.plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
-ax = local_frames_gdf.plot(column='date', categorical=True, markersize=20, ax=ax, legend=True)
-ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
-# ax.set(xlim=(-1.357e7,-1.3535e7), ylim=(5.905e6, 5.94e6))
-plt.gcf().set_size_inches(15,15)
+len(nisqually_frames), len(carbon_frames)
+
+
+def plot_frames_and_aoi_polygon(points, polygon, lims = None):
+    ax = gpd.GeoDataFrame(geometry = pd.Series(polygon)).plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+    points.plot(column='date', categorical=True, markersize=20, ax=ax, legend=True)
+    ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
+    if lims is not None:
+        ax.set(xlim=lims[0], ylim=lims[1])
+    plt.gcf().set_size_inches(8,8)
+
+
+plot_frames_and_aoi_polygon(nisqually_frames, nisqually_polygon)
+
+plot_frames_and_aoi_polygon(carbon_frames, carbon_polygon)
+
+plot_frames_and_aoi_polygon(carbon_frames, carbon_polygon, lims = ((-1.3566e7, -1.3550e7), (5.918e6, 5.9405e6)))
 
 # ## Visualize all images in the Nisqually river valley, separated by date
 
