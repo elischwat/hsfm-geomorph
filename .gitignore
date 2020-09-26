@@ -2,4 +2,12 @@
 **.DS_Store
 **/.ipynb_checkpoints/**
 .jupyter_symlinks/**
+**.tif4
+**.png
 **.tif
+**.kml
+**.geojson
+**.lic
+.vscode/*
+**routine_outputs0
+data/*

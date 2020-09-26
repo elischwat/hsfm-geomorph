@@ -1,0 +1,3035 @@
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.022756 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.009571 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.036071 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.011723 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.001517 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001488 sec
+loaded keypoint partition in 0.000122 sec
+loaded matching data in 4e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.003554 sec (CUDA: 0.000374 sec, OpenCL: 0.003142 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 31.2001 sec
+loaded matching partition in 0.000117 sec
+loaded keypoint partition in 1.8e-05 sec
+loaded keypoints in 0.005087 sec
+loaded matching data in 3.3e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.002126 sec (CUDA: 1.3e-05 sec, OpenCL: 0.002081 sec)
+613 matches found in 3.03789 sec
+matches combined in 0.000234 sec
+filtered 74 out of 359 matches (20.6128%) in 0.003325 sec
+saved matches in 0.005975 sec
+loaded matching data in 2.8e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded matches in 2.2e-05 sec
+4 pairs selected in 2e-06 sec
+setting point indices... 218 done in 0.0001 sec
+setting point indices... 238 done in 6.1e-05 sec
+4 skeletal pairs selected in 0.000243 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.005493 sec
+loaded matching partition in 4.2e-05 sec
+loaded keypoint partition in 1.1e-05 sec
+loaded keypoints in 0.031374 sec
+loaded matching data in 1.9e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000326 sec (CUDA: 3e-06 sec, OpenCL: 0.000312 sec)
+2841 matches found in 0.378062 sec
+matches combined in 0.000304 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.012537 sec
+saved matches in 0.005922 sec
+loaded matching data in 4.9e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded matches in 3.8e-05 sec
+setting point indices... 1600 done in 0.000935 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000209 sec
+loaded keypoint partition in 6.2e-05 sec
+loaded matching partition in 1.6e-05 sec
+loaded matching partition in 1.3e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.001454 sec
+selecting camera groups... done in 0.002008 sec
+scheduled 1 alignment groups
+saved camera partition in 0.001289 sec
+loaded camera partition in 2.1e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.010445 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.016964 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.080875 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.187329 seconds
+loaded projections in 0.000297 sec
+tracks initialized in 0.000237 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 8.8e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.000189 sec
+overlapping groups selected in 1e-05 sec
+loaded camera partition in 7.6e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.064733 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.022088 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 4.6e-05 sec
+processing matches... done in 0.000277 sec
+initializing...
+selected 3 cameras from 3 in 0.008005 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.005906 sec
+loaded depth map partition in 7.4e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000669 sec (CUDA: 3e-06 sec, OpenCL: 0.000631 sec)
+loaded photos in 2.79244 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.579975 disparity: 42.1563 borders: 0.349154 filter: 2.03709 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.725001 disparity: 34.5654 borders: 0.2975 filter: 2.07827 fill: 1e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.839338 disparity: 58.4654 borders: 0.580314 filter: 3.0259 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.987971 disparity: 56.1397 borders: 0.593282 filter: 2.93506 fill: 0
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 257.219 seconds
+
+3 depth maps generated in 260.013 sec
+saved depth maps block in 0.418869 sec
+loaded depth map partition in 7.7e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 3.64565 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.003715 sec
+saved regions in 0.003623 sec
+saved camera partition in 0.00182 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 6.3e-05 sec
+loaded dense cloud data in 3.2e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 14.8816 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.87388 sec (load: 0.611401, render: 2.26593 filter: 0.996546)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 2.22998 sec (load: 0.523134, render: 0.528599 filter: 1.17824)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 2.37857 sec (load: 0.501235, render: 0.569459 filter: 1.30788)
+filtered 3 depth maps in 11.2579 sec
+saved depth maps block in 0.374027 sec
+loaded regions in 7.3e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.971289 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.03266 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.54162 sec
+saved dense cloud in 0.005263 sec
+loaded regions in 3.2e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.785519 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.1862 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6988749 points extracted in 9.59555 sec
+saved dense cloud in 0.308721 sec
+loaded regions in 7.9e-05 sec
+loaded camera partition in 2.5e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.662933 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 0.971246 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8279363 points extracted in 9.74209 sec
+saved dense cloud in 0.372408 sec
+loaded regions in 4.4e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.28566 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.22246 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.04745 sec
+saved dense cloud in 0.001366 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2.4e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 2e-05 sec
+preloading data... done in 1.21414 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.68651 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28566401 points extracted in 34.5078 sec
+saved dense cloud in 1.2271 sec
+loaded regions in 4.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.981828 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 2.13718 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27925432 points extracted in 29.1978 sec
+saved dense cloud in 1.19732 sec
+loaded regions in 6.8e-05 sec
+loaded camera partition in 4.3e-05 sec
+loaded dense cloud data in 3.3e-05 sec
+selected 3 cameras in 3e-05 sec
+preloading data... done in 1.12129 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.20947 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.83849 sec
+saved dense cloud in 0.006022 sec
+loaded regions in 2.9e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.02797 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 1.85081 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9752111 points extracted in 13.2688 sec
+saved dense cloud in 0.449484 sec
+loaded regions in 4.9e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.755521 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.20733 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4026030 points extracted in 6.44327 sec
+saved dense cloud in 0.210532 sec
+loaded regions in 5.4e-05 sec
+loaded camera partition in 2.6e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 2 cameras in 1.5e-05 sec
+preloading data... done in 0.597847 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.6712 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5139969 points extracted in 8.92224 sec
+saved dense cloud in 0.216528 sec
+loaded regions in 3.9e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 9.5e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.03598 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.20509 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15293216 points extracted in 21.1222 sec
+saved dense cloud in 0.691666 sec
+loaded regions in 5.2e-05 sec
+loaded camera partition in 2.9e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.939388 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.63869 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18443 points extracted in 1.90536 sec
+saved dense cloud in 0.004665 sec
+loaded regions in 2.6e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 2 cameras in 1.1e-05 sec
+preloading data... done in 1.16019 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.57636 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25907950 points extracted in 41.2267 sec
+saved dense cloud in 1.12651 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.89296 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.4103 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6242374 points extracted in 12.2135 sec
+saved dense cloud in 0.267787 sec
+loaded regions in 5.6e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.8e-05 sec
+preloading data... done in 1.19898 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.37537 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.3755 sec
+saved dense cloud in 0.004451 sec
+loaded regions in 3.2e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.4e-05 sec
+selected 2 cameras in 1.1e-05 sec
+preloading data... done in 0.659784 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.67241 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10951751 points extracted in 16.1048 sec
+saved dense cloud in 0.478114 sec
+loaded regions in 6.5e-05 sec
+loaded camera partition in 3.4e-05 sec
+loaded dense cloud data in 3.2e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.7392 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.78133 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7261128 points extracted in 11.2703 sec
+saved dense cloud in 0.355787 sec
+loaded regions in 5.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 2.7e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.652981 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.61692 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2908469 points extracted in 5.70181 sec
+saved dense cloud in 0.129269 sec
+loaded regions in 7.3e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 6.37636 sec
+loaded camera partition in 5.7e-05 sec
+loaded regions in 3.3e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.0242 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001471 sec (CUDA: 7e-06 sec, OpenCL: 0.001448 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118104749 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.000997 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 515, in run_metashape
+    hsfm.plot.plot_offsets(ba_LE90,
+  File "/home/elilouis/hsfm/hsfm/plot/plot.py", line 262, in plot_offsets
+    ax.set_xlim(-maxdim, maxdim)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3297, in set_xlim
+    left = self._validate_converted_limits(left, self.convert_xunits)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3214, in _validate_converted_limits
+    raise ValueError("Axis limits cannot be NaN or Inf")
+ValueError: Axis limits cannot be NaN or Inf
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 493, in run_metashape
+    out = hsfm.metashape.images2las(project_name,
+  File "/home/elilouis/hsfm/hsfm/metashape/metashape.py", line 50, in images2las
+    os.makedirs(output_path)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: 'routine_outputs0'
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.033459 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.006283 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.034506 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.007917 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.001896 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001509 sec
+loaded keypoint partition in 9.4e-05 sec
+loaded matching data in 4.6e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.002517 sec (CUDA: 0.000412 sec, OpenCL: 0.002072 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 32.1658 sec
+loaded matching partition in 9.5e-05 sec
+loaded keypoint partition in 1.5e-05 sec
+loaded keypoints in 0.003641 sec
+loaded matching data in 4.2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.002365 sec (CUDA: 5e-06 sec, OpenCL: 0.002311 sec)
+613 matches found in 3.06902 sec
+matches combined in 9e-05 sec
+filtered 74 out of 359 matches (20.6128%) in 0.027794 sec
+saved matches in 0.003583 sec
+loaded matching data in 2.5e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded matches in 2.2e-05 sec
+4 pairs selected in 2e-06 sec
+setting point indices... 218 done in 8.6e-05 sec
+setting point indices... 238 done in 4.3e-05 sec
+4 skeletal pairs selected in 0.000175 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001813 sec
+loaded matching partition in 2.6e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded keypoints in 0.029729 sec
+loaded matching data in 1.9e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000348 sec (CUDA: 3e-06 sec, OpenCL: 0.000334 sec)
+2841 matches found in 0.382843 sec
+matches combined in 0.000328 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.017639 sec
+saved matches in 0.004472 sec
+loaded matching data in 2.6e-05 sec
+loaded matching partition in 1.4e-05 sec
+loaded keypoint partition in 1.2e-05 sec
+loaded matches in 3.5e-05 sec
+setting point indices... 1600 done in 0.000884 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000163 sec
+loaded keypoint partition in 5.3e-05 sec
+loaded matching partition in 1.2e-05 sec
+loaded matching partition in 1.2e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.001614 sec
+selecting camera groups... done in 0.001131 sec
+scheduled 1 alignment groups
+saved camera partition in 0.00083 sec
+loaded camera partition in 1.4e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.012083 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.013931 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.101425 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.185993 seconds
+loaded projections in 0.000708 sec
+tracks initialized in 0.000198 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 4.1e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.000945 sec
+overlapping groups selected in 7e-06 sec
+loaded camera partition in 3.7e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.073929 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.029821 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 4e-05 sec
+processing matches... done in 0.000251 sec
+initializing...
+selected 3 cameras from 3 in 0.025826 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.003195 sec
+loaded depth map partition in 3.1e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000426 sec (CUDA: 2e-06 sec, OpenCL: 0.000412 sec)
+loaded photos in 3.18411 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.552617 disparity: 40.558 borders: 0.324352 filter: 1.71561 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.649133 disparity: 33.768 borders: 0.257918 filter: 1.7555 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.95845 disparity: 55.6103 borders: 0.624577 filter: 2.82899 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.817004 disparity: 55.6094 borders: 0.589326 filter: 2.84216 fill: 0
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 249.603 seconds
+
+3 depth maps generated in 252.788 sec
+saved depth maps block in 0.563698 sec
+loaded depth map partition in 7.7e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 3.6147 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.00137 sec
+saved regions in 0.001236 sec
+saved camera partition in 0.001099 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 3.9e-05 sec
+loaded dense cloud data in 4.8e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 16.4483 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.01189 sec (load: 0.508933, render: 1.51026 filter: 0.992687)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 3.18229 sec (load: 0.723646, render: 1.25448 filter: 1.20417)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 3.36441 sec (load: 0.510336, render: 1.61945 filter: 1.23462)
+filtered 3 depth maps in 12.2671 sec
+saved depth maps block in 0.374126 sec
+loaded regions in 6.2e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.03928 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.16858 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.65894 sec
+saved dense cloud in 0.001923 sec
+loaded regions in 3.1e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.00537 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.0193 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6996453 points extracted in 9.76216 sec
+saved dense cloud in 0.299123 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.857937 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 1.02219 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8280180 points extracted in 9.41559 sec
+saved dense cloud in 0.367356 sec
+loaded regions in 6.6e-05 sec
+loaded camera partition in 3.5e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 1.20293 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.08379 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.15567 sec
+saved dense cloud in 0.001348 sec
+loaded regions in 6.1e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 1.313 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.59166 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28568338 points extracted in 33.4055 sec
+saved dense cloud in 1.3671 sec
+loaded regions in 6.3e-05 sec
+loaded camera partition in 2.5e-05 sec
+loaded dense cloud data in 2.8e-05 sec
+selected 3 cameras in 1.8e-05 sec
+preloading data... done in 0.841559 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 2.19102 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27922503 points extracted in 31.274 sec
+saved dense cloud in 1.31195 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.936564 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.1838 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.71361 sec
+saved dense cloud in 0.005364 sec
+loaded regions in 2.5e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.4e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.817185 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 1.98957 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9750901 points extracted in 13.2266 sec
+saved dense cloud in 0.424985 sec
+loaded regions in 0.000101 sec
+loaded camera partition in 3.7e-05 sec
+loaded dense cloud data in 3e-05 sec
+selected 3 cameras in 2.7e-05 sec
+preloading data... done in 0.65294 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.206 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4023404 points extracted in 6.08095 sec
+saved dense cloud in 0.178421 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.609601 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.5727 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5140729 points extracted in 8.69381 sec
+saved dense cloud in 0.225286 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.955438 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.25184 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15298172 points extracted in 20.4477 sec
+saved dense cloud in 0.725017 sec
+loaded regions in 5.6e-05 sec
+loaded camera partition in 2.6e-05 sec
+loaded dense cloud data in 2.4e-05 sec
+selected 3 cameras in 2.1e-05 sec
+preloading data... done in 0.803531 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.32781 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18551 points extracted in 1.51634 sec
+saved dense cloud in 0.002733 sec
+loaded regions in 2.5e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 2.5e-05 sec
+selected 2 cameras in 1.1e-05 sec
+preloading data... done in 1.19197 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.46878 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25907020 points extracted in 39.6037 sec
+saved dense cloud in 1.12798 sec
+loaded regions in 4.3e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.53706 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.44992 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6240377 points extracted in 12.181 sec
+saved dense cloud in 0.271895 sec
+loaded regions in 3.9e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.22403 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.44693 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.73222 sec
+saved dense cloud in 0.005159 sec
+loaded regions in 2.8e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 2 cameras in 1.3e-05 sec
+preloading data... done in 0.686077 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.79948 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10955881 points extracted in 15.5755 sec
+saved dense cloud in 0.5031 sec
+loaded regions in 4e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.961858 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.9676 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7260215 points extracted in 11.9945 sec
+saved dense cloud in 0.343117 sec
+loaded regions in 6.4e-05 sec
+loaded camera partition in 3e-05 sec
+loaded dense cloud data in 3.2e-05 sec
+selected 3 cameras in 3.8e-05 sec
+preloading data... done in 0.708167 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.64574 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2906392 points extracted in 5.60721 sec
+saved dense cloud in 0.134046 sec
+loaded regions in 5.4e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 5.94768 sec
+loaded camera partition in 6.6e-05 sec
+loaded regions in 5.7e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.020033 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001129 sec (CUDA: 6e-06 sec, OpenCL: 0.001109 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118111241 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.00094 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 515, in run_metashape
+    hsfm.plot.plot_offsets(ba_LE90,
+  File "/home/elilouis/hsfm/hsfm/plot/plot.py", line 262, in plot_offsets
+    ax.set_xlim(-maxdim, maxdim)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3297, in set_xlim
+    left = self._validate_converted_limits(left, self.convert_xunits)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3214, in _validate_converted_limits
+    raise ValueError("Axis limits cannot be NaN or Inf")
+ValueError: Axis limits cannot be NaN or Inf
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.018523 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001767 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.026505 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.00605 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.000892 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.000738 sec
+loaded keypoint partition in 3.3e-05 sec
+loaded matching data in 1.6e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.003079 sec (CUDA: 0.000321 sec, OpenCL: 0.002746 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 31.9208 sec
+loaded matching partition in 7.7e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded keypoints in 0.003201 sec
+loaded matching data in 2.9e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000687 sec (CUDA: 5e-06 sec, OpenCL: 0.000667 sec)
+613 matches found in 3.04556 sec
+matches combined in 0.00013 sec
+filtered 74 out of 359 matches (20.6128%) in 0.003383 sec
+saved matches in 0.006341 sec
+loaded matching data in 2.7e-05 sec
+loaded matching partition in 1.4e-05 sec
+loaded matches in 2.3e-05 sec
+4 pairs selected in 3e-06 sec
+setting point indices... 218 done in 7.4e-05 sec
+setting point indices... 238 done in 5.7e-05 sec
+4 skeletal pairs selected in 0.000212 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.005576 sec
+loaded matching partition in 3.3e-05 sec
+loaded keypoint partition in 1.1e-05 sec
+loaded keypoints in 0.032409 sec
+loaded matching data in 2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000372 sec (CUDA: 4e-06 sec, OpenCL: 0.000357 sec)
+2841 matches found in 0.418332 sec
+matches combined in 0.000328 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.019392 sec
+saved matches in 0.00697 sec
+loaded matching data in 7.9e-05 sec
+loaded matching partition in 2e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded matches in 4.4e-05 sec
+setting point indices... 1600 done in 0.000772 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000211 sec
+loaded keypoint partition in 5.6e-05 sec
+loaded matching partition in 1.8e-05 sec
+loaded matching partition in 2.2e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.001511 sec
+selecting camera groups... done in 0.001945 sec
+scheduled 1 alignment groups
+saved camera partition in 0.001745 sec
+loaded camera partition in 2.1e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.018128 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.017045 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.090883 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.18796 seconds
+loaded projections in 0.002926 sec
+tracks initialized in 0.00019 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 3.6e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.000395 sec
+overlapping groups selected in 5e-06 sec
+loaded camera partition in 2.9e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxx- 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.071285 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.022617 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 3.8e-05 sec
+processing matches... done in 0.000324 sec
+initializing...
+selected 3 cameras from 3 in 0.028743 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.00605 sec
+loaded depth map partition in 5.6e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.004988 sec (CUDA: 3.8e-05 sec, OpenCL: 0.00491 sec)
+loaded photos in 2.86096 seconds
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.801364 disparity: 57.3503 borders: 0.74429 filter: 3.17795 fill: 1e-06
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.633028 disparity: 39.1103 borders: 0.324794 filter: 1.69536 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.647421 disparity: 32.7243 borders: 0.259799 filter: 1.57759 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.939244 disparity: 54.5955 borders: 0.569824 filter: 2.93383 fill: 0
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 248.888 seconds
+
+3 depth maps generated in 251.75 sec
+saved depth maps block in 0.467647 sec
+loaded depth map partition in 8.8e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 4.36115 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.004857 sec
+saved regions in 0.001431 sec
+saved camera partition in 0.000845 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 4e-05 sec
+loaded dense cloud data in 3.3e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 15.3221 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.3652 sec (load: 0.811994, render: 1.6318 filter: 0.921404)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 2.34332 sec (load: 0.684659, render: 0.499241 filter: 1.15942)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 2.25277 sec (load: 0.524919, render: 0.463334 filter: 1.26451)
+filtered 3 depth maps in 10.5663 sec
+saved depth maps block in 0.527611 sec
+loaded regions in 9.3e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 2.6e-05 sec
+selected 3 cameras in 2.1e-05 sec
+preloading data... done in 0.95557 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 1.96792 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.76235 sec
+saved dense cloud in 0.004834 sec
+loaded regions in 2.4e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.3e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.829195 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.29114 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6993556 points extracted in 8.4569 sec
+saved dense cloud in 0.360762 sec
+loaded regions in 5.3e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.799579 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 1.11389 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8289708 points extracted in 9.4401 sec
+saved dense cloud in 0.371724 sec
+loaded regions in 5.2e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.19002 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.27489 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.19177 sec
+saved dense cloud in 0.001404 sec
+loaded regions in 3.7e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.2595 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.7053 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28568740 points extracted in 33.781 sec
+saved dense cloud in 1.3606 sec
+loaded regions in 6.4e-05 sec
+loaded camera partition in 2.4e-05 sec
+loaded dense cloud data in 2.6e-05 sec
+selected 3 cameras in 2e-05 sec
+preloading data... done in 0.957153 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 1.92127 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27922473 points extracted in 27.49 sec
+saved dense cloud in 1.32907 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2.1e-05 sec
+loaded dense cloud data in 2.2e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.674086 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.17347 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.84733 sec
+saved dense cloud in 0.002869 sec
+loaded regions in 2.5e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 2e-05 sec
+preloading data... done in 0.614509 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 1.89509 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9750505 points extracted in 13.1512 sec
+saved dense cloud in 0.415287 sec
+loaded regions in 4.6e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.747583 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.14745 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4023225 points extracted in 5.78824 sec
+saved dense cloud in 0.174977 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 2 cameras in 2.5e-05 sec
+preloading data... done in 0.589636 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.70257 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5142206 points extracted in 8.98029 sec
+saved dense cloud in 0.216549 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.17432 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.31944 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15292772 points extracted in 19.5989 sec
+saved dense cloud in 0.639043 sec
+loaded regions in 3.5e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.722482 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.32719 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18307 points extracted in 1.47593 sec
+saved dense cloud in 0.002202 sec
+loaded regions in 2.2e-05 sec
+loaded camera partition in 1.3e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 2 cameras in 1.1e-05 sec
+preloading data... done in 1.09436 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.4216 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25905015 points extracted in 38.1273 sec
+saved dense cloud in 1.0852 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 1.53619 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.34719 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6237959 points extracted in 11.4401 sec
+saved dense cloud in 0.268072 sec
+loaded regions in 5.2e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.8e-05 sec
+preloading data... done in 1.13768 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.55807 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.2869 sec
+saved dense cloud in 0.004833 sec
+loaded regions in 2.9e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.5e-05 sec
+preloading data... done in 0.603711 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.72729 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10944000 points extracted in 15.0563 sec
+saved dense cloud in 0.460666 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.791229 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.74173 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7259678 points extracted in 11.1131 sec
+saved dense cloud in 0.308701 sec
+loaded regions in 6.2e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 2.5e-05 sec
+preloading data... done in 0.675769 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.67577 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2909704 points extracted in 5.41141 sec
+saved dense cloud in 0.12851 sec
+loaded regions in 4e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 5.63717 sec
+loaded camera partition in 5.9e-05 sec
+loaded regions in 5e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.012561 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.00146 sec (CUDA: 5e-06 sec, OpenCL: 0.001438 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118100941 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001387 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "rasterio/_base.pyx", line 216, in rasterio._base.DatasetBase.__init__
+  File "rasterio/_shim.pyx", line 78, in rasterio._shim.open_dataset
+  File "rasterio/_err.pyx", line 205, in rasterio._err.exc_wrap_pointer
+rasterio._err.CPLE_OpenFailedError: /home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem_highres/reference_dem_final-adj.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 532, in run_metashape
+    epsg_code = 'EPSG:'+ hsfm.geospatial.get_epsg_code(reference_dem)
+  File "/home/elilouis/hsfm/hsfm/geospatial/geospatial.py", line 343, in get_epsg_code
+    src = rasterio.open(dem_file_name)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/rasterio/env.py", line 433, in wrapper
+    return f(*args, **kwds)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/rasterio/__init__.py", line 218, in open
+    s = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+  File "rasterio/_base.pyx", line 218, in rasterio._base.DatasetBase.__init__
+rasterio.errors.RasterioIOError: /home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem_highres/reference_dem_final-adj.tif: No such file or directory
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 493, in run_metashape
+    out = hsfm.metashape.images2las(project_name,
+  File "/home/elilouis/hsfm/hsfm/metashape/metashape.py", line 50, in images2las
+    os.makedirs(output_path)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: 'routine_outputs0'
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.020486 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.002007 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.037756 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.01491 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.002198 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.002434 sec
+loaded keypoint partition in 6.8e-05 sec
+loaded matching data in 3.6e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000664 sec (CUDA: 0.000373 sec, OpenCL: 0.00027 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 28.8742 sec
+loaded matching partition in 7.3e-05 sec
+loaded keypoint partition in 1.5e-05 sec
+loaded keypoints in 0.002797 sec
+loaded matching data in 2.1e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.001976 sec (CUDA: 8e-06 sec, OpenCL: 0.001938 sec)
+613 matches found in 3.05074 sec
+matches combined in 0.00011 sec
+filtered 74 out of 359 matches (20.6128%) in 0.003577 sec
+saved matches in 0.008763 sec
+loaded matching data in 4.2e-05 sec
+loaded matching partition in 1.6e-05 sec
+loaded matches in 3e-05 sec
+4 pairs selected in 3e-06 sec
+setting point indices... 218 done in 6.8e-05 sec
+setting point indices... 238 done in 4.4e-05 sec
+4 skeletal pairs selected in 0.000163 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.007749 sec
+loaded matching partition in 5.6e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded keypoints in 0.038023 sec
+loaded matching data in 1.9e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.00032 sec (CUDA: 3e-06 sec, OpenCL: 0.000305 sec)
+2841 matches found in 0.413968 sec
+matches combined in 0.000286 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.007323 sec
+saved matches in 0.005741 sec
+loaded matching data in 2.6e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded keypoint partition in 1.2e-05 sec
+loaded matches in 3.5e-05 sec
+setting point indices... 1600 done in 0.000932 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000157 sec
+loaded keypoint partition in 2.3e-05 sec
+loaded matching partition in 1e-05 sec
+loaded matching partition in 9e-06 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.00029 sec
+selecting camera groups... done in 6.5e-05 sec
+scheduled 1 alignment groups
+saved camera partition in 0.000719 sec
+loaded camera partition in 1.5e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.00651 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.012482 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.065397 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.146036 seconds
+loaded projections in 0.000317 sec
+tracks initialized in 0.000181 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 3e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.00017 sec
+overlapping groups selected in 8e-06 sec
+loaded camera partition in 3.2e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.064292 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.020473 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 3.3e-05 sec
+processing matches... done in 0.000245 sec
+initializing...
+selected 3 cameras from 3 in 0.007529 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.005938 sec
+loaded depth map partition in 5.3e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000419 sec (CUDA: 2e-06 sec, OpenCL: 0.000402 sec)
+loaded photos in 2.68748 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.558496 disparity: 39.8463 borders: 0.321231 filter: 1.76778 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.613915 disparity: 33.9202 borders: 0.25753 filter: 2.15488 fill: 1e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 1.16753 disparity: 56.2948 borders: 0.589829 filter: 3.14251 fill: 2e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.846589 disparity: 56.0095 borders: 0.573937 filter: 2.9002 fill: 1e-06
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 250.553 seconds
+
+3 depth maps generated in 253.242 sec
+saved depth maps block in 0.437981 sec
+loaded depth map partition in 6.1e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 3.85977 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.001835 sec
+saved regions in 0.001688 sec
+saved camera partition in 0.001302 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 5.4e-05 sec
+loaded dense cloud data in 4.5e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 16.0671 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.22558 sec (load: 0.48698, render: 1.47939 filter: 1.25921)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 3.03594 sec (load: 0.71772, render: 0.57335 filter: 1.74487)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 3.2905 sec (load: 0.500583, render: 1.33605 filter: 1.45386)
+filtered 3 depth maps in 12.1041 sec
+saved depth maps block in 0.377415 sec
+loaded regions in 6.6e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 1.11607 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.24233 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.8051 sec
+saved dense cloud in 0.002362 sec
+loaded regions in 5.3e-05 sec
+loaded camera partition in 3e-05 sec
+loaded dense cloud data in 3.3e-05 sec
+selected 3 cameras in 2.1e-05 sec
+preloading data... done in 0.808482 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.13045 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6989352 points extracted in 8.78541 sec
+saved dense cloud in 0.298453 sec
+loaded regions in 7.4e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.9e-05 sec
+preloading data... done in 0.683218 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 1.03308 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8286253 points extracted in 9.46444 sec
+saved dense cloud in 0.367072 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 1.07138 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.06912 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.11618 sec
+saved dense cloud in 0.002173 sec
+loaded regions in 4.4e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 1.12546 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.70848 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28566530 points extracted in 33.606 sec
+saved dense cloud in 1.46467 sec
+loaded regions in 7.9e-05 sec
+loaded camera partition in 2.1e-05 sec
+loaded dense cloud data in 2.3e-05 sec
+selected 3 cameras in 2e-05 sec
+preloading data... done in 0.898475 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 2.2257 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27921998 points extracted in 29.1527 sec
+saved dense cloud in 1.20714 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 2.3e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.00269 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.21628 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.74492 sec
+saved dense cloud in 0.007342 sec
+loaded regions in 5.2e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 2.6e-05 sec
+selected 3 cameras in 1.9e-05 sec
+preloading data... done in 0.915389 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 2.38816 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9751966 points extracted in 13.0314 sec
+saved dense cloud in 0.452668 sec
+loaded regions in 4e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.503958 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.13732 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4025855 points extracted in 5.69607 sec
+saved dense cloud in 0.18164 sec
+loaded regions in 5.1e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.739693 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.60101 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5140437 points extracted in 8.71897 sec
+saved dense cloud in 0.216338 sec
+loaded regions in 4e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.4e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.763667 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.22944 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15296763 points extracted in 19.7901 sec
+saved dense cloud in 0.651113 sec
+loaded regions in 4.6e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.605538 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.39036 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18346 points extracted in 1.33981 sec
+saved dense cloud in 0.002895 sec
+loaded regions in 3e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 1.0671 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.91834 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25907037 points extracted in 39.215 sec
+saved dense cloud in 1.13167 sec
+loaded regions in 4.4e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.50279 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 7.08318 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6243076 points extracted in 11.3447 sec
+saved dense cloud in 0.268691 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 1.14278 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.29818 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.30664 sec
+saved dense cloud in 0.004792 sec
+loaded regions in 4.2e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 2 cameras in 1.5e-05 sec
+preloading data... done in 0.644114 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.69525 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10952788 points extracted in 14.7616 sec
+saved dense cloud in 0.457082 sec
+loaded regions in 6.6e-05 sec
+loaded camera partition in 3e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 2.1e-05 sec
+preloading data... done in 0.814094 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.83982 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7260257 points extracted in 10.572 sec
+saved dense cloud in 0.306252 sec
+loaded regions in 4.1e-05 sec
+loaded camera partition in 1.4e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.562891 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.55327 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2909522 points extracted in 5.373 sec
+saved dense cloud in 0.128811 sec
+loaded regions in 6.4e-05 sec
+loaded dense cloud data in 2.4e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 5.81735 sec
+loaded camera partition in 4.8e-05 sec
+loaded regions in 1.8e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.010423 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001278 sec (CUDA: 5e-06 sec, OpenCL: 0.001258 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118110731 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.00136 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "rasterio/_base.pyx", line 216, in rasterio._base.DatasetBase.__init__
+  File "rasterio/_shim.pyx", line 78, in rasterio._shim.open_dataset
+  File "rasterio/_err.pyx", line 205, in rasterio._err.exc_wrap_pointer
+rasterio._err.CPLE_OpenFailedError: /home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem_highres/reference_dem_final-adj.tif: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 532, in run_metashape
+    epsg_code = 'EPSG:'+ hsfm.geospatial.get_epsg_code(reference_dem)
+  File "/home/elilouis/hsfm/hsfm/geospatial/geospatial.py", line 343, in get_epsg_code
+    src = rasterio.open(dem_file_name)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/rasterio/env.py", line 433, in wrapper
+    return f(*args, **kwds)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/rasterio/__init__.py", line 218, in open
+    s = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+  File "rasterio/_base.pyx", line 218, in rasterio._base.DatasetBase.__init__
+rasterio.errors.RasterioIOError: /home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem_highres/reference_dem_final-adj.tif: No such file or directory
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 493, in run_metashape
+    out = hsfm.metashape.images2las(project_name,
+  File "/home/elilouis/hsfm/hsfm/metashape/metashape.py", line 50, in images2las
+    os.makedirs(output_path)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: 'routine_outputs0'
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.010788 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.002267 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.030528 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.005357 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.001432 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001398 sec
+loaded keypoint partition in 6.3e-05 sec
+loaded matching data in 3.1e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000735 sec (CUDA: 0.000407 sec, OpenCL: 0.000307 sec)
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 493, in run_metashape
+    out = hsfm.metashape.images2las(project_name,
+  File "/home/elilouis/hsfm/hsfm/metashape/metashape.py", line 50, in images2las
+    os.makedirs(output_path)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: 'routine_outputs0'
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 32.6962 sec
+loaded matching partition in 0.000103 sec
+loaded keypoint partition in 1.2e-05 sec
+loaded keypoints in 0.00272 sec
+loaded matching data in 5.2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.001129 sec (CUDA: 1.7e-05 sec, OpenCL: 0.001089 sec)
+613 matches found in 3.04047 sec
+matches combined in 0.000297 sec
+filtered 74 out of 359 matches (20.6128%) in 0.00431 sec
+saved matches in 0.003599 sec
+loaded matching data in 3.5e-05 sec
+loaded matching partition in 1.6e-05 sec
+loaded matches in 3.5e-05 sec
+4 pairs selected in 4e-06 sec
+setting point indices... 218 done in 0.000103 sec
+setting point indices... 238 done in 4.8e-05 sec
+4 skeletal pairs selected in 0.00022 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.003971 sec
+loaded matching partition in 5.1e-05 sec
+loaded keypoint partition in 1.7e-05 sec
+loaded keypoints in 0.030136 sec
+loaded matching data in 2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000336 sec (CUDA: 4e-06 sec, OpenCL: 0.000316 sec)
+2841 matches found in 0.422587 sec
+matches combined in 0.000313 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.013082 sec
+saved matches in 0.003664 sec
+loaded matching data in 5.5e-05 sec
+loaded matching partition in 1.6e-05 sec
+loaded keypoint partition in 1.4e-05 sec
+loaded matches in 5.1e-05 sec
+setting point indices... 1600 done in 0.000904 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000171 sec
+loaded keypoint partition in 5.9e-05 sec
+loaded matching partition in 1.2e-05 sec
+loaded matching partition in 1.2e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.000341 sec
+selecting camera groups... done in 6.7e-05 sec
+scheduled 1 alignment groups
+saved camera partition in 0.001089 sec
+loaded camera partition in 1.9e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.006856 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.009793 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.064465 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.13823 seconds
+loaded projections in 9.1e-05 sec
+tracks initialized in 0.00019 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 4.2e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.000105 sec
+overlapping groups selected in 5e-06 sec
+loaded camera partition in 2.8e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.070445 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.021331 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 3.3e-05 sec
+processing matches... done in 0.000331 sec
+initializing...
+selected 3 cameras from 3 in 0.007024 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.003165 sec
+loaded depth map partition in 3.8e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.00041 sec (CUDA: 3e-06 sec, OpenCL: 0.000394 sec)
+loaded photos in 2.7685 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.627423 disparity: 40.2846 borders: 0.31886 filter: 1.92774 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.60142 disparity: 32.9984 borders: 0.266343 filter: 1.65304 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.953092 disparity: 54.6573 borders: 0.6101 filter: 2.79925 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.781945 disparity: 55.9515 borders: 0.619969 filter: 3.12314 fill: 1e-06
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 246.913 seconds
+
+3 depth maps generated in 249.682 sec
+saved depth maps block in 0.474684 sec
+loaded depth map partition in 6.1e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 4.07436 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.001947 sec
+saved regions in 0.001263 sec
+saved camera partition in 0.001233 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 7.1e-05 sec
+loaded dense cloud data in 4.4e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 14.6417 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 4.56751 sec (load: 0.497348, render: 2.575 filter: 1.49515)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 3.20756 sec (load: 0.512301, render: 1.19091 filter: 1.50435)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 3.12202 sec (load: 0.502604, render: 1.20104 filter: 1.41838)
+filtered 3 depth maps in 13.8696 sec
+saved depth maps block in 0.374091 sec
+loaded regions in 6e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.83614 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.21777 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.54295 sec
+saved dense cloud in 0.004546 sec
+loaded regions in 2e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 2.4e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.955747 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.25578 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6989498 points extracted in 8.79314 sec
+saved dense cloud in 0.293379 sec
+loaded regions in 6.8e-05 sec
+loaded camera partition in 2.4e-05 sec
+loaded dense cloud data in 2.7e-05 sec
+selected 3 cameras in 1.8e-05 sec
+preloading data... done in 0.703421 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 0.901431 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8280152 points extracted in 9.34938 sec
+saved dense cloud in 0.370319 sec
+loaded regions in 6.3e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.887224 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.00981 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.08513 sec
+saved dense cloud in 0.00177 sec
+loaded regions in 2.6e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.29884 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.90615 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28562990 points extracted in 33.0637 sec
+saved dense cloud in 1.21139 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.847504 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 2.04404 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27926781 points extracted in 28.5758 sec
+saved dense cloud in 1.21555 sec
+loaded regions in 3.8e-05 sec
+loaded camera partition in 2.6e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.714419 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.12102 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.65806 sec
+saved dense cloud in 0.003395 sec
+loaded regions in 4.5e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.954552 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 2.04911 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9749225 points extracted in 13.4379 sec
+saved dense cloud in 0.411279 sec
+loaded regions in 4.9e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.619467 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.10606 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4024209 points extracted in 6.20357 sec
+saved dense cloud in 0.179294 sec
+loaded regions in 4.6e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.5e-05 sec
+preloading data... done in 0.626885 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.8785 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5138345 points extracted in 9.15522 sec
+saved dense cloud in 0.219089 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2.1e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.992547 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.26044 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15285564 points extracted in 20.3514 sec
+saved dense cloud in 0.673949 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.78891 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.33918 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18453 points extracted in 1.5464 sec
+saved dense cloud in 0.002275 sec
+loaded regions in 2.7e-05 sec
+loaded camera partition in 1.4e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 2 cameras in 1.3e-05 sec
+preloading data... done in 1.14124 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.44519 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25899793 points extracted in 38.9278 sec
+saved dense cloud in 1.20484 sec
+loaded regions in 4.2e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.58543 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.39759 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6238899 points extracted in 11.9464 sec
+saved dense cloud in 0.269724 sec
+loaded regions in 8.1e-05 sec
+loaded camera partition in 3.8e-05 sec
+loaded dense cloud data in 3.4e-05 sec
+selected 3 cameras in 3.1e-05 sec
+preloading data... done in 1.22443 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.35645 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.825 sec
+saved dense cloud in 0.00563 sec
+loaded regions in 2.6e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.4e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.69859 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.71919 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10943821 points extracted in 15.8297 sec
+saved dense cloud in 0.634089 sec
+loaded regions in 5.1e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.936422 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.73186 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7259863 points extracted in 11.5442 sec
+saved dense cloud in 0.309604 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.666438 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.72746 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2908701 points extracted in 5.68091 sec
+saved dense cloud in 0.131359 sec
+loaded regions in 3.5e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 6.31411 sec
+loaded camera partition in 5.6e-05 sec
+loaded regions in 9e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.020388 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001198 sec (CUDA: 4e-06 sec, OpenCL: 0.001176 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118079773 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001035 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 617, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 515, in run_metashape
+    hsfm.plot.plot_offsets(ba_LE90,
+  File "/home/elilouis/hsfm/hsfm/plot/plot.py", line 262, in plot_offsets
+    ax.set_xlim(-maxdim, maxdim)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3297, in set_xlim
+    left = self._validate_converted_limits(left, self.convert_xunits)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/matplotlib/axes/_base.py", line 3214, in _validate_converted_limits
+    raise ValueError("Axis limits cannot be NaN or Inf")
+ValueError: Axis limits cannot be NaN or Inf
+Traceback (most recent call last):
+  File "routine.py", line 2, in <module>
+    import hsfm
+  File "/home/elilouis/hsfm/hsfm/__init__.py", line 6, in <module>
+    import hsfm.batch
+  File "/home/elilouis/hsfm/hsfm/batch/__init__.py", line 1, in <module>
+    from .batch import *
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 526
+    print(f"x offset: {x_offset")
+          ^
+SyntaxError: f-string: expecting '}'
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 625, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 493, in run_metashape
+    out = hsfm.metashape.images2las(project_name,
+  File "/home/elilouis/hsfm/hsfm/metashape/metashape.py", line 50, in images2las
+    os.makedirs(output_path)
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: 'routine_outputs0'
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.016048 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001794 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.02664 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.008429 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.001267 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001192 sec
+loaded keypoint partition in 5.7e-05 sec
+loaded matching data in 3.5e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000638 sec (CUDA: 0.000342 sec, OpenCL: 0.000278 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 32.5887 sec
+loaded matching partition in 8e-05 sec
+loaded keypoint partition in 1.5e-05 sec
+loaded keypoints in 0.002762 sec
+loaded matching data in 2.9e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000713 sec (CUDA: 4e-06 sec, OpenCL: 0.000694 sec)
+613 matches found in 3.0562 sec
+matches combined in 0.000116 sec
+filtered 74 out of 359 matches (20.6128%) in 0.036785 sec
+saved matches in 0.005886 sec
+loaded matching data in 3.2e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded matches in 3.2e-05 sec
+4 pairs selected in 2e-06 sec
+setting point indices... 218 done in 6.6e-05 sec
+setting point indices... 238 done in 5e-05 sec
+4 skeletal pairs selected in 0.000179 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.005426 sec
+loaded matching partition in 4.2e-05 sec
+loaded keypoint partition in 1.1e-05 sec
+loaded keypoints in 0.032308 sec
+loaded matching data in 2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.000354 sec (CUDA: 3e-06 sec, OpenCL: 0.000339 sec)
+2841 matches found in 0.392555 sec
+matches combined in 0.000321 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.014664 sec
+saved matches in 0.006484 sec
+loaded matching data in 5.4e-05 sec
+loaded matching partition in 1.6e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded matches in 3.8e-05 sec
+setting point indices... 1600 done in 0.000924 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000159 sec
+loaded keypoint partition in 5.2e-05 sec
+loaded matching partition in 1.3e-05 sec
+loaded matching partition in 1.1e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.000363 sec
+selecting camera groups... done in 8.6e-05 sec
+scheduled 1 alignment groups
+saved camera partition in 0.00177 sec
+loaded camera partition in 2.2e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxx- 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.022281 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.016107 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.071864 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.166405 seconds
+loaded projections in 0.00016 sec
+tracks initialized in 0.000192 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 7.2e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.001366 sec
+overlapping groups selected in 8e-06 sec
+loaded camera partition in 3.9e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.073674 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.02698 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 3.2e-05 sec
+processing matches... done in 0.000357 sec
+initializing...
+selected 3 cameras from 3 in 0.008468 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.005925 sec
+loaded depth map partition in 4.3e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.003111 sec (CUDA: 3.4e-05 sec, OpenCL: 0.00306 sec)
+loaded photos in 2.8089 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.581147 disparity: 40.7571 borders: 0.319857 filter: 1.89704 fill: 2e-06
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.59442 disparity: 34.0592 borders: 0.30432 filter: 1.72994 fill: 1e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.959693 disparity: 55.7009 borders: 0.580542 filter: 3.00563 fill: 1e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.790887 disparity: 55.5873 borders: 0.611147 filter: 2.74921 fill: 0
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 250.528 seconds
+
+3 depth maps generated in 253.338 sec
+saved depth maps block in 0.44675 sec
+loaded depth map partition in 7.4e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 4.40191 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.004929 sec
+saved regions in 0.001537 sec
+saved camera partition in 0.001451 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 6.1e-05 sec
+loaded dense cloud data in 4.4e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 15.2128 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.50199 sec (load: 0.60511, render: 1.8698 filter: 1.02707)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 3.77559 sec (load: 0.518986, render: 1.76892 filter: 1.48769)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 3.53322 sec (load: 0.511176, render: 1.53215 filter: 1.48989)
+filtered 3 depth maps in 13.5169 sec
+saved depth maps block in 0.463338 sec
+loaded regions in 7.3e-05 sec
+loaded camera partition in 2.4e-05 sec
+loaded dense cloud data in 2.9e-05 sec
+selected 3 cameras in 3.1e-05 sec
+preloading data... done in 0.772066 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.14493 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.70813 sec
+saved dense cloud in 0.005156 sec
+loaded regions in 3.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 2.9e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.930085 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.16371 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6993637 points extracted in 8.83082 sec
+saved dense cloud in 0.299466 sec
+loaded regions in 5.5e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.635308 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 0.997006 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8284139 points extracted in 9.15985 sec
+saved dense cloud in 0.457715 sec
+loaded regions in 3.1e-05 sec
+loaded camera partition in 2.5e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.41737 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.24544 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.21148 sec
+saved dense cloud in 0.003573 sec
+loaded regions in 2.4e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.38131 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.63664 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28568072 points extracted in 33.0559 sec
+saved dense cloud in 1.20538 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.00012 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 1.93677 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27923742 points extracted in 28.7875 sec
+saved dense cloud in 1.25971 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.768675 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.2115 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.68315 sec
+saved dense cloud in 0.001804 sec
+loaded regions in 6.8e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 2.4e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.891285 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 1.84268 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9753462 points extracted in 12.8039 sec
+saved dense cloud in 0.416935 sec
+loaded regions in 6.3e-05 sec
+loaded camera partition in 2.5e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 2.5e-05 sec
+preloading data... done in 0.617129 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.11237 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4026371 points extracted in 6.19075 sec
+saved dense cloud in 0.178553 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 2.2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.617228 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.62891 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5139524 points extracted in 9.312 sec
+saved dense cloud in 0.2235 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.927767 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.50505 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15291669 points extracted in 20.4637 sec
+saved dense cloud in 0.642065 sec
+loaded regions in 4.6e-05 sec
+loaded camera partition in 1.7e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.830205 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.30867 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18303 points extracted in 1.56201 sec
+saved dense cloud in 0.003215 sec
+loaded regions in 3.5e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 2 cameras in 1.3e-05 sec
+preloading data... done in 1.11825 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.83116 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25904602 points extracted in 39.9279 sec
+saved dense cloud in 1.11715 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.57375 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.8051 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6242224 points extracted in 11.7564 sec
+saved dense cloud in 0.266264 sec
+loaded regions in 5.2e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.12259 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.2994 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.32448 sec
+saved dense cloud in 0.004673 sec
+loaded regions in 2.1e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 2 cameras in 1.3e-05 sec
+preloading data... done in 0.630487 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.703 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10946936 points extracted in 15.1783 sec
+saved dense cloud in 0.457783 sec
+loaded regions in 4.6e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 3 cameras in 2e-05 sec
+preloading data... done in 0.818828 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.81581 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7261347 points extracted in 11.549 sec
+saved dense cloud in 0.315496 sec
+loaded regions in 4.9e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.8e-05 sec
+preloading data... done in 0.543831 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.59977 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2909710 points extracted in 5.61351 sec
+saved dense cloud in 0.139574 sec
+loaded regions in 7.9e-05 sec
+loaded dense cloud data in 3.2e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 6.21231 sec
+loaded camera partition in 6.2e-05 sec
+loaded regions in 4.5e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.026801 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001168 sec (CUDA: 1.2e-05 sec, OpenCL: 0.001138 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118105245 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001069 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 625, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 516, in run_metashape
+    if np.isfinite(x_offset) and np.isfinite(y_offset) and np.isfinite(z_offset):
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pandas/core/generic.py", line 1326, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+SaveProject: path = routine_outputs0/nisqually_1980.psx
+saved project in 0.014786 sec
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001695 sec
+AddPhotos
+ImportReference: columns = nxyzXYZabcABC, delimiter = ,, path = input_data/images_preprocessed/metashape_metadata.csv
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.028917 sec
+MatchPhotos: accuracy = High, preselection = generic, keypoint limit = 40000, tiepoint limit = 4000, apply masks = 0, filter tie points = 1
+saved matching data in 0.011155 sec
+scheduled 1 keypoint detection groups
+saved keypoint partition in 0.001498 sec
+groups: 15
+6 of 6 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.001445 sec
+loaded keypoint partition in 7.8e-05 sec
+loaded matching data in 3.4e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.00072 sec (CUDA: 0.000399 sec, OpenCL: 0.0003 sec)
+[CPU] photo 0: 40000 points
+[CPU] photo 1: 40000 points
+[CPU] photo 2: 40000 points
+[CPU] photo 3: 40000 points
+[CPU] photo 4: 40000 points
+[CPU] photo 5: 40000 points
+points detected in 30.6281 sec
+loaded matching partition in 8.3e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded keypoints in 0.002717 sec
+loaded matching data in 3.4e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.001303 sec (CUDA: 5e-06 sec, OpenCL: 0.001278 sec)
+613 matches found in 3.05679 sec
+matches combined in 0.000457 sec
+filtered 74 out of 359 matches (20.6128%) in 0.033417 sec
+saved matches in 0.006153 sec
+loaded matching data in 3.1e-05 sec
+loaded matching partition in 2e-05 sec
+loaded matches in 2.1e-05 sec
+4 pairs selected in 2e-06 sec
+setting point indices... 218 done in 8.4e-05 sec
+setting point indices... 238 done in 4.3e-05 sec
+4 skeletal pairs selected in 0.00018 sec
+groups: 4
+4 of 4 used (100%)
+scheduled 1 keypoint matching groups
+saved matching partition in 0.00576 sec
+loaded matching partition in 3.1e-05 sec
+loaded keypoint partition in 1.1e-05 sec
+loaded keypoints in 0.042076 sec
+loaded matching data in 2.8e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.002054 sec (CUDA: 8e-06 sec, OpenCL: 0.002018 sec)
+2841 matches found in 0.433853 sec
+matches combined in 0.000496 sec
+filtered 110 out of 1759 matches (6.25355%) in 0.007021 sec
+saved matches in 0.006022 sec
+loaded matching data in 4.7e-05 sec
+loaded matching partition in 1.5e-05 sec
+loaded keypoint partition in 1.3e-05 sec
+loaded matches in 3.5e-05 sec
+setting point indices... 1600 done in 0.000878 sec
+generated 1600 tie points, 2.02188 average projections
+selected 1600 tracks out of 1600 in 0.000166 sec
+loaded keypoint partition in 4.9e-05 sec
+loaded matching partition in 1.2e-05 sec
+loaded matching partition in 1e-05 sec
+AlignCameras: adaptive fitting = 0
+processing matches... done in 0.000293 sec
+selecting camera groups... done in 6.8e-05 sec
+scheduled 1 alignment groups
+saved camera partition in 0.001612 sec
+loaded camera partition in 1.5e-05 sec
+processing block: 4 photos
+pair 2 and 5: 1339 robust from 1340
+adding photos 2 and 5 (1339 robust)
+adding 1340 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.128016 -> 0.112756
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.009725 seconds
+adding camera 1 (3 of 4), 35 of 35 used
+adding 155 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.182109 -> 0.129397
+adding 0 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.024134 seconds
+3 sigma filtering...
+adjusting: xxxxxx 0.135361 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.090885 seconds
+f 7505.4, cx -1.53848, cy -23.3667, k1 -0.00284225, k2 0.00427107, k3 -0.00238144
+finished sfm in 0.185035 seconds
+loaded projections in 0.000742 sec
+tracks initialized in 0.000184 sec
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+loaded camera partition in 2.9e-05 sec
+1 blocks: 4
+calculating match counts... done in 0.000925 sec
+overlapping groups selected in 5e-06 sec
+loaded camera partition in 2.4e-05 sec
+1 blocks: 4
+block: 1 sensors, 4 cameras, 1600 points, 3235 projections
+block_sensors: 0.000808716 MB (0.000808716 MB allocated)
+block_cameras: 0.0015564 MB (0.0015564 MB allocated)
+block_points: 0.0732422 MB (0.136871 MB allocated)
+block_tracks: 0.00610352 MB (0.00610352 MB allocated)
+block_obs: 0.0740433 MB (0.0740433 MB allocated)
+block_ofs: 0.0122147 MB (0.0122147 MB allocated)
+block_fre: 0 MB (0 MB allocated)
+final block size: 4
+adding 1495 points, 0 far (22.5 threshold), 0 inaccurate, 0 invisible, 0 weak
+3 sigma filtering...
+adjusting: xxxxx 0.130094 -> 0.128271
+point variance: 0.0872958 threshold: 0.261888
+adding 0 points, 18 far (0.261888 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.110491 -> 0.110248
+point variance: 0.0734022 threshold: 0.220207
+adding 0 points, 10 far (0.220207 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107932 -> 0.107811
+point variance: 0.0713147 threshold: 0.213944
+adding 0 points, 3 far (0.213944 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxxx 0.107061 -> 0.106976
+point variance: 0.0706571 threshold: 0.211971
+adding 0 points, 1 far (0.211971 threshold), 0 inaccurate, 0 invisible, 0 weak
+adjusting: xxxx 0.106746 -> 0.10674
+point variance: 0.070471 threshold: 0.211413
+adding 0 points, 1 far (0.211413 threshold), 0 inaccurate, 0 invisible, 0 weak
+optimized in 0.086911 seconds
+coordinates applied in 0 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.023195 sec
+BuildDepthMaps: quality = Ultra high, depth filtering = Mild
+sorting point cloud... done in 4e-05 sec
+processing matches... done in 0.000244 sec
+initializing...
+selected 3 cameras from 3 in 0.013043 sec
+groups: 3
+3 of 3 used (100%)
+scheduled 1 depth map groups
+saved depth map partition in 0.005765 sec
+loaded depth map partition in 4.2e-05 sec
+Can't load OpenCL library
+Found 0 GPUs in 0.00041 sec (CUDA: 2e-06 sec, OpenCL: 0.000394 sec)
+loaded photos in 3.05712 seconds
+[CPU] estimating 5922x9420x1344 disparity using 987x1047x8u tiles
+timings: rectify: 0.736633 disparity: 40.933 borders: 0.347696 filter: 1.95197 fill: 0
+[CPU] estimating 6283x8927x1024 disparity using 1048x992x8u tiles
+timings: rectify: 0.607785 disparity: 33.4128 borders: 0.259446 filter: 1.82902 fill: 0
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.941569 disparity: 57.4104 borders: 0.603978 filter: 3.36819 fill: 2e-06
+[CPU] estimating 8374x9931x1248 disparity using 1047x994x8u tiles
+timings: rectify: 0.960021 disparity: 55.9129 borders: 0.622901 filter: 2.79487 fill: 0
+
+Depth reconstruction devices performance:
+ - 100%	 done by CPU
+Total time: 252.749 seconds
+
+3 depth maps generated in 255.807 sec
+saved depth maps block in 0.547991 sec
+loaded depth map partition in 7.2e-05 sec
+BuildDenseCloud: point colors = 1
+initializing...
+selected 3 cameras in 4.00947 sec
+working volume: 12919x12328x6420
+tiles: 3x3x2
+saved dense cloud data in 0.004518 sec
+saved regions in 0.001494 sec
+saved camera partition in 0.001227 sec
+scheduled 1 depth filtering groups
+scheduled 18 dense cloud regions
+loaded camera partition in 7.1e-05 sec
+loaded dense cloud data in 3.2e-05 sec
+filtering 3 depth maps...
+using 3 depth maps including neighbors (3.0375 GB)
+preloading data... done in 15.9526 sec
+filtering NAGAP_80V1_133 using 2 neighbors... done in 3.14442 sec (load: 0.513363, render: 1.60021 filter: 1.03084)
+filtering NAGAP_80V1_134 using 2 neighbors... done in 2.40927 sec (load: 0.738443, render: 0.514179 filter: 1.15665)
+filtering NAGAP_80V1_139 using 2 neighbors... done in 3.24838 sec (load: 0.57946, render: 1.36148 filter: 1.30744)
+filtered 3 depth maps in 11.3811 sec
+saved depth maps block in 0.44037 sec
+loaded regions in 4.8e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.0025 sec
+loaded 9.92911% of depth maps (150.798 MB)
+preprocessing images... done in 2.30362 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.67694 sec
+saved dense cloud in 0.004306 sec
+loaded regions in 3.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 0.971479 sec
+loaded 15.9099% of depth maps (241.631 MB)
+preprocessing images... done in 2.08998 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6994700 points extracted in 9.4962 sec
+saved dense cloud in 0.38014 sec
+loaded regions in 3.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.880521 sec
+loaded 10.0542% of depth maps (152.699 MB)
+preprocessing images... done in 1.11982 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+8278223 points extracted in 10.35 sec
+saved dense cloud in 0.362664 sec
+loaded regions in 6.9e-05 sec
+loaded camera partition in 3.5e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.6e-05 sec
+preloading data... done in 0.896156 sec
+loaded 14.2227% of depth maps (216.007 MB)
+preprocessing images... done in 3.08345 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 2.28991 sec
+saved dense cloud in 0.001486 sec
+loaded regions in 6.2e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 1.12739 sec
+loaded 18.9434% of depth maps (287.703 MB)
+preprocessing images... done in 3.74966 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+28568566 points extracted in 33.9468 sec
+saved dense cloud in 1.19612 sec
+loaded regions in 9.1e-05 sec
+loaded camera partition in 2.3e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.7e-05 sec
+preloading data... done in 0.996551 sec
+loaded 13.502% of depth maps (205.062 MB)
+preprocessing images... done in 1.90432 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+27930955 points extracted in 30.6803 sec
+saved dense cloud in 1.26128 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.9e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.01454 sec
+loaded 8.3462% of depth maps (126.758 MB)
+preprocessing images... done in 2.0015 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 1.85996 sec
+saved dense cloud in 0.006194 sec
+loaded regions in 5.6e-05 sec
+loaded camera partition in 3.4e-05 sec
+loaded dense cloud data in 4.4e-05 sec
+selected 3 cameras in 2.4e-05 sec
+preloading data... done in 1.02186 sec
+loaded 10.994% of depth maps (166.971 MB)
+preprocessing images... done in 1.93 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+9751662 points extracted in 13.1091 sec
+saved dense cloud in 0.488678 sec
+loaded regions in 4.2e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.811291 sec
+loaded 8.68925% of depth maps (131.968 MB)
+preprocessing images... done in 1.09408 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+4026386 points extracted in 6.14645 sec
+saved dense cloud in 0.178235 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 1.6e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.590744 sec
+loaded 11.3919% of depth maps (115.343 MB)
+preprocessing images... done in 1.79111 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+5140249 points extracted in 9.42917 sec
+saved dense cloud in 0.238926 sec
+loaded regions in 6.7e-05 sec
+loaded camera partition in 2.4e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 0.863502 sec
+loaded 16.4104% of depth maps (249.233 MB)
+preprocessing images... done in 2.40393 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+15292564 points extracted in 20.6991 sec
+saved dense cloud in 0.646095 sec
+loaded regions in 5e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 2e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.778511 sec
+loaded 9.18259% of depth maps (139.461 MB)
+preprocessing images... done in 1.37881 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+18670 points extracted in 1.53616 sec
+saved dense cloud in 0.002815 sec
+loaded regions in 2.6e-05 sec
+loaded camera partition in 1.5e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 2 cameras in 1.3e-05 sec
+preloading data... done in 1.12097 sec
+loaded 29.3505% of depth maps (297.174 MB)
+preprocessing images... done in 4.8019 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+25913134 points extracted in 38.9686 sec
+saved dense cloud in 1.09289 sec
+loaded regions in 3.8e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.4e-05 sec
+preloading data... done in 2.01587 sec
+loaded 35.2301% of depth maps (535.057 MB)
+preprocessing images... done in 6.95876 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+6240766 points extracted in 11.7397 sec
+saved dense cloud in 0.28279 sec
+loaded regions in 4.1e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.6e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 1.26998 sec
+loaded 20.6519% of depth maps (313.65 MB)
+preprocessing images... done in 4.41683 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+0 points extracted in 3.39412 sec
+saved dense cloud in 0.00497 sec
+loaded regions in 3.3e-05 sec
+loaded camera partition in 1.8e-05 sec
+loaded dense cloud data in 1.5e-05 sec
+selected 2 cameras in 1.4e-05 sec
+preloading data... done in 0.845996 sec
+loaded 11.0255% of depth maps (111.633 MB)
+preprocessing images... done in 1.70218 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+10956625 points extracted in 15.6708 sec
+saved dense cloud in 0.489631 sec
+loaded regions in 3.7e-05 sec
+loaded camera partition in 1.9e-05 sec
+loaded dense cloud data in 1.7e-05 sec
+selected 3 cameras in 1.3e-05 sec
+preloading data... done in 1.10183 sec
+loaded 10.7567% of depth maps (163.367 MB)
+preprocessing images... done in 1.89716 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+7260114 points extracted in 11.3037 sec
+saved dense cloud in 0.33639 sec
+loaded regions in 4.7e-05 sec
+loaded camera partition in 2e-05 sec
+loaded dense cloud data in 2.1e-05 sec
+selected 3 cameras in 1.5e-05 sec
+preloading data... done in 0.614229 sec
+loaded 7.63211% of depth maps (115.913 MB)
+preprocessing images... done in 1.60543 sec
+working volume: 4306x4109x3210
+tiles: 4x4x3
+2908702 points extracted in 5.39867 sec
+saved dense cloud in 0.13236 sec
+loaded regions in 6e-05 sec
+loaded dense cloud data in 1.8e-05 sec
+joining 18 dense point clouds
+dense clouds joined in 6.28946 sec
+loaded camera partition in 5.3e-05 sec
+loaded regions in 2.5e-05 sec
+SaveProject: path = /home/elilouis/hsfm-geomorph/create_dem_nisqually_1980/routine_outputs0/nisqually_1980.psx
+saved project in 0.024954 sec
+ExportReport: path = routine_outputs0/nisqually_1980_report.pdf
+Can't load OpenCL library
+Found 0 GPUs in 0.001069 sec (CUDA: 5e-06 sec, OpenCL: 0.001051 sec)
+ExportPoints: crs = WGS 84, format = PointsFormatLAS, path = routine_outputs0/nisqually_1980.las
+point cloud size: 118120341 points
+LoadProject: path = routine_outputs0/nisqually_1980.psx
+loaded project in 0.001376 sec
+/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pyproj/crs/crs.py:53: FutureWarning: '+init=<authority>:<code>' syntax is deprecated. '<authority>:<code>' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  return _prepare_from_string(" ".join(pjargs))
+Traceback (most recent call last):
+  File "routine.py", line 17, in <module>
+    hsfm.batch.metaflow(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 625, in metaflow
+    out = hsfm.batch.run_metashape(project_name,
+  File "/home/elilouis/hsfm/hsfm/batch/batch.py", line 516, in run_metashape
+    if np.isfinite(x_offset) & np.isfinite(y_offset) & np.isfinite(z_offset):
+  File "/home/elilouis/.conda/envs/hsfm/lib/python3.8/site-packages/pandas/core/generic.py", line 1326, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
