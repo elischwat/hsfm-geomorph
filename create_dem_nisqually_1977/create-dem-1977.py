@@ -21,13 +21,13 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
 # +
-targets_file = 'targets_kautz_watershed_1977.csv'
+targets_file = 'targets_nisqually_1977.csv'
 image_directory = 'input_data/images_source'
 preprocess_output_directory= 'input_data/images_preprocessed'
 
 fiducial_template_dir = 'input_data/fiducials'
 
-image_subset_df = pd.read_csv('targets_kautz_watershed_1977.csv')
+image_subset_df = pd.read_csv(targets_file)
 # -
 
 
@@ -140,18 +140,14 @@ aligned_dem_file, _ =  hsfm.asp.pc_align_p2p_sp2p(dem,
                                                   output_path,
                                                   verbose = verbose)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.utils.dem_align_custom(clipped_reference_dem,
                             aligned_dem_file,
                             output_path,
                             verbose = verbose)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.plot.plot_dem_from_file(clipped_reference_dem)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.plot.plot_dem_from_file(aligned_dem_file)
-# -
 
 # # Create DEM of Difference
 

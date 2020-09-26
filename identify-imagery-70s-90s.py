@@ -99,7 +99,7 @@ df.head(3)
 #
 # Lets change crs to web mercator right off the bat too.
 
-aoi_gdf = gpd.read_aile('aois.geojson')
+aoi_gdf = gpd.read_file('aois.geojson')
 aoi_gdf = aoi_gdf.to_crs(epsg=3857)
 
 ax = aoi_gdf.plot()
@@ -234,6 +234,34 @@ ax = fryingpan_frames_df.plot(column='date', categorical=True, legend=True, mark
 ctx.add_basemap(ax, source=ctx.providers.Esri.WorldTopoMap)
 plt.gcf().set_size_inches(14,14)
 
+# ## Look at data in a smaller watershed, say the Nisqually
+
+rainier_sub_aois = gpd.read_file("rainier_sub_aois.geojson")
+rainier_sub_aois = rainier_sub_aois.to_crs(epsg=3857)
+
+local_frames_gdf = rainier_frames_gdf[rainier_frames_gdf.geometry.within(rainier_sub_aois.geometry.iloc[0])]
+ax = rainier_sub_aois.plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+ax = local_frames_gdf.plot(column='date', categorical=True, markersize=20, ax=ax, legend=True)
+ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
+# ax.set(xlim=(-1.357e7,-1.3535e7), ylim=(5.905e6, 5.94e6))
+plt.gcf().set_size_inches(15,15)
+
+# ## Visualize all images in the Nisqually river valley, separated by date
+
+groupby_date =local_frames_gdf.groupby('date')
+
+# +
+fig, axes = plt.subplots(4,4, figsize=(20,20))
+axes_flat = [item for sublist in axes for item in sublist]
+for key, group in local_frames_gdf.groupby('date'):
+    ax = axes_flat.pop(0)
+    ax = group.plot(column='date', categorical=True, markersize=40, legend=True, ax=ax)
+    ax.set(xlim =(-1.35575e7, -1.35500e7), ylim=(5.906e6, 5.913e6))
+    ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
+    
+plt.show()
+# -
+
 # # Gather Data to Create a DEM - One Date in the Kautz Watershed
 
 # ## Visaulize one-date images
@@ -269,6 +297,8 @@ plt.gcf().set_size_inches(8,8)
 # If it's annoying, we can try creating a dem with the following subset:
 
 # Frame numbers for nearby images: 132, 133, 134, 136, 137, 138, 139 (note missing frame 135?)
+
+src = nisqually_1980_df[nisqually_1980_df.frame==' 138']
 
 nisqually_1980_subset_df = nisqually_1980_df.sort_values('frame').reset_index().iloc[:7]
 ax = nisqually_1980_subset_df.plot(column='date', categorical=True, legend=True, markersize=80)

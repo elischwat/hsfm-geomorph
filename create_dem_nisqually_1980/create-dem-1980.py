@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
 # +
-targets_file = 'targets_nisqually_1980.csv'
+targets_file = 'targets_nisqually_1980_subset.csv'
 image_directory = 'input_data/images_source'
 preprocess_output_directory= 'input_data/images_preprocessed'
 
@@ -42,15 +42,22 @@ imgplot = plt.imshow(mpimg.imread(f'{image_directory}/NAGAP_80V1_132.tif'))
 plt.gcf().set_size_inches(8,8)
 plt.show()
 
-# ## Create fiducial marker templates
-# <span style="color:red">MAY REQUIRE MANUAL INTERVENTION</span>
-
-hsfm.utils.create_fiducials(img, output_directory=fiducial_template_dir)
-
 # ## Preprocess Step 1 - detect fiducial markers, crop, enhance contrast
-# <span style="color:red">MAY REQUIRE MANUAL INTERVENTION</span>
+# Using existing fiducial markers so no manual intervention here.
 
-hsfm.batch.preprocess_images(fiducial_template_dir,
+# Process all
+
+hsfm.batch.preprocess_images('/home/elilouis/hsfm/examples/input_data/fiducials/nagap/notch/',
+                             camera_positions_file_name=targets_file,
+                             image_directory=image_directory,
+                             output_directory=preprocess_output_directory,
+                             qc=True)
+
+# Process dropping frame 138
+
+# rm input_data/images_source/NAGAP_80V1_138.tif
+
+hsfm.batch.preprocess_images('/home/elilouis/hsfm/examples/input_data/fiducials/nagap/notch/',
                              camera_positions_file_name=targets_file,
                              image_directory=image_directory,
                              output_directory=preprocess_output_directory,
@@ -63,7 +70,7 @@ hsfm.batch.preprocess_images(fiducial_template_dir,
 
 # Why use VRT file here instead of a tiff?
 
-srtm_reference_dem = 'input_data/reference_dem/SRTM3/SRTM3.vrt'
+srtm_reference_dem = '/home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem/SRTM3/SRTM3.vrt'
 
 # ## Preprocess Step 2 - calculate new csv file with heading info
 
@@ -74,7 +81,7 @@ hsfm.batch.calculate_heading_from_metadata(image_subset_df,
 
 # ### High-Res DEM 
 
-reference_dem = 'input_data/reference_dem_highres/reference_dem_final-adj.tif'
+reference_dem = '/home/elilouis/hsfm-geomorph/create_dem_nisqually_1977/input_data/reference_dem_highres/reference_dem_final-adj.tif'
 
 hsfm.plot.plot_dem_from_file(reference_dem)
 
@@ -88,7 +95,7 @@ hsfm.plot.plot_dem_from_file(reference_dem)
 image_matching_accuracy = 4
 densecloud_quality      = 4
 
-project_name          = 'kautz'
+project_name          = 'niqually_1980'
 input_path            = 'input_data'
 output_path           = 'metashape/'
 images_path           = 'input_data/images_preprocessed/'
@@ -140,18 +147,14 @@ aligned_dem_file, _ =  hsfm.asp.pc_align_p2p_sp2p(dem,
                                                   output_path,
                                                   verbose = verbose)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.utils.dem_align_custom(clipped_reference_dem,
                             aligned_dem_file,
                             output_path,
                             verbose = verbose)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.plot.plot_dem_from_file(clipped_reference_dem)
 
-# + jupyter={"outputs_hidden": true}
 hsfm.plot.plot_dem_from_file(aligned_dem_file)
-# -
 
 # # Create DEM of Difference
 
@@ -198,7 +201,3 @@ with rasterio.open(dem_difference_masked, "w", **out_meta) as dest:
 # -
 
 hsfm.plot.plot_dem_from_file(dem_difference_masked)
-
-dem_difference_masked
-
-
