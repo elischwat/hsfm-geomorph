@@ -2,6 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -32,6 +33,8 @@ import pandas as pd
 gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 # -
 
+data_dir = '/home/elilouis/hsfm-geomorph/data/'
+
 # ## Open up KML Files
 # Make sure to open all layers explicitly
 
@@ -40,6 +43,7 @@ file_paths = ['NAGAP_1970s.kml', 'NAGAP_1980s.kml', 'NAGAP_1990s.kml']
 
 df_list = []
 for path in file_paths:
+    path = os.path.join(data_dir, path)
     for layer in fiona.listlayers(path):
         try:
             df_list.append(gpd.read_file(path, driver='KML', layer=layer))
@@ -99,7 +103,7 @@ df.head(3)
 #
 # Lets change crs to web mercator right off the bat too.
 
-aoi_gdf = gpd.read_file('aois.geojson')
+aoi_gdf = gpd.read_file(data_dir + 'aois.geojson')
 aoi_gdf = aoi_gdf.to_crs(epsg=3857)
 
 ax = aoi_gdf.plot()
@@ -184,7 +188,9 @@ plt.gcf().set_size_inches(10,10)
 
 # ## Load Washington watershed geometries
 
-wau_gdf = gpd.read_file('/home/elilouis/Watershed_Administrative_Units-shp/wau.shp')
+# !ls $data_dir
+
+wau_gdf = gpd.read_file(f'{data_dir}/Watershed_Administrative_Units-shp/wau.shp')
 
 wau_gdf.plot()
 
@@ -235,9 +241,9 @@ ax = fryingpan_frames_df.plot(column='date', categorical=True, legend=True, mark
 ctx.add_basemap(ax, source=ctx.providers.Esri.WorldTopoMap)
 plt.gcf().set_size_inches(14,14)
 
-# ## Look at data in a smaller watershed, say the Nisqually
+# ## Look at data in smaller watersheds, Nisqually and Carbon
 
-rainier_sub_aois = gpd.read_file("rainier_sub_aois.geojson")
+rainier_sub_aois = gpd.read_file(f"{data_dir}/rainier_sub_aois.geojson")
 rainier_sub_aois = rainier_sub_aois.to_crs(epsg=3857)
 nisqually_polygon = rainier_sub_aois[rainier_sub_aois.name=='nisqually'].geometry.iloc[0]
 carbon_polygon = rainier_sub_aois[rainier_sub_aois.name=='carbon'].geometry.iloc[0]
@@ -247,8 +253,8 @@ carbon_frames = rainier_frames_gdf[rainier_frames_gdf.geometry.within(carbon_pol
 len(nisqually_frames), len(carbon_frames)
 
 
-def plot_frames_and_aoi_polygon(points, polygon, lims = None):
-    ax = gpd.GeoDataFrame(geometry = pd.Series(polygon)).plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+def plot_frames_and_aoi_polygon(points, aoi_polygon, lims = None):
+    ax = gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
     points.plot(column='date', categorical=True, markersize=20, ax=ax, legend=True)
     ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
     if lims is not None:
@@ -256,79 +262,32 @@ def plot_frames_and_aoi_polygon(points, polygon, lims = None):
     plt.gcf().set_size_inches(8,8)
 
 
+import math 
+def plot_frames_and_aoi_date_separated(points, aoi_polygon, lims=None):
+    groupby = points.groupby('date')
+    fig, axes = plt.subplots(math.ceil(len(groupby.size().tolist())/4),4, figsize=(20,20), sharex=True, sharey=True)
+    axes_flat = [item for sublist in axes for item in sublist]
+    for key, group in groupby:
+        ax = axes_flat.pop(0)
+        gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(ax=ax, legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+        group.plot(ax=ax, column='date', categorical=True, markersize=40, legend=True)
+        ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
+
+
 plot_frames_and_aoi_polygon(nisqually_frames, nisqually_polygon)
+
+plot_frames_and_aoi_date_separated(nisqually_frames, nisqually_polygon)
 
 plot_frames_and_aoi_polygon(carbon_frames, carbon_polygon)
 
-plot_frames_and_aoi_polygon(carbon_frames, carbon_polygon, lims = ((-1.3566e7, -1.3550e7), (5.918e6, 5.9405e6)))
+plot_frames_and_aoi_date_separated(carbon_frames, carbon_polygon)
 
-# ## Visualize all images in the Nisqually river valley, separated by date
 
-groupby_date =local_frames_gdf.groupby('date')
-
-# +
-fig, axes = plt.subplots(4,4, figsize=(20,20))
-axes_flat = [item for sublist in axes for item in sublist]
-for key, group in local_frames_gdf.groupby('date'):
-    ax = axes_flat.pop(0)
-    ax = group.plot(column='date', categorical=True, markersize=40, legend=True, ax=ax)
-    ax.set(xlim =(-1.35575e7, -1.35500e7), ylim=(5.906e6, 5.913e6))
-    ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
-    
-plt.show()
-# -
-
-# # Gather Data to Create a DEM - One Date in the Kautz Watershed
-
-# ## Visaulize one-date images
-
-# ### Nisqally Glacier Stream, 1977
-
-DATE = '1977-02-11'
-
-nisqually_1977_df = kautz_frames_df[kautz_frames_df.date==DATE]
-ax = nisqually_1977_df.plot(column='date', categorical=True, legend=True, markersize=80)
-ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
-plt.gcf().set_size_inches(8,8)
-
-# There we go, a single nice river valley.
-#
-# We can create a DEM with these.
-#
-# Lets find all the tiff UUIDs for these images
-
-# ### Nisqually Glacier Stream, 1980
-
-DATE = '1980-09-10'
-
-nisqually_1980_df = kautz_frames_df[kautz_frames_df.date==DATE]
-ax = nisqually_1980_df.plot(column='date', categorical=True, legend=True, markersize=80)
-ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
-plt.gcf().set_size_inches(8,8)
-
-# A not nice collection from a single day.
-#
-# Let's test the pipeline and see what happens when we use these images. Lets find all the tiff UUIDs for these images..
-#
-# If it's annoying, we can try creating a dem with the following subset:
-
-# Frame numbers for nearby images: 132, 133, 134, 136, 137, 138, 139 (note missing frame 135?)
-
-src = nisqually_1980_df[nisqually_1980_df.frame==' 138']
-
-nisqually_1980_subset_df = nisqually_1980_df.sort_values('frame').reset_index().iloc[:7]
-ax = nisqually_1980_subset_df.plot(column='date', categorical=True, legend=True, markersize=80)
-ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
-plt.gcf().set_size_inches(8,8)
-
-# # Functions for creating target CSV.
-
-pids_df = pd.read_csv('glacier_names_pids.csv')
-
+# # Save Datasets to CSV for the HSFM Pipeline
 
 def create_targets_list(kml_derived_df, output_path):
     #Open image name/UUID dataset
-    pids_df = pd.read_csv('glacier_names_pids.csv')
+    pids_df = pd.read_csv(f'{data_dir}/glacier_names_pids.csv')
     filenames = kml_derived_df.apply(lambda r: ('NAGAP_' + r.roll + '_' + r.frame).replace(' ', ''), axis=1)
     pid_df = pids_df[pids_df.fileName.isin(filenames)]
     pid_df[[
@@ -337,8 +296,43 @@ def create_targets_list(kml_derived_df, output_path):
     return output_path
 
 
-create_targets_list(nisqually_1977_df, 'create_dem_nisqually_1977/targets_nisqually_1977.csv')
+# ### Nisqually 1977
 
-create_targets_list(nisqually_1980_df, 'create_dem_nisqually_1980/targets_nisqually_1980.csv')
+src = nisqually_frames.groupby('date').get_group('1977-02-11')
+print(len(src))
+create_targets_list(
+    src,
+    'targets_nisqually_1977.csv'
+)
 
-create_targets_list(nisqually_1980_subset_df, 'create_dem_nisqually_1980/targets_nisqually_1980_subset.csv')
+# ### Nisqually 1980
+
+src = nisqually_frames.groupby('date').get_group('1980-9-10')
+print(len(src))
+create_targets_list(
+    src,
+    'targets_nisqually_1980.csv'
+)
+
+# ### Nisqually All
+
+# +
+src = nisqually_frames
+print(len(src))
+create_targets_list(
+    src,
+    'targets_nisqually_all_dates.csv'
+
+)
+# -
+
+# ### Carbon All
+
+# +
+src = carbon_frames
+print(len(src))
+create_targets_list(
+    src,
+    'targets_carbon_all_dates.csv'
+
+)

@@ -1,6 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -19,13 +20,20 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+# -
+
+data_dir = '/home/elilouis/hsfm-geomorph/data'
+hsfm_dir = '/home/elilouis/hsfm'
+license_path = '/home/elilouis/hsfm/uw_agisoft.lic'
+
+hsfm.metashape.authentication(license_path)
 
 # +
-targets_file = 'targets_nisqually_1977.csv'
+targets_file = '../../identify-imagery/targets_nisqually_1977.csv'
 image_directory = 'input_data/images_source'
 preprocess_output_directory= 'input_data/images_preprocessed'
 
-fiducial_template_dir = 'input_data/fiducials'
+fiducial_template_dir = f'{data_dir}/fiducials_nisqually_1977'
 
 image_subset_df = pd.read_csv(targets_file)
 # -
@@ -35,8 +43,10 @@ image_subset_df = pd.read_csv(targets_file)
 
 # ## Download thumbnails
 
+# + tags=[]
 # image_type options: pid_tiff (high res), pid_tn (low res), pid_jpeg (high res)
 hsfm.batch.download_images_to_disk(targets_file, output_directory=image_directory, image_type='pid_tiff') 
+# -
 
 imgplot = plt.imshow(mpimg.imread(f'{image_directory}/NAGAP_77V6_263.tif'))
 plt.gcf().set_size_inches(5,5)
@@ -45,36 +55,49 @@ plt.show()
 # ## Create fiducial marker templates
 # <span style="color:red">MAY REQUIRE MANUAL INTERVENTION</span>
 
+# + tags=[]
+# ls $fiducial_template_dir
+# -
+
 hsfm.utils.create_fiducials(img, output_directory=fiducial_template_dir)
 
 # ## Preprocess Step 1 - detect fiducial markers, crop, enhance contrast
 # <span style="color:red">MAY REQUIRE MANUAL INTERVENTION</span>
 
+# + tags=[]
 hsfm.batch.preprocess_images(fiducial_template_dir,
                              camera_positions_file_name=targets_file,
                              image_directory=image_directory,
                              output_directory=preprocess_output_directory,
                              qc=True)
+# -
 
 # ## Open Reference DEMs (High-res WA-DNA LIDAR and low-res SRTM)
 # These were proccessed in adjascent notebook `prepare-reference-dems.ipynb`
 
 # ### Low-Res DEM 
 
-# Why use VRT file here instead of a tiff?
+srtm_reference_dem = f'{data_dir}/reference_dem/SRTM3/SRTM3.vrt'
+srtm_reference_dem_warped = f'{data_dir}/reference_dem/SRTM3/SRTM3_warped.tif'
 
-srtm_reference_dem = 'input_data/reference_dem/SRTM3/SRTM3.vrt'
+# !gdalwarp -t_srs EPSG:4326 $srtm_reference_dem $srtm_reference_dem_warped
+
+# !gdalinfo $srtm_reference_dem_warped
+
+# !gdalinfo $srtm_reference_dem
+
+hsfm.plot.plot_dem_from_file(srtm_reference_dem_warped)
 
 # ## Preprocess Step 2 - calculate new csv file with heading info
 
-hsfm.batch.calculate_heading_from_metadata(image_subset_df, 
-                                          output_directory=preprocess_output_directory,
-                                          reference_dem=srtm_reference_dem,
-                                          for_metashape=True)
+# Generate input for Metashape
+
+hsfm.core.prepare_metashape_metadata(targets_file,
+                                     reference_dem=srtm_reference_dem_warped)
 
 # ### High-Res DEM 
 
-reference_dem = 'input_data/reference_dem_highres/reference_dem_final-adj.tif'
+reference_dem = f'{data_dir}/reference_dem_highres/reference_dem_final-adj.tif'
 
 hsfm.plot.plot_dem_from_file(reference_dem)
 
@@ -88,7 +111,7 @@ hsfm.plot.plot_dem_from_file(reference_dem)
 image_matching_accuracy = 4
 densecloud_quality      = 4
 
-project_name          = 'kautz'
+project_name          = 'nisqually_1977'
 input_path            = 'input_data'
 output_path           = 'metashape/'
 images_path           = 'input_data/images_preprocessed/'
@@ -98,16 +121,6 @@ pixel_pitch           = 0.02
 verbose               = True
 rotation_enabled      = True
 # -
-
-# Try changing data in images_metadata_file  = 'input_data/metashape_metadata.csv':
-#
-# yaw/pitch/roll = 0
-#
-# yaw_acc = 180
-#
-# pitch_acc/roll_acc = 10
-
-hsfm.metashape.authentication('/home/elilouis/hsfm/uw_agisoft.lic')
 
 project_file, point_cloud_file = hsfm.metashape.images2las(project_name,
                                             images_path,
@@ -158,19 +171,18 @@ hsfm.plot.plot_dem_from_file(dem_difference)
 # ## Mask Glaciers of DEM of Difference
 
 import geopandas as gpd
+import fiona
+import rasterio
+import rasterio.mask
 
-aois_gdf = gpd.read_file('/home/elilouis/hsfm-geomorph/aois.geojson')
+aois_gdf = gpd.read_file(f'{data_dir}/aois.geojson')
 rainier_polygon = aois_gdf[aois_gdf.name == 'Mt. Rainier']
 
-glacier_gdf = gpd.read_file('/home/elilouis/02_rgi60_WesternCanadaUS.shp')
+glacier_gdf = gpd.read_file(f'{data_dir}/02_rgi60_WesternCanadaUS/02_rgi60_WesternCanadaUS.shp')
 
 rainier_glaciers_gdf = gpd.sjoin(glacier_gdf, rainier_polygon)
 
 rainier_glaciers_gdf.plot()
-
-import fiona
-import rasterio
-import rasterio.mask
 
 # change glacier gdf crs to that of the raster
 
@@ -194,7 +206,3 @@ with rasterio.open(dem_difference_masked, "w", **out_meta) as dest:
 # -
 
 hsfm.plot.plot_dem_from_file(dem_difference_masked)
-
-dem_difference_masked
-
-

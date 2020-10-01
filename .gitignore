@@ -1,8 +1,7 @@
-**.ipynb
 **.DS_Store
 **/.ipynb_checkpoints/**
 .jupyter_symlinks/**
-**.tif4
+**.tif
 **.png
 **.tif
 **.kml
@@ -11,3 +10,6 @@
 .vscode/*
 **routine_outputs0
 data/*
+create_dems/**/input_data
+**.csv
+**.ipynb

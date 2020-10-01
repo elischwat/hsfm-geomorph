@@ -18,15 +18,17 @@ import geopandas as gpd
 import contextily as ctx
 import matplotlib.pyplot as plt
 
+data_dir = '/home/elilouis/hsfm-geomorph/data/'
+
 # # Find 60s imagery (no KML file to use)
 
 # Read in compiled list of images
 
-pids_df = pd.read_csv('glacier_names_pids.csv')
+pids_df = pd.read_csv(f'{data_dir}/glacier_names_pids.csv')
 
 # Read in AOI geometries
 
-aoi_gdf = gpd.read_file('aois.geojson')
+aoi_gdf = gpd.read_file(f'{data_dir}/aois.geojson')
 aoi_gdf = aoi_gdf.to_crs(epsg=3857)
 baker_polygon = aoi_gdf[aoi_gdf.name == 'Mt. Baker'].geometry.iloc[0]
 glacier_polygon = aoi_gdf[aoi_gdf.name == 'Glacier Peak'].geometry.iloc[0]
@@ -43,7 +45,7 @@ len(images_60s), len(images_60s[~images_60s.Location.isna()]), len(images_60s[~i
 
 # ### Open the glacier polygon dataset, which will help us identify images lacking lat/long info
 
-rgi_gdf = gpd.read_file('/home/elilouis/02_rgi60_WesternCanadaUS.shp')
+rgi_gdf = gpd.read_file(f'{data_dir}/02_rgi60_WesternCanadaUS/02_rgi60_WesternCanadaUS.shp')
 rgi_gdf = rgi_gdf.to_crs(epsg=3857)
 
 rainier_glaciers_gdf = rgi_gdf[rgi_gdf.geometry.within(rainier_polygon)]
@@ -87,3 +89,5 @@ ctx.add_basemap(ax, url=ctx.providers.Esri.WorldImagery)
 rainier_images_60s_gdf.plot(ax=ax, color='red')
 
 # It seems that these images were all from two points, so maybe we don't have many 1960s images at all for Mt Rainier. We should examine the thumbnails to be sure.
+
+

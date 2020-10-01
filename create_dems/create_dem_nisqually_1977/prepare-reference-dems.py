@@ -17,15 +17,16 @@
 
 import hsfm
 
+data_dir = '/home/elilouis/hsfm-geomorph/data'
+
 # ## Prepare High Res Reference DEM
 #
 # We start with a WA DNR dataset from 2007.
 
-dem_highres_file = '2007_final.tif'
-dem_highres_file_meters = 'input_data/reference_dem_highres/reference_dem_m.tiff'
-dem_highres_file_meters_warped = 'input_data/reference_dem_highres/reference_dem_m_epsg32610.tiff'
-dem_highres_file_final_prefix = 'input_data/reference_dem_highres/reference_dem_final'
-dem_highres_file_final = dem_highres_file_final_prefix + '-adj.tif'
+dem_highres_file = f'{data_dir}/reference_dem_highres/2007_final.tif'
+dem_highres_file_meters = f'{data_dir}/reference_dem_highres/reference_dem_m.tif'
+dem_highres_file_meters_warped = f'{data_dir}/reference_dem_highres/reference_dem_m_epsg32610.tif'
+dem_highres_file_final = f'{data_dir}/reference_dem_highres/reference_dem_final-adj.tif'
 
 hsfm.plot.plot_dem_from_file(dem_highres_file)
 
@@ -41,13 +42,13 @@ hsfm.plot.plot_dem_from_file(reference_dem_high_res_file_in_meters)
 #
 # ### **LAST I TRIED THIS, I HAD TO DO IT THROUGH QGIS TO GET IT WORK...**
 
-# !gdalwarp -t_srs EPSG:32610 -r near -of GTiff $reference_dem_high_res_file_in_meters $reference_dem_high_res_file_in_meters_warped
+# !gdalwarp -t_srs EPSG:32610 -r near -of GTiff $reference_dem_high_res_file_in_meters $dem_highres_file_meters_warped
 
-hsfm.plot.plot_dem_from_file(reference_dem_high_res_file_in_meters_warped)
+hsfm.plot.plot_dem_from_file(dem_highres_file_meters_warped)
 
 # ### Adjust the geoid
 
-# !dem_geoid  --reverse-adjustment $reference_dem_high_res_file_in_meters_warped -o $dem_highres_file_final_prefix
+# !dem_geoid  --reverse-adjustment $dem_highres_file_meters_warped -o $dem_highres_file_final_prefix
 
 # + jupyter={"outputs_hidden": true}
 hsfm.plot.plot_dem_from_file(dem_highres_file_final)
