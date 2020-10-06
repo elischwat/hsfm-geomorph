@@ -18,13 +18,16 @@ import pandas as pd
 import os
 import matplotlib.image as mpimg
 
-data_dir = '/home/elilouis/hsfm-geomorph/data'
+# ls /Volumes/GoogleDrive/My\ Drive/hsfm-geomorph/data/
+
+data_dir = '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/'
 license_path = '/home/elilouis/hsfm/uw_agisoft.lic'
 
 hsfm.metashape.authentication(license_path)
 
 # +
 image_directory = 'input_data/images_source'
+output_data_dir = 'output_data'
 
 targets_file = '../../identify-imagery/targets_carbon_all_dates.csv'
 
@@ -33,7 +36,6 @@ image_df = pd.read_csv(targets_file)
 
 # ## Download all tiffs
 
-# + jupyter={"outputs_hidden": true}
 batch_number = 1
 for date, data in image_df.groupby('Date'):
     data.to_csv('temp.csv', index=None)
@@ -45,8 +47,6 @@ for date, data in image_df.groupby('Date'):
     # !rm temp.csv
     batch_number = batch_number + 1
 
-
-# -
 
 # ## What images were meant to be downloaded that were not?
 
@@ -67,8 +67,7 @@ set(downloaded_images).difference(set(image_df.fileName+'.tif'))
 
 set(image_df.fileName+'.tif').difference(set(downloaded_images))
 
-# ## Create fiducial marker templates
-# ## ~Assign directories to fiducial markers for each date~
+# ## Create fiducial marker templates for each date
 
 # <span style="color:red">MAY REQUIRE MANUAL INTERVENTION</span>
 
@@ -82,9 +81,62 @@ for date_dir in os.listdir(image_directory):
     hsfm.utils.create_fiducials(img, output_directory=fiducial_template_dir)
 
 
+# ls $data_dir
+
+fiducial_dir = os.path.join(data_dir, 'fiducials/nagap')
+
+date_fiducial_type_pairs = [
+    ('10-6-79', 'notch'),
+    ('7-28-92', 'notch'),
+    ('8-10-74', 'curve'),
+    ('9-13-90', 'notch'),
+    ('10-6-92', 'notch'),
+    ('10-9-80', 'notch'),
+    ('11-2-97', 'fiducials_nisqually_1977'),
+    ('1362', 'block')
+]
+
 # ## Preprocess each batch
 
-hsfm.batch.preprocess_images(...)
+# Process one example
+
+# + jupyter={"outputs_hidden": true}
+hsfm.batch.preprocess_images(
+    '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/fiducials/nagap/notch',
+     image_metadata='output_data/10-6-79/targets.csv',
+     image_directory='input_data/images_source/10-6-79',
+     output_directory='output_data/10-6-79/preprocessed_images',
+     qc=True
+)
+# -
+
+# Process all subsets
+
+date
+
+for date, fiducial_type in date_fiducial_type_pairs:
+    path_to_images = os.path.join(image_directory, date)
+    path_to_fiducial_template = os.path.join(fiducial_dir,fiducial_type)
+
+    targets_file_dir = os.path.join(output_data_dir, date)
+    if not os.path.exists(targets_file_dir):
+        os.makedirs(targets_file_dir)
+    targets_file = os.path.join(targets_file_dir, 'targets.csv')
+    image_df[image_df.Date == date.replace('-','/')].to_csv(targets_file)
+    preprocess_output_directory = os.path.join(output_data_dir, date, 'preprocessed_images')
+    print(f'Processing for {date}.')
+    print(f'Source image directory: {path_to_images}')
+    print(f'Fiducial marker template directory: {path_to_fiducial_template}')
+    print(f'Targets csv path: {targets_file}')
+    print(f'Image output directory: {preprocess_output_directory}')
+    hsfm.batch.preprocess_images(
+        path_to_fiducial_template,
+        image_metadata=targets_file,
+        image_directory=path_to_images,
+        output_directory=preprocess_output_directory,
+        qc=True
+    )
+    print()
 
 # ## Create csv with heading info for each batch
 

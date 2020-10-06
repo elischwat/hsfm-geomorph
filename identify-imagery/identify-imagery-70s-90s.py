@@ -33,7 +33,7 @@ import pandas as pd
 gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 # -
 
-data_dir = '/home/elilouis/hsfm-geomorph/data/'
+data_dir = '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/'
 
 # ## Open up KML Files
 # Make sure to open all layers explicitly
@@ -336,6 +336,3 @@ create_targets_list(
     'targets_carbon_all_dates.csv'
 
 )
-# -
-
-
