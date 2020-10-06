@@ -46,7 +46,7 @@ image_subset_df = pd.read_csv(targets_file)
 hsfm.batch.download_images_to_disk(targets_file, output_directory=image_directory, image_type='pid_tiff') 
 
 imgplot = plt.imshow(mpimg.imread(f'{image_directory}/NAGAP_80V1_132.tif'))
-plt.gcf().set_size_inches(8,8)
+plt.gcf().set_size_inches(5,5)
 plt.show()
 
 # ## Preprocess Step 1 - detect fiducial markers, crop, enhance contrast
@@ -103,7 +103,7 @@ project_name          = 'niqually_1980'
 input_path            = 'input_data'
 output_path           = 'metashape/'
 images_path           = 'input_data/images_preprocessed/'
-images_metadata_file  = 'input_data/images_preprocessed/metashape_metadata.csv'
+images_metadata_file  = 'input_data/metashape_metadata.csv'
 focal_length          = 152
 pixel_pitch           = 0.02
 verbose               = True
@@ -136,15 +136,18 @@ clipped_reference_dem = hsfm.utils.clip_reference_dem(dem,
                                                       buff_size        = 2000,
                                                       verbose = verbose)
 
+# + jupyter={"outputs_hidden": true}
 aligned_dem_file, _ =  hsfm.asp.pc_align_p2p_sp2p(dem,
                                                   clipped_reference_dem,
                                                   output_path,
                                                   verbose = verbose)
 
+# + jupyter={"outputs_hidden": true}
 hsfm.utils.dem_align_custom(clipped_reference_dem,
                             aligned_dem_file,
                             output_path,
                             verbose = verbose)
+# -
 
 hsfm.plot.plot_dem_from_file(clipped_reference_dem)
 

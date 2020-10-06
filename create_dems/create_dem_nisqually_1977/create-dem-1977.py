@@ -115,7 +115,7 @@ project_name          = 'nisqually_1977'
 input_path            = 'input_data'
 output_path           = 'metashape/'
 images_path           = 'input_data/images_preprocessed/'
-images_metadata_file  = 'input_data/images_preprocessed/metashape_metadata.csv'
+images_metadata_file  = 'input_data/metashape_metadata.csv'
 focal_length          = 152
 pixel_pitch           = 0.02
 verbose               = True
@@ -153,10 +153,12 @@ aligned_dem_file, _ =  hsfm.asp.pc_align_p2p_sp2p(dem,
                                                   output_path,
                                                   verbose = verbose)
 
+# + jupyter={"outputs_hidden": true}
 hsfm.utils.dem_align_custom(clipped_reference_dem,
                             aligned_dem_file,
                             output_path,
                             verbose = verbose)
+# -
 
 hsfm.plot.plot_dem_from_file(clipped_reference_dem)
 

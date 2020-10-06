@@ -132,7 +132,7 @@ aoi_frames_and_paths = gpd.sjoin(df, aoi_gdf)
 # Format date column...
 
 # +
-aoi_frames_and_paths['datetime'] = pd.to_datetime(aoi_frames_and_paths.date)
+aoi_frames_and_paths['datetime'] = pd.to_datetime(aoi_frames_and_paths.date, errors='coerce')
 aoi_frames_and_paths.date = aoi_frames_and_paths.datetime.dt.date
 
 aoi_frames_df = aoi_frames_and_paths[
@@ -336,3 +336,6 @@ create_targets_list(
     'targets_carbon_all_dates.csv'
 
 )
+# -
+
+
