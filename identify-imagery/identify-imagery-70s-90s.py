@@ -99,6 +99,8 @@ len(df)
 
 df.head(3)
 
+df[df['roll'] == '74V5']
+
 # ## Read in the AOIs
 #
 # Lets change crs to web mercator right off the bat too.
@@ -296,6 +298,8 @@ def create_targets_list(kml_derived_df, output_path):
     return output_path
 
 
+pids_df = pd.read_csv(f'{data_dir}/glacier_names_pids.csv')
+
 # ### Nisqually 1977
 
 src = nisqually_frames.groupby('date').get_group('1977-02-11')
@@ -336,3 +340,26 @@ create_targets_list(
     'targets_carbon_all_dates.csv'
 
 )
+# -
+# I later noticed missing Lat/Long values for a subset of images in 1974. Fix that here by getting lat/long info from the KML files.
+#
+# Note also that "Name" and "roll" columns do not agree.
+
+fixing = pd.read_csv('targets_carbon_all_dates.csv')
+
+fixing[fixing.Year == 1974]
+
+carbon_frames['fileName'] = 'NAGAP_' + carbon_frames.roll + '_' + carbon_frames.frame
+to_merge = carbon_frames[carbon_frames.roll=='74V5'][['fileName', 'latitude', 'longitude']]
+to_merge
+
+fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_')]
+
+# These rows are in the same order so I can go ahead and assign the lat long values from the `to_merge` dataframe.
+
+fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_'), 'Latitude'] = to_merge['latitude'].tolist()
+fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_'), 'Longitude'] = to_merge['longitude'].tolist()
+
+fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_')]
+
+fixing.to_csv('targets_carbon_all_dates.csv')

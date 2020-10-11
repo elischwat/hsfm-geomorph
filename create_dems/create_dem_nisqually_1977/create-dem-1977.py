@@ -45,7 +45,7 @@ image_subset_df = pd.read_csv(targets_file)
 
 # + tags=[]
 # image_type options: pid_tiff (high res), pid_tn (low res), pid_jpeg (high res)
-hsfm.batch.download_images_to_disk(targets_file, output_directory=image_directory, image_type='pid_tiff') 
+hsfm.batch.download_images_to_disk(targets_file, output_directory=image_directory, image_type='pid_tiff')
 # -
 
 imgplot = plt.imshow(mpimg.imread(f'{image_directory}/NAGAP_77V6_263.tif'))
