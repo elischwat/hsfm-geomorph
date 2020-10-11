@@ -47,7 +47,7 @@ image_df = pd.read_csv(targets_file)
 #         'temp.csv', 
 #         output_directory=os.path.join(image_directory,  str(date).replace('/','-'))
 #     )
-#     # # # # # !rm temp.csv
+#     # # # # # # !rm temp.csv
 #     batch_number = batch_number + 1
 
 # ## What images were meant to be downloaded that were not?
@@ -172,7 +172,9 @@ preprocess_images_for_date('1362', 'block')
 
 # #### Process 8-10-74
 
+# + jupyter={"outputs_hidden": true}
 preprocess_images_for_date('8-10-74', 'curve', angle_threshold=0.3)
+# -
 
 # #### Process all subsets
 
