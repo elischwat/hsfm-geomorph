@@ -18,9 +18,7 @@ import pandas as pd
 import os
 import matplotlib.image as mpimg
 
-# ls /Volumes/GoogleDrive/My\ Drive/hsfm-geomorph/data/
-
-data_dir = '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/'
+data_dir = '/home/elilouis/hsfm-geomorph/data/'
 license_path = 'create_dems/create_dem_carbon/uw_agisoft.lic'
 
 # + [markdown] jupyter={"outputs_hidden": true}
@@ -47,7 +45,7 @@ image_df = pd.read_csv(targets_file)
 #         'temp.csv', 
 #         output_directory=os.path.join(image_directory,  str(date).replace('/','-'))
 #     )
-#     # # # # # # !rm temp.csv
+#     # # # # # # # !rm temp.csv
 #     batch_number = batch_number + 1
 
 # ## What images were meant to be downloaded that were not?
@@ -212,9 +210,11 @@ for date in dates:
 
 # ## How many source images do not have preprocessed images?
 
-# ls $image_directory
+image_directory
 
 # ls $output_data_dir
+
+output_data_dir = os.path.join(data_dir, 'create_dem_carbon/output_data/')
 
 import glob
 

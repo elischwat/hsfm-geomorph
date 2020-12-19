@@ -1,1 +1,2 @@
-rclone sync gdrive:hsfm-geomorph/data/ /home/elilouis/hsfm-geomorph/data/
+#!
+rclone copy -v gdrive:hsfm-geomorph/data/ /data2/elilouis/hsfm-geomorph/data/

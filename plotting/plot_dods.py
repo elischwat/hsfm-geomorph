@@ -20,9 +20,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import hvplot
 
-cluster_03_dem_diff = '/Users/elischwat/sshfs/rainier/input_data/73V3/sfm/cluster_003/metashape2/pc_align/run-run-trans_source-DEM_dem_align/run-run-trans_source-DEM_reference_dem_clip_nuth_x-1.30_y+0.60_z-1.95_align_diff.tif'
-cluster_02_dem_diff = '/Users/elischwat/sshfs/rainier/input_data/73V3/sfm_modified_clusters/cluster_002/metashape3/pc_align/run-run-trans_source-DEM_dem_align/run-run-trans_source-DEM_reference_dem_clip_nuth_x-2.20_y+6.10_z+0.83_align_diff.tif'
-mask = '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/dem_analysis_sediment_mask/layer.shp'
+cluster_03_dem_diff = '/data2/elilouis/rainier/input_data/73V3/sfm/cluster_003/metashape2/pc_align/run-run-trans_source-DEM_dem_align/run-run-trans_source-DEM_reference_dem_clip_nuth_x-1.30_y+0.60_z-1.95_align_diff.tif'
+cluster_02_dem_diff = '/data2/elilouis/rainier/input_data/73V3/sfm_modified_clusters/cluster_002/metashape3/pc_align/run-run-trans_source-DEM_dem_align/run-run-trans_source-DEM_reference_dem_clip_nuth_x-2.20_y+6.10_z+0.83_align_diff.tif'
+mask = '/data2/elilouis/hsfm-geomorph/data/dem_analysis_sediment_mask/layer.shp'
 
 
 # +

@@ -33,7 +33,9 @@ import pandas as pd
 gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 # -
 
-data_dir = '/Volumes/GoogleDrive/My Drive/hsfm-geomorph/data/'
+data_dir = os.environ['hsfm_geomorph_data']
+
+data_dir
 
 # ## Open up KML Files
 # Make sure to open all layers explicitly
@@ -203,13 +205,47 @@ ax = rainier_waus_gdf.plot(column='WAU_ALIAS_',legend=True, markersize=80, legen
 ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
 plt.gcf().set_size_inches(5,5)
 
+
 # ## Look at image locations and watershed delineations
+
+# +
+def plot_frames_and_aoi_polygon(points, aoi_polygon = None, lims = None):
+    ax = points.plot(column='date', categorical=True, markersize=20, legend=True)
+    if aoi_polygon is not None:
+        gpd.GeoDataFrame(ax = ax, geometry = pd.Series(aoi_polygon)).plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+    ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
+    if lims is not None:
+        ax.set(xlim=lims[0], ylim=lims[1])
+    plt.gcf().set_size_inches(8,8)
+    
+import math 
+def plot_frames_and_aoi_date_separated(points, aoi_polygon = None, lims=None):
+    groupby = points.groupby('date')
+    fig, axes = plt.subplots(math.ceil(len(groupby.size().tolist())/4),4, figsize=(20,20), sharex=True, sharey=True)
+    axes_flat = [item for sublist in axes for item in sublist]
+    for key, group in groupby:
+        ax = axes_flat.pop(0)
+        if aoi_polygon is not None:
+            gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(ax=ax, legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+        group.plot(ax=ax, column='date', categorical=True, markersize=40, legend=True)
+        ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
+    while len(axes_flat) > 0:
+        ax = axes_flat.pop(0)
+        if aoi_polygon is not None:
+            gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(ax=ax, legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
+        group.plot(ax=ax, column='date', categorical=True, markersize=40, legend=True)
+        ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
+#     plt.tight_layout()
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+
+
+# -
 
 ax = rainier_waus_gdf.plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
 ax = rainier_frames_gdf.plot(column='date', categorical=True, markersize=20, ax=ax)
-ctx.add_basemap(ax, source=ctx.providers.Stamen.TerrainBackground)
+ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
 ax.set(xlim=(-1.357e7,-1.3535e7), ylim=(5.905e6, 5.94e6))
-plt.gcf().set_size_inches(10,10)
+plt.gcf().set_size_inches(20,20)
 
 # The Kautz, Carbon, and Frying Pan watersheds look to have lots of images on different dates
 
@@ -242,6 +278,19 @@ plt.gcf().set_size_inches(14,14)
 ax = fryingpan_frames_df.plot(column='date', categorical=True, legend=True, markersize=80)
 ctx.add_basemap(ax, source=ctx.providers.Esri.WorldTopoMap)
 plt.gcf().set_size_inches(14,14)
+x, y, arrow_length = 0.5, 0.5, 0.1
+ax.annotate('N', xy=(x, y), xytext=(x, y-arrow_length),
+            arrowprops=dict(facecolor='black', width=5, headwidth=15),
+            ha='center', va='center', fontsize=20,
+            xycoords=ax.transAxes)
+
+ax = fryingpan_frames_df.plot(column='date', categorical=True, legend=True, markersize=80)
+ctx.add_basemap(ax, source=ctx.providers.Esri.WorldTopoMap)
+plt.gcf().set_size_inches(14,14)
+
+plot_frames_and_aoi_polygon(fryingpan_frames_df, None)
+
+plot_frames_and_aoi_date_separated(fryingpan_frames_df, None)
 
 # ## Look at data in smaller watersheds, Nisqually and Carbon
 
@@ -253,28 +302,6 @@ nisqually_frames = rainier_frames_gdf[rainier_frames_gdf.geometry.within(nisqual
 carbon_frames = rainier_frames_gdf[rainier_frames_gdf.geometry.within(carbon_polygon)]
 
 len(nisqually_frames), len(carbon_frames)
-
-
-def plot_frames_and_aoi_polygon(points, aoi_polygon, lims = None):
-    ax = gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
-    points.plot(column='date', categorical=True, markersize=20, ax=ax, legend=True)
-    ctx.add_basemap(ax, source=ctx.providers.Esri.WorldImagery)
-    if lims is not None:
-        ax.set(xlim=lims[0], ylim=lims[1])
-    plt.gcf().set_size_inches(8,8)
-
-
-import math 
-def plot_frames_and_aoi_date_separated(points, aoi_polygon, lims=None):
-    groupby = points.groupby('date')
-    fig, axes = plt.subplots(math.ceil(len(groupby.size().tolist())/4),4, figsize=(20,20), sharex=True, sharey=True)
-    axes_flat = [item for sublist in axes for item in sublist]
-    for key, group in groupby:
-        ax = axes_flat.pop(0)
-        gpd.GeoDataFrame(geometry = pd.Series(aoi_polygon)).plot(ax=ax, legend_kwds={'bbox_to_anchor': (1.6, 1)}, edgecolor='red', lw=2, facecolor="none")
-        group.plot(ax=ax, column='date', categorical=True, markersize=40, legend=True)
-        ctx.add_basemap(ax, source=ctx.providers.Stamen.Terrain)
-
 
 plot_frames_and_aoi_polygon(nisqually_frames, nisqually_polygon)
 
@@ -341,6 +368,29 @@ create_targets_list(
 
 )
 # -
+# ### Frying Pan Watershed All
+
+# +
+src = fryingpan_frames_df
+print(len(src))
+create_targets_list(
+    src,
+    'targets_carbon_all_dates.csv'
+
+)
+# -
+
+src.roll = src.roll.apply(lambda x: x.strip())
+
+src.roll.iloc[0]
+
+src.Name.apply(lambda x: x[:4]) == src.roll
+
+src[src.Name.apply(lambda x: x[:4]) != src.roll]
+
+# ### Bandaid  - Missing Lat/Long values
+#
+#
 # I later noticed missing Lat/Long values for a subset of images in 1974. Fix that here by getting lat/long info from the KML files.
 #
 # Note also that "Name" and "roll" columns do not agree.
@@ -363,3 +413,5 @@ fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_'), 'Longitude'] = to_m
 fixing.loc[fixing['fileName'].str.startswith('NAGAP_74V5_')]
 
 fixing.to_csv('targets_carbon_all_dates.csv')
+
+
