@@ -25,6 +25,9 @@ cluster_02_dem_diff = '/data2/elilouis/rainier/input_data/73V3/sfm_modified_clus
 mask = '/data2/elilouis/hsfm-geomorph/data/dem_analysis_sediment_mask/layer.shp'
 
 
+import rioxarray as rxr
+
+
 # +
 # hsfm.plot.plot_dem_difference_from_file_name(cluster_02_dem_diff)
 carbon_whole = -rxr.open_rasterio(cluster_02_dem_diff, masked=True).squeeze()
