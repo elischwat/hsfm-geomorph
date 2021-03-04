@@ -55,10 +55,21 @@ mosaic_file_1970 = "/Volumes/GoogleDrive/.shortcut-targets-by-id/1qrTqp2neZpyQkD
 mosaic_file_1977 = "/Volumes/GoogleDrive/.shortcut-targets-by-id/1qrTqp2neZpyQkDkX88TC0wzZ3Fu2jXG_/nagap_testing/baker/input_data/77V6/09/27/sfm/cluster_003/metashape1/baker_cluster_003_orthomosaic.tif"
 mosaic_file_1979 = "/Volumes/GoogleDrive/.shortcut-targets-by-id/1qrTqp2neZpyQkDkX88TC0wzZ3Fu2jXG_/nagap_testing/baker/input_data/79V6/10/06/sfm/cluster_001/metashape1/baker_cluster_001_orthomosaic.tif"
 
-area_polygon = gpd.read_file("/Volumes/MyDrive/hsfm-geomorph/data/gcas/mazama_gca.geojson").iloc[0:1]
-
-
+area_polygon = gpd.read_file("/Volumes/MyDrive/hsfm-geomorph/data/gcas/mazama_gca.geojson").iloc[1:2]
 # -
+
+ax = gpd.read_file(
+    "/Volumes/MyDrive/hsfm-geomorph/data/gcas/mazama_gca.geojson"
+).to_crs(
+    'EPSG:3857'
+).plot(
+    edgecolor='red', facecolor='None', linewidth=3, figsize=(10,10))
+buffer = 500
+plt.xlim(ax.get_xlim()[0] - buffer, ax.get_xlim()[1] + buffer)
+plt.ylim(ax.get_ylim()[0] - buffer, ax.get_ylim()[1] + buffer)
+ctx.add_basemap(ax, source = "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}")
+plt.show()
+
 
 # ## Create DoDs with DEMs
 
@@ -109,17 +120,23 @@ len(diff_dem_paths)
 dod_1 = riox.open_rasterio(diff_dem_paths[0], masked=True)
 dod_clipped_1 = dod_1.rio.clip(shapes).squeeze()
 
+fig, ax = plt.subplots(figsize=(3,4))
 sns.distplot(dod_clipped_1.values, kde=False)
 sns.despine(offset=5, trim=True);
 plt.title("1970-1977")
+plt.xlabel("Difference (m)")
+plt.ylabel("Frequency (number of pixels)")
 plt.show()
 
 dod_2 = riox.open_rasterio(diff_dem_paths[1], masked=True)
 dod_clipped_2 = dod_2.rio.clip(shapes).squeeze()
 
+fig, ax = plt.subplots(figsize=(3,4))
 sns.distplot(dod_clipped_2.values, kde=False)
 sns.despine(offset=5, trim=True);
 plt.title("1977-1979")
+plt.xlabel("Difference (m)")
+plt.ylabel("Frequency (number of pixels)")
 plt.show()
 
 
@@ -254,14 +271,14 @@ plt.suptitle("NAGAP Mosaics", fontsize=14)
 # ## Plot Mosaics, Satellite Imagery, and DoD together
 
 # +
-fig, axes = plt.subplots(1, 6, sharex=True, sharey=True, figsize=(24,5))
+fig, axes = plt.subplots(1, 6, sharex=True, sharey=True, figsize=(20,10))
 
 # PLOT THE SAT IMAGERY
 image = rio.plot.show(
     sat_tile.values,
     transform=sat_tile.rio.transform(), 
-    ax=axes[0],
-    title='Modern Imagery'
+    ax=axes[3],
+    title='Modern Satellite Imagery'
 )
 
 # PLOT MOSAICS (mosaic_file_1970, mosaic_file_1977, mosaic_file_1979)
@@ -269,9 +286,9 @@ dataset = get_mosaic_chunk(mosaic_file_1970, geom.bounds, rasterio.crs.CRS.from_
 rio.plot.show(
     hipp.image.clahe_equalize_image(dataset[0].values),
     transform=transform, 
-    ax=axes[1], 
+    ax=axes[0], 
     cmap="Greys", 
-    title='1970', 
+    title='1970 Orthoimage', 
     clim=(0,255)
 )
 
@@ -279,9 +296,9 @@ dataset = get_mosaic_chunk(mosaic_file_1977, geom.bounds, rasterio.crs.CRS.from_
 rio.plot.show(
     hipp.image.clahe_equalize_image(dataset[0].values),
     transform=transform, 
-    ax=axes[2], 
+    ax=axes[1], 
     cmap="Greys", 
-    title='1977', 
+    title='1977 Orthoimage', 
     clim=(0,255)
 )
 
@@ -289,18 +306,21 @@ dataset = get_mosaic_chunk(mosaic_file_1979, geom.bounds, rasterio.crs.CRS.from_
 rio.plot.show(
     hipp.image.clahe_equalize_image(dataset[0].values),
     transform=transform, 
-    ax=axes[3], 
+    ax=axes[2], 
     cmap="Greys", 
-    title='1979', 
+    title='1979 Orthoimage', 
     clim=(0,255)
 )
 
-img = plot_raster(dod_clipped_1.values, dod_clipped_1.rio.transform(), 'PuOr', -15, 15, '1970-1977', axes[4])
-img = plot_raster(dod_clipped_2.values, dod_clipped_2.rio.transform(), 'PuOr', -15, 15, '1977-1979', axes[5])
+img = plot_raster(dod_clipped_1.values, dod_clipped_1.rio.transform(), 'PuOr', -15, 15, 'DoD, 1970-1977', axes[4])
+img = plot_raster(dod_clipped_2.values, dod_clipped_2.rio.transform(), 'PuOr', -15, 15, 'DoD, 1977-1979', axes[5])
 
 # add colorbar using the now hidden image
 # pass list of axes so space is "stolen" equally from all subplots
-fig.colorbar(img, ax=axes, pad = 0.01)
+fig.colorbar(img, ax=axes, pad = 0.01, shrink=0.8)
 for ax in axes:
     ax.ticklabel_format(useOffset=False, style='plain')
 plt.show()
+# -
+
+
