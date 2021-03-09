@@ -5,12 +5,14 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.10.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
+
+# !find /home/elilouis/hsfm-geomorph/ -name "*mosaic*"
 
 import geopandas as gpd
 import altair as alt
