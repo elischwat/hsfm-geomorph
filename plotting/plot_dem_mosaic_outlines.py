@@ -53,6 +53,25 @@ mosaic_file_names = !find {mosaics_path_directory} -type f -name {mosaic_tif_suf
 print(f"Found DEM files:")
 _ = [print('\t' + fn) for fn in mosaic_file_names]
 
+# Hood inputs
+mosaic_file_names = [
+    "/data2/elilouis/mt_hood_timesift/results_condensed/67_9_mosaic.tif",
+    "/data2/elilouis/mt_hood_timesift/results_condensed/72_08_cluster0.tif",
+    "/data2/elilouis/mt_hood_timesift/results_condensed/75_09_mosaic.tif",
+    "/data2/elilouis/mt_hood_timesift/results_condensed/77_10_cluster0.tif",
+    "/data2/elilouis/mt_hood_timesift/results_condensed/80_10_cluster0.tif",
+    "/data2/elilouis/mt_hood_timesift/results_condensed/90_09_cluster0.tif"
+]
+
+
+# Adams inputs
+mosaic_file_names = [
+    "/data2/elilouis/mt_adams_timesift/results_condensed/67_9_cluster0.tif",
+    "/data2/elilouis/mt_adams_timesift/results_condensed/87_08_cluster0.tif",
+]
+
+mosaic_file_names
+
 
 # ## Plot Annual DEM Coverage Outline Polygons
 
@@ -115,7 +134,7 @@ bounds = geometry.Polygon([[xmin, ymax], [xmax, ymax], [xmax, ymin], [xmin, ymin
 
 glacier_gdf = gpd.read_file(glacier_polygon_file)
 glacier_gdf = glacier_gdf.to_crs(epsg=3857)
-rainier_glacier_gdf = glacier_gdf[glacier_gdf.geometry.within(bounds)]
+glacier_gdf = glacier_gdf[glacier_gdf.geometry.within(bounds)]
 
 gdf_all_years['year'] = gdf_all_years['year'].apply(year_from_filename)
 
@@ -123,11 +142,13 @@ profiles_shapefile = "/data2/elilouis/hsfm-geomorph/data/profiles/profiles.shp"
 profiles_gdf = gpd.read_file(profiles_shapefile)
 profiles_gdf = profiles_gdf[profiles_gdf['area']=='rainier']
 profiles_gdf = profiles_gdf.to_crs(epsg=3857)
+profiles_gdf = profiles_gdf[profiles_gdf.geometry.within(bounds)]
 
-ax = rainier_glacier_gdf.plot(figsize=(10,10), alpha=0.35, label='name')
+ax = glacier_gdf.plot(figsize=(10,10), alpha=0.35, label='name')
 gpd.GeoDataFrame(gdf_all_years).plot(
-    column='year',
-    facecolor="none",
+#     column='year',
+    facecolor="red",
+    alpha=0.3,
     edgecolor='k',
     linewidth=2.5,
     legend=True,
@@ -141,3 +162,7 @@ plt.show()
 output_shp_fn = os.path.join(mosaics_path_directory, "dem_coverage_polygons.geojson")
 print(f"Saving DEM coverage polygons to {output_shp_fn}")
 gdf_all_years.to_file(output_shp_fn, driver="GeoJSON")
+
+gdf_all_years
+
+

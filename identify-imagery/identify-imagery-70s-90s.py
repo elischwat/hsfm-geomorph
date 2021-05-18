@@ -33,9 +33,7 @@ import pandas as pd
 gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 # -
 
-data_dir = os.environ['hsfm_geomorph_data']
-
-data_dir
+data_dir = '/data2/elilouis/hsfm-geomorph/data/'
 
 # ## Open up KML Files
 # Make sure to open all layers explicitly
@@ -125,7 +123,42 @@ len(df.date.unique())
 src = df[df.geometry.type=='Point']
 ax = src.plot(markersize=0.25, facecolor='red')
 ctx.add_basemap(ax)
-plt.gcf().set_size_inches(8,8)
+plt.gcf().set_size_inches(16,16)
+ax.get_xaxis().set_visible(False)
+ax.get_yaxis().set_visible(False)
+
+sns.distplot(src.geometry.to_crs('epsg:4326').x)
+
+src = df[df.geometry.type=='Point']
+src = src[src.geometry.to_crs('epsg:4326').y < 49]
+src = src[src.geometry.to_crs('epsg:4326').y > 45]
+src = src[src.geometry.to_crs('epsg:4326').x < -116]
+ax = src.plot(markersize=0.25, facecolor='red')
+ctx.add_basemap(ax)
+plt.gcf().set_size_inches(16,16)
+ax.get_xaxis().set_visible(False)
+ax.get_yaxis().set_visible(False)
+
+gdf.filename.str[:-4].unique()
+
+# +
+fig, axes = plt.subplots(1,2,figsize=(16,16),sharex=True, sharey=True)
+
+gdf = gpd.read_file("/data2/elilouis/baker/timesifted_image_footprints.geojson").to_crs('epsg:3857')
+
+
+ax = gdf.plot(ax=axes[1], alpha=0.5, edgecolor='k', )
+ctx.add_basemap(axes[1])
+axes[1].get_xaxis().set_visible(False)
+axes[1].get_yaxis().set_visible(False)
+
+src = gdf[gdf.filename.str.contains('NAGAP_74V5')]
+src.plot(ax=axes[0], alpha=0.5, edgecolor='k', )
+ctx.add_basemap(axes[0])
+axes[0].get_xaxis().set_visible(False)
+axes[0].get_yaxis().set_visible(False)
+
+# -
 
 # ## Look at locations of images in our AOIs
 

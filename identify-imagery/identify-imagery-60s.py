@@ -17,14 +17,17 @@ import pandas as pd
 import geopandas as gpd
 import contextily as ctx
 import matplotlib.pyplot as plt
+pd.options.display.max_columns = 100
+pd.options.display.max_rows = 200
 
-data_dir = '/home/elilouis/hsfm-geomorph/data/'
+data_dir = '/data2/elilouis/hsfm-geomorph/data/'
 
 # # Find 60s imagery (no KML file to use)
 
 # Read in compiled list of images
 
-pids_df = pd.read_csv(f'{data_dir}/glacier_names_pids.csv')
+# pids_df = pd.read_csv(f'{data_dir}/glacier_names_pids.csv')
+pids_df = pd.read_csv("/home/elilouis/hipp/examples/fiducial_proxy_detection/input_data/nagap_image_metadata.csv")
 
 # Read in AOI geometries
 
@@ -36,10 +39,29 @@ rainier_polygon = aoi_gdf[aoi_gdf.name == 'Mt. Rainier'].geometry.iloc[0]
 
 # ## Find 60s images listed in the `glacier_names_pids.csv` dataset
 
-images_60s = pids_df[pids_df.Year < 1970]
+pids_df[pids_df.fileName=='AP67V4_823']
+
+pids_df.Year.unique()
+
+xxx = pids_df.fileName.apply(lambda x: x.split('_')[-1].replace('-qv', ''))
+
+xxx = xxx.sort_values()
+pd.DataFrame(xxx).tail(200)
+
+pids_df.fileName.str.split('_').apply(lambda x: len(x[-1].replace('-qv', ''))).value_counts()
+
+images_60s = pids_df[pids_df.Year.astype('int') < 70]
 images_60s.head()
 
-len(images_60s), len(images_60s[~images_60s.Location.isna()]), len(images_60s[~images_60s.Longitude.isna()]), len(images_60s[~images_60s.Latitude.isna()])
+AR1NAG670V40793
+
+images_60s[images_60s.Location.str.contains("iot", na=False)].reset_index()
+
+len(images_60s), len(images_60s[~images_60s.Location.isna()]), \
+len(images_60s[~images_60s.Longitude.isna()]), len(images_60s[~images_60s.Latitude.isna()])
+
+
+images_60s.Location.unique()
 
 # ## Find 60s images on Mt. Rainier
 

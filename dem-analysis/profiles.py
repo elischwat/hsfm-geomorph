@@ -5,7 +5,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.10.2
+#       jupytext_version: 1.5.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -131,6 +131,26 @@ baker_along_path_plot = alt.Chart(baker_profiles_df).mark_line().encode(
 )
 baker_along_path_plot
 
+src = baker_profiles_df[baker_profiles_df.name=='mazama']
+src['year'] = src['date'].str[:4]
+src = src[src.Y > 5408350]
+baker_along_path_plot = alt.Chart(src).mark_line().encode(
+    x = alt.X('Y:Q', title='Latitude (UTM 10N) (m)'),
+    y = alt.Y('raster_value:Q', title='Elevation (m)', scale=alt.Scale(zero=False)),
+    color='year:O'
+).properties(
+    height=400,
+    width=600
+).resolve_scale(
+    x='independent',
+    y='independent'
+).configure_legend(
+titleFontSize=16,
+labelFontSize=16,
+symbolStrokeWidth=3
+)
+baker_along_path_plot
+
 # # Altair example of adding a vertical/horizontal line
 
 long_rule = alt.Chart(terminus_df).mark_rule().encode(
@@ -138,3 +158,5 @@ long_rule = alt.Chart(terminus_df).mark_rule().encode(
 #     color = 'year:O'
 )
 long_rule + long_plot
+
+
