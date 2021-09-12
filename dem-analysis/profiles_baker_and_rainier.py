@@ -158,5 +158,3 @@ long_rule = alt.Chart(terminus_df).mark_rule().encode(
 #     color = 'year:O'
 )
 long_rule + long_plot
-
-

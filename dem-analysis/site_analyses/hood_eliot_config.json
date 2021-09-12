@@ -1,0 +1,17 @@
+{
+	"dem file paths": {
+        "1975-09": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1975-09.tif",
+        "1967-09": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1967-09.tif",
+        "1977-10": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1977-10.tif",
+        "1980-10": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1980-10.tif",
+        "1990-09": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1990-09.tif",
+        "2009-00": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/2009.tif"
+	},
+	"study area boundary": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/study_area_boundary.shp",
+	"glacier polygons": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/glacier_polygons.shp",
+    "glacial maximum year": 1967,
+	"profiles": "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/profiles.geojson",
+    "valley_xsections": [
+        "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/valley_xsections.geojson"
+    ]
+}

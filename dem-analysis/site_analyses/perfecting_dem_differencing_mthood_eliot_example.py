@@ -14,6 +14,7 @@
 
 import hsfm
 import os
+import rioxarray as rix
 
 align_pairs =[
     ('1967-09', '1975-09'),
@@ -22,6 +23,8 @@ align_pairs =[
     ('1980-10', '1990-09'),
     ('1990-09', '2009')
 ]
+
+diff_fns = []
 
 for (old_dem, new_dem) in align_pairs:
     diff_fn, _ = hsfm.utils.dem_align_custom(
@@ -32,8 +35,13 @@ for (old_dem, new_dem) in align_pairs:
         max_offset = 100
     )
     new_fn = "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/rasters_regridded_aligned/" + new_dem + '-' + old_dem + '.tif'
+    diff_fns.append(new_fn)
     print(f"Saving new file to {new_fn}")
     os.rename(diff_fn, new_fn)
+
+
+
+[rix]
 
 import rioxarray as rix
 

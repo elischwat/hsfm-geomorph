@@ -11,5 +11,11 @@ parallel "dem_geoid --reverse-adjustment {}" ::: *_m_utm.tif
 parallel "gdal_edit.py -a_srs EPSG:32610 {}" ::: *_m_utm-adj.tif
 dem_mosaic *_m_utm-adj.tif -o adams_hsfm_reference_dem.tif
 
+#Make a low resolution version
 mv adams_hsfm_reference_dem.tif ../2016.tif
+
+gdalwarp -tr 10 10 -r cubic \
+    ../2016.tif \
+    ../2016_10m.tif
+    
 rm *_m*

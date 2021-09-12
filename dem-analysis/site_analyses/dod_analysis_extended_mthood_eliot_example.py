@@ -14,13 +14,21 @@
 
 # Using data prepared in the `collect_and_prepare_rasters.py` file
 
+# +
 import rioxarray as rix
 import os
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import altair as alt
 import geopandas as gpd
 alt.data_transformers.disable_max_rows()
+
+import sys
+sys.path.append('/home/elilouis/hsfm-geomorph/dem-analysis/')
+import profiling_tools
+
+# -
 
 
 # difference_dem_dir = "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/difference_dems_glacier_nlcd_masked/"
@@ -225,16 +233,17 @@ alt.Chart(net_change_df).mark_line(point=True).encode(
 )
 # -
 
-alt.Chart(annual_net_change_df).mark_line(point=True).encode(
+alt.Chart(annual_net_change_df).1line(point=True).encode(
     x='Year:Q',
     y = 'Volumetric net change (m^3)'
 )
 
 # # Calculate glacial area change
 
-glacier_gdf = gpd.read_file(
+glacier_gdf_geometries = gpd.read_file(
     "/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/glacier_polygons.shp"
 )
+glacier_gdf = glacier_gdf_geometries.copy()
 
 glacier_gdf
 
@@ -298,12 +307,9 @@ alt.layer(sed_change, glacier_change, zero_line).resolve_scale(
 
 # # Profile Analysis on LIA moraine wall
 
-lines_gdf = gpd.read_file('/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/profiles.shp')
+lines_gdf = gpd.read_file('/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/profiles.geojson')
 lines_gdf['id'] = lines_gdf.index
 lines_gdf
-
-import glob
-glob.glob("/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/rasters_regridded/*.tif")
 
 import profiling_tools
 from pathlib import Path
@@ -334,11 +340,58 @@ for key, linestring in lines_gdf.iterrows():
 profiles_df = pd.concat(df_list)
 # -
 
+from shapely.geometry import Point
+
+glacier_gdf_geometries
+
+# Mark points that are within any glacial geometry
+
+profiles_df['glacial'] = profiles_df.apply(
+    lambda row: len(glacier_gdf_geometries[glacier_gdf_geometries.geometry.contains(Point(row.X, row.Y))]) > 0,
+    axis=1
+)
+
 alt.Chart(profiles_df).mark_line().encode(
     alt.X('path_distance'), 
     alt.Y('raster_value', scale=alt.Scale(zero=False)),
     alt.Color('Date:O'),
+    alt.Facet('Profile', columns=3),
+    strokeDash='glacial',
+).properties(width=300, height=200).resolve_scale(y='independent')
+
+alt.Chart(profiles_df).mark_line().encode(
+    alt.X('path_distance'), 
+    alt.Y('raster_value', scale=alt.Scale(zero=False)),
+    alt.Detail('Date:O'),
+    alt.Color('glacial:N'),
     alt.Facet('Profile', columns=3)
 ).properties(width=300, height=200).resolve_scale(y='independent')
+
+
+
+
+
+
+
+
+
+# Read in manually generated cross-section lines
+
+xsection_geoms = gpd.read_file("/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/valley_xsections.geojson")
+
+
+# Convert MultiLineStrings to LineStrings
+
+def multilinestring_to_linestring(mls):
+    assert len(mls) == 1, "MultiLineString can only be converted if size 1."
+    return mls[0]
+xsection_geoms.geometry = xsection_geoms.geometry.apply(multilinestring_to_linestring)
+
+profiles_gdf = profiling_tools.get_valley_lowline_from_xsections(xsection_geoms.geometry, dem_fn)
+
+alt.Chart(profiles_gdf).mark_line().encode(
+    alt.X('path_distance'),
+    alt.Y('raster_value', scale=alt.Scale(zero=False))
+)
 
 

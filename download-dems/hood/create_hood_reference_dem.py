@@ -16,6 +16,10 @@ import hsfm
 
 # # Mt Hood
 
+# ### Download raw data
+
+# !bash hood_lidar_download.sh
+
 # ### Create Mt Hood DEM from source data
 
 # !find "/data2/elilouis/hsfm-geomorph/data/reference_dem_highres/hood/" -name "*w001001.adf" | grep Highest_Hit | grep "2009_OLC_Hood to Coast" >> hood_relevant_tile_filepaths_adf.txt
@@ -103,4 +107,8 @@ hsfm.plot.plot_dem_difference_from_file_name(hood_diff, spread=60)
 
 # ls /data2/elilouis/hsfm-geomorph/data/reference_dem/copernicus/
 
+# Create low resolution version
 
+gdalwarp -tr 10 10 -r cubic \
+    /data2/elilouis/hsfm-geomorph/data/reference_dem_highres/hood/2009.tif \
+    /data2/elilouis/hsfm-geomorph/data/reference_dem_highres/hood/2009_10m.tif

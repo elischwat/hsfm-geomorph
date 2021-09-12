@@ -57,6 +57,9 @@ plt.rcParams['figure.figsize'] = (10.0, 10.0)
 # `/data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier`
 
 # %%
+# !find /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/ -name "*.tif"
+
+# %%
 # !cp \
 #     /data2/elilouis/mt_hood_timesift/individual_clouds/75_09/cluster1/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x-3.82_y-3.01_z+1.66_align.tif  \
 #     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/1975-09.tif 
@@ -75,6 +78,22 @@ plt.rcParams['figure.figsize'] = (10.0, 10.0)
 # !cp \
 #     /data2/elilouis/hsfm-geomorph/data/reference_dem_highres/hood/2009.tif \
 #     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/input_dems/2009.tif    
+
+# !cp \
+#     /data2/elilouis/mt_hood_timesift/individual_clouds/75_09/cluster1/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x-3.82_y-3.01_z+1.66_align.png  \
+#     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/alignment_qc/1975-09-align.png 
+# !cp \
+#     /data2/elilouis/mt_hood_timesift/individual_clouds/67_9/cluster1/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x-4.90_y-5.23_z+4.21_align.png \
+#     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/alignment_qc/1967-09-align.png 
+# !cp \
+#     /data2/elilouis/mt_hood_timesift/individual_clouds/77_10/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x-3.13_y-3.96_z+2.31_align.png \
+#     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/alignment_qc/1977-10-align.png 
+# !cp \
+#     /data2/elilouis/mt_hood_timesift/individual_clouds/80_10/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x+0.38_y-2.59_z+1.67_align.png \
+#     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/alignment_qc/1980-10-align.png 
+# !cp \
+#     /data2/elilouis/mt_hood_timesift/individual_clouds/90_09/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x-2.79_y-2.00_z+1.61_align.png \
+#     /data2/elilouis/hsfm-geomorph/data/mt_hood_eliot_glacier/alignment_qc/1990-09-align.png 
 
 
 # %%
@@ -422,6 +441,9 @@ for mask in masks:
 
 # %% [markdown]
 # ## Apply mask to all rasters and produce datasets with area-in-common
+
+# %%
+# ls -lh
 
 # %%
 common_diff_rasters = {}

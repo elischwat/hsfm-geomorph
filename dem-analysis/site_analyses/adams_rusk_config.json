@@ -1,0 +1,14 @@
+{
+	"dem file paths": {
+		"1967-09": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/input_dems/1967-09.tif",
+		"1987-08": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/input_dems/1987-08.tif",
+		"2016": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/input_dems/2016.tif"
+	},
+	"study area boundary": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/study_area_boundary.shp",
+	"glacier polygons": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/glacier_polygons.shp",
+    "glacial maximum year": 2016,
+	"profiles": "/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/profiles.geojson",
+    "valley_xsections": [
+		"/data2/elilouis/hsfm-geomorph/data/mt_adams_rusk_glacier/valley_xsections.geojson"
+	]
+}

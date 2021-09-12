@@ -164,5 +164,3 @@ print(f"Saving DEM coverage polygons to {output_shp_fn}")
 gdf_all_years.to_file(output_shp_fn, driver="GeoJSON")
 
 gdf_all_years
-
-
