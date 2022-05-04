@@ -12,4 +12,3 @@
 data/*
 create_dems/**/input_data
 **.csv
-**.ipynb
