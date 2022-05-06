@@ -1,5 +1,4 @@
 import hipp
-
 import shapely
 from shapely import wkt
 import pandas as pd
@@ -8,14 +7,25 @@ import matplotlib.pyplot as plt
 import math
 from itertools import chain
 import os
+import rasterio
+import matplotlib
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.max_rows', 500)
+import contextily as ctx
 
 # # Retrieve API key and set bounds for searching EE archives
 
-apiKey = hipp.dataquery.EE_login(input(), input())
+# +
+from getpass import getpass
+username = input()
+password = getpass()
+
+apiKey = hipp.dataquery.EE_login(username, password)
+# -
 
 # Bounds around Mt. Baker
 xmin = -122
-xmax = -121
+xmax = -121.5
 ymax =  49
 ymin = 48.5
 
@@ -36,9 +46,15 @@ scenes = hipp.dataquery.EE_sceneSearch(
 
 df = hipp.dataquery.EE_filterSceneRecords(scenes)
 
-df = gpd.GeoDataFrame(df)
+# ## Remove NAGAP images
 
-df
+df = df[~df['project'].str.contains('NAG')]
+
+# ## Filter out not available images
+
+df = df[df.hi_res_available=='Y']
+
+df = gpd.GeoDataFrame(df)
 
 
 def get_geometry_from_corners(series):
@@ -60,8 +76,10 @@ acquisition_date_by_photo_count = list(df.acquisitionDate.value_counts().keys())
 
 def plot_date_by_project(date, df, ax):
     src = df[df.acquisitionDate == date]
-    src.plot(figsize=(7.5, 7.5), alpha=0.5, edgecolor='k', column='project', legend=True, ax = ax)
-    ax.set_title(f'Earth Explorer Images, {date}')
+    src.plot(
+#         figsize=(7.5, 7.5), 
+        alpha=0.5, edgecolor='k', column='project', legend=True, ax = ax)
+    ax.set_title(f'{date}, {len(src)} images')
 
 
 # # Visualize extents of image sets
@@ -75,7 +93,7 @@ fig, axes = plt.subplots(
     figsize=(30,40)
 )
 
-axes_flat = list(chain.from_iterable(axes))
+axes_flat = axes.ravel()
 
 for ax, date in zip(axes_flat, acquisition_date_by_photo_count):
     try:
@@ -86,13 +104,15 @@ for ax, date in zip(axes_flat, acquisition_date_by_photo_count):
         )
         ax.set_xlim(xmin - 0.2, xmax + 0.2)
         ax.set_ylim(ymin - 0.2, ymax + 0.2)
-#         ax.set_xlim(xmin, xmax)
-#         ax.set_ylim(ymin, ymax)
-#         ctx.add_basemap(ax, zoom=14, crs=df.crs, source=ctx.providers.OpenStreetMap.Mapnik)
-        ctx.add_basemap(ax, crs=df.crs, source=ctx.providers.OpenStreetMap.Mapnik)
+        ax.set_xlim(xmin, xmax)
+        ax.set_ylim(ymin, ymax)
+        ax.set_aspect('equal')
+#         ctx.add_basemap(ax, crs=df.crs, 
+#                         source=ctx.providers.Esri.WorldImagery
+#                        )
     except:
         continue
-plt.tight_layout()
+# plt.tight_layout()
 plt.show()
 # -
 
@@ -118,6 +138,50 @@ df = df[df['project']=='LK000']
 
 df.iloc[0]
 
+# ## Use already generate image footprings to examine LK000 dataset in detail
+
+src = gpd.read_file('/data2/elilouis/generate_ee_dems_baker/mixed_timesift/timesifted_image_footprints.geojson')
+src = src[src['filename'].str.contains('LK000')]
+
+src = src[src.filename.str[-5]=='1']
+# src = src[src.filename.str[-5]=='2']
+
+src.to_crs('EPSG:32610').to_file('LK000_footprints.geojson', driver='GeoJSON')
+
+# !gdal_rasterize -burn 1 -tr 30 30 -ot UInt32 -a_nodata 0 -add LK000_footprints.geojson LK000_footprints.tif
+
+
+ax = src.plot(facecolor="none", edgecolor='k', linewidth=0.5,figsize=(10,12))
+ctx.add_basemap(ax, crs = src.crs, source=ctx.providers.Esri.DeLorme)
+plt.axis('off')
+
+# +
+import matplotlib as mpl
+fig = plt.gcf()
+size = fig.get_size_inches()
+raster_src = rasterio.open("LK000_footprints.tif")
+
+maximus = max(raster_src.read(1).ravel())
+cmap = matplotlib.cm.get_cmap(
+    'rainbow', 
+    maximus-1
+)
+cmap.set_bad('white') 
+data = raster_src.read(1)
+
+import numpy as np
+data = np.ma.masked_values(data, 0)
+data = np.ma.masked_values(data, 1)
+
+plt.imshow(
+    data, 
+    cmap=cmap, 
+#     aspect='auto', 
+    )
+cb = plt.colorbar()
+plt.axis('off')
+# -
+
 # # Explore how many images are in this project
 
 scenes = hipp.dataquery.EE_sceneSearch(
@@ -133,8 +197,6 @@ explore_df = gpd.GeoDataFrame(explore_df, geometry='geometry').set_crs(epsg=4326
 explore_df['project'].unique()
 
 explore_df = explore_df[explore_df['project']=='LK000']
-
-import contextily as ctx
 
 ax = explore_df.plot(facecolor="none", figsize=(25,25), edgecolor='k')
 ctx.add_basemap(ax, crs='epsg:4326')

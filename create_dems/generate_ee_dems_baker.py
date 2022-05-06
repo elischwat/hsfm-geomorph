@@ -37,9 +37,14 @@ nagap_metadata_file = os.path.join(output_directory, "metashape_metadata.csv")
 # # Run the find_baker_ee_image_dataset.py script to generate this csv file.
 # # Read in selected images dataset.
 
+apiKey = hipp.dataquery.EE_login(input(), input())
+
 explore_df = pd.read_csv('/home/elilouis/hsfm-geomorph/create_dems/baker_ee_image_dataset.csv')
 
 # # Download images
+
+output_directory = '/data2/elilouis/timesift/baker-ee/'
+label     = 'test_download'
 
 images_directory, calibration_reports_directory = hipp.dataquery.EE_downloadImages(
     apiKey,
@@ -60,7 +65,10 @@ fixed_image_directory = images_directory.replace("raw_images", "raw_images_fixed
 
 import glob
 import cv2
+# this ignores files in deeper directories (ie the NAGAP imges)
 files = glob.glob(os.path.join(images_directory, "*.tif"))
+if not os.exists(images_directory.replace("raw_images, raw_images_fixed")):
+    os.makedirs(images_directory.replace("raw_images, raw_images_fixed"))
 print(f'Of {len(files)}, processing...', end=' ')
 for i,file in enumerate(files):
     print(i+1, end=' ')
@@ -207,7 +215,7 @@ combined_metadata_df.to_csv(combined_metadata_file_path, index=False)
 
 # it needs these columns (only) [["fileName", "Year", "Month", "Day"]] and the fileName column should NOT end with .tif
 # create this by getting NAGAP image info using the large-nagap data csv that comes with hipp 
-# and ee_metadata_df, with information provided for the 4 columns mentioned above, added in manually
+# and ee_metadata_df, with information provided for the 4 columns mentioned above added in manually
 nagap_image_info_df = pd.read_csv(nagap_image_info_fn)
 
 
@@ -217,9 +225,13 @@ nagap_image_info_df.head(1)
 
 ee_metadata_df.loc[:, 'fileName'] = ee_metadata_df.loc[:, 'image_file_name'].apply(lambda x: x.replace('.tif', ''))
 ee_image_info_df = ee_metadata_df[['fileName']]
+
+# Assign dates to correct data (EE LK000 images with numbers in the 10,000s are actually 08.17,1950 and in the 20,000s are actually 09.02.1950)
 ee_image_info_df.loc[:, 'Year'] = '50'
-ee_image_info_df.loc[:, 'Month'] = '09'
-ee_image_info_df.loc[:, 'Day'] = '02'
+ee_image_info_df.loc[ee_image_info_df['fileName'].str[-8] == '1', 'Month'] = '08'
+ee_image_info_df.loc[ee_image_info_df['fileName'].str[-8] == '2', 'Month'] = '09'
+ee_image_info_df.loc[ee_image_info_df['fileName'].str[-8] == '1', 'Day'] = '17'
+ee_image_info_df.loc[ee_image_info_df['fileName'].str[-8] == '2', 'Day'] = '02'
 
 combined_image_info_df = pd.concat([nagap_image_info_df, ee_image_info_df])
 

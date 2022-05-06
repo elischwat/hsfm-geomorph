@@ -5,9 +5,9 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.5.2
+#       jupytext_version: 1.13.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -18,10 +18,10 @@ import geoutils as gu
 import numpy as np
 import matplotlib.pyplot as plt
 
-dem_fn = "/data2/elilouis/generate_ee_dems_baker/mixed_timesift/individual_clouds_backup/50_9.0/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x+4.02_y+6.26_z-1.88_align.tif"
-diff_fn = "/data2/elilouis/generate_ee_dems_baker/mixed_timesift/individual_clouds_backup/50_9.0/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x+4.02_y+6.26_z-1.88_align_diff.tif"
-dem_masked_fn = "/data2/elilouis/generate_ee_dems_baker/mixed_timesift/individual_clouds_backup/50_9.0/cluster0/1/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_reference_dem_clipped_nuth_x+4.02_y+6.26_z-1.88_align_filt.tif"
-dem_reference_fn = ("/data2/elilouis/hsfm-geomorph/data/reference_dem_highres/baker/raw_tifs/baker_2015/2015_5m.tif")
+dem_fn = "/data2/elilouis/timesift/baker-ee/mixed_timesift/individual_clouds/50_9.0_2.0/cluster0/0/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_2015_nuth_x+1.13_y+1.66_z-0.90_align.tif"
+diff_fn = "/data2/elilouis/timesift/baker-ee/mixed_timesift/individual_clouds/50_9.0_2.0/cluster0/0/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_2015_nuth_x+1.13_y+1.66_z-0.90_align_diff.tif"
+dem_masked_fn = "/data2/elilouis/timesift/baker-ee/mixed_timesift/individual_clouds/50_9.0_2.0/cluster0/0/pc_align/spoint2point_bareground-trans_source-DEM_dem_align/spoint2point_bareground-trans_source-DEM_2015_nuth_x+1.13_y+1.66_z-0.90_align_filt.tif"
+dem_reference_fn = "/data2/elilouis/hsfm-geomorph/data/reference_dem_highres/baker/raw_tifs/baker_2015/2015.tif"
 
 # +
 dem = gu.georaster.Raster(dem_fn)
@@ -30,6 +30,8 @@ ref_dem = gu.georaster.Raster(dem_reference_fn)
 dem = dem.reproject(ref_dem)
 dem.crop(ref_dem)
 # -
+
+ref_dem.res
 
 dem.show(), ref_dem.show()
 
@@ -59,7 +61,7 @@ x_coordinates, y_coordinates = np.meshgrid(
 ramp = du.coreg.deramping(diff_array, x_coordinates, y_coordinates, 2)
 
 fig,ax = plt.subplots(figsize=(10,10))
-im = ax.imshow(diff_array, cmap='RdBu')
+im = ax.imshow(diff_array, cmap='RdBu', vmin=-0.1, vmax=0.1)
 fig.colorbar(im,extend='both')
 ax.set_axis_off();
 
@@ -85,8 +87,8 @@ dem_array_corrected += ramp(x_coordinates, y_coordinates)
 
 diff_array_corrected = ref_dem_array - dem_array_corrected
 
-fig,ax = plt.subplots(figsize=(10,10))
-im = ax.imshow(diff_array_corrected, cmap='RdBu')
+fig,ax = plt.subplots(figsize=(20,20))
+im = ax.imshow(diff_array_corrected, cmap='RdBu', vmin=-15, vmax=15)
 fig.colorbar(im,extend='both')
 ax.set_axis_off();
 
