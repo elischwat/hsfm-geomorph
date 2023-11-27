@@ -3,7 +3,7 @@ import xarray as xr
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error
-from scipy.stats import median_absolute_deviation
+from scipy.stats import median_abs_deviation
 # import skgstat as skg
 
 def create_dem_dataset(
@@ -93,7 +93,7 @@ def assign_dod_uncertainty_statistics(dod_dataset, static_area_geometries, sc_ge
         dod_dataset[var].attrs['Median'] = np.median(static_noise)
         dod_dataset[var].attrs['Mean'] = np.mean(static_noise)
         dod_dataset[var].attrs['Standard Deviation'] = np.std(static_noise)
-        dod_dataset[var].attrs['NMAD'] = median_absolute_deviation(static_noise)
+        dod_dataset[var].attrs['NMAD'] = median_abs_deviation(static_noise)
         dod_dataset[var].attrs['Variance'] = np.var(static_noise)
         dod_dataset[var].attrs['84th Percentile'] = np.percentile(static_noise, 84)
         dod_dataset[var].attrs['16th Percentile'] = np.percentile(static_noise, 16)
@@ -148,7 +148,7 @@ x    reference DEM is regarded as "truth", or the ground control values. Add the
             dem_dataset[var].attrs['Median'] = np.median(static_noise)
             dem_dataset[var].attrs['Mean'] = np.mean(static_noise)
             dem_dataset[var].attrs['Standard Deviation'] = np.std(static_noise)
-            dem_dataset[var].attrs['NMAD'] = median_absolute_deviation(static_noise)
+            dem_dataset[var].attrs['NMAD'] = median_abs_deviation(static_noise)
             dem_dataset[var].attrs['Variance'] = np.var(static_noise)
             dem_dataset[var].attrs['84th Percentile'] = np.percentile(static_noise, 84)
             dem_dataset[var].attrs['16th Percentile'] = np.percentile(static_noise, 16)
