@@ -61,4 +61,4 @@ jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/slope_dr
 
 # Run xdem_plot NB
 jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_plot.ipynb  --output outputs/xdem_plot.html  && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/power_law_relationships_new.ipynb  --output outputs/power_law_relationships_new.html
+jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/power_law_relationships.ipynb  --output outputs/power_law_relationships.html
