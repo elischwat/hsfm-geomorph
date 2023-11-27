@@ -89,13 +89,13 @@ def uncertainty_analysis(
     )
     
     if ylim:
-        xdem.spatialstats.plot_vgm(
+        xdem.spatialstats.plot_variogram(
             df,
             xscale_range_split=xscale_range_split,
             ylim=ylim
         )
     else:
-        xdem.spatialstats.plot_vgm(
+        xdem.spatialstats.plot_variogram(
             df,
             xscale_range_split=xscale_range_split
         )
@@ -103,7 +103,7 @@ def uncertainty_analysis(
     plt.show()
     fun, params = xdem.spatialstats.fit_sum_model_variogram(['Sph'], empirical_variogram=df)
     if ylim:
-        xdem.spatialstats.plot_vgm(
+        xdem.spatialstats.plot_variogram(
             df,
             list_fit_fun=[fun],
             list_fit_fun_label=['Single-range model'],
@@ -111,7 +111,7 @@ def uncertainty_analysis(
             ylim=ylim
         )
     else:
-        xdem.spatialstats.plot_vgm(
+        xdem.spatialstats.plot_variogram(
             df,
             list_fit_fun=[fun],
             list_fit_fun_label=['Single-range model'],
@@ -121,8 +121,8 @@ def uncertainty_analysis(
     plt.show()
 
     results_dict = {
-        "Range": params[0],
-        "Sill": params[1],
+        "Range": params['range'].iloc[0],
+        "Sill": params['psill'].iloc[0],
         "Interval": dh.interval,
         "NMAD": xdem.spatialstats.nmad(stable_values_filt),
         "Mean": float(np.nanmean(stable_values_filt)),

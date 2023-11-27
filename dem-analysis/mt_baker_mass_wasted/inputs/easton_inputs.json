@@ -1,8 +1,9 @@
 {
     "inputs": {
         "valley_name": "Easton",
-        "TO_DROP" : ["1947_09_14","1970_09_09","1974_08_10","1987_08_21","1990_09_05"],
-        "TO_DROP_LARGER_AREA": [],
+        "TO_DROP" : ["1970_09_09","1974_08_10","1987_08_21","1990_09_05", "2013_09_13", "2019_10_11"],
+        "TO_DROP_LARGER_AREA": ["1970_09_09", "1970_09_29", "1974_08_10", "1977_09_27", "1987_08_21","1990_09_05", "1991_09_09","2013_09_13", "2019_10_11"],
+        "XSECTIONS_INCLUDE": null,
         "erosion_polygon_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/easton/erosion.geojson",
         "erosion_by_date_polygon_file": null,
         "glacier_polygons_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/easton/glaciers.geojson",
@@ -25,8 +26,8 @@
         "MASK_EXTRA_SIGNALS": true,
         "RUN_LARGER_AREA": false,
 
-        "simple_filter_threshold": 20,
-        "measurement_threshold": 1,   
+        "dem_target_resolution": 2,
+        "simple_filter_threshold": 50,
         
         "plot_figsize": [30, 10], 
         "plot_vmin": -7.5, 
@@ -39,12 +40,12 @@
     },
     "uncertainty": {
         "gcas_polygon_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/easton/gcas.geojson",
-        "VARIOGRAM_SUBSAMPLE": 1800,
+        "VARIOGRAM_SUBSAMPLE": 10000,
         "VARIOGRAM_N_VARIOGRAMS": 10,
-        "PARALLELISM": 32,
+        "PARALLELISM": 64,
         "XSCALE_RANGE_SPLIT": [200],
         "MAX_LAG": 1000,
-        "RESAMPLING_RES": 5
+        "RESAMPLING_RES": 2
     },
     "copy": {
         "original_dems_path": "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems_by_watershed_and_date/lake_shannon_baker_river"

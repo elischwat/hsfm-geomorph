@@ -28,7 +28,9 @@ dems_dict['67_9']
 
 
 # # Polygonize 1 DEM
-
+import rioxarray as rix
+from rasterio import features
+import geopandas as gpd
 def polygonize_valid_data(file, label='', target_resolution=30, buffer_distance=100):
     """
     Params:
