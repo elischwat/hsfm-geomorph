@@ -19,7 +19,7 @@ Add description of process and scripts to use to:
 5. describe/include other scripts (which are run in this order):
         process_best_dems_into_orthomosaics.py
         collect_final_products.py
-        prepare_dems_for_analysis.py
+        prepare_dems_for_analysis.py -- ** a note is included at the beginning of this script because there is a manual step, copying in a better 1947 dataset from another baker-ee-many run (the manual selection run, which is the same run but with fewer EE images)
 
 ## Description of each script
 

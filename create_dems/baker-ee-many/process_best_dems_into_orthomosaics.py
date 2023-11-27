@@ -28,7 +28,7 @@ timesift_pipeline = TimesiftPipeline(
 
 best_results_dict = {
 	#maybe delete this first one:
-	"/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/47_9.0_14.0/cluster0" : "spoint2point_bareground",
+	"/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/47_9.0_14.0/cluster0" : "point2plane",
 	# "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/67_9.0_21.0/cluster2" : "spoint2point_bareground",
 	# "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/70_9.0_29.0/cluster0" : "spoint2point",
 	# "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/70_9.0_9.0/cluster0"  : "spoint2point",

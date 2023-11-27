@@ -8,7 +8,14 @@ from shapely.geometry import box
 import shutil
 import hsfm.utils
 
-
+"""
+NOTE: Before running this, i placed this file
+/data2/elilouis/timesift/baker-ee-many/mixed_timesift_manual_selection/individual_clouds/47_9.0_14.0/cluster0/0/pc_align/point2plane-trans_source-DEM_dem_align/point2plane-trans_source-DEM_2015_nuth_x-0.05_y-0.44_z+0.01_align.tif
+ in the directory
+/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems/"
+manually, and renamed it "47_9_14_cluster0.tif".
+I do this because this 1947 product is better in the other timesift run. All other products I use from this run.
+"""
 #%%
 dems_path = "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems/"
 
@@ -28,19 +35,9 @@ wshed_names  = [
 #     layer=66
 # ).to_crs('EPSG:32610')
 # use watersheds modified to include static area near watershed boundaries.
-#   NOT reliable actual watersheds
+#   NOT the actual watersheds
 wsheds_gdf = gpd.read_file("/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/watersheds.geojson")
-
-
 wsheds_gdf = wsheds_gdf[wsheds_gdf['Name'].isin(wshed_names)]
-
-
-
-
-
-
-
-
 
 
 # %%
