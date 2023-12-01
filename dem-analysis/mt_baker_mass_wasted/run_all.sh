@@ -53,7 +53,7 @@ HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' jupyter nbconvert --execute
 HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_mazama.html && \
 HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_rainbow.html && \
 
-# Newest "extra" NBs
+# "extra" NBs
 jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/dem_dataset_info.ipynb  --output outputs/dem_dataset_info.html && \
 jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty_whole_mountain_combined.ipynb --output outputs/uncertainty_whole_mountain_combined.html && \
 jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_whole_mountain_combined.ipynb  --output outputs/xdem_whole_mountain_combined.html && \
@@ -61,4 +61,8 @@ jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/slope_dr
 
 # Run xdem_plot NB
 jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_plot.ipynb  --output outputs/xdem_plot.html  && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/power_law_relationships.ipynb  --output outputs/power_law_relationships.html
+jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/power_law_relationships.ipynb  --output outputs/power_law_relationships.html && \
+
+# More "extra" NBs
+jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/terrace_erosion_reanalysis.ipynb  --output outputs/terrace_erosion_reanalysis.html && \
+jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/create_supplemental_tables.ipynb --output outputs/create_supplemental_tables.html 
