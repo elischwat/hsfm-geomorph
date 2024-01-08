@@ -1,68 +1,64 @@
-##
 
-## Run uncertainty notebooks and xdem notebooks
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_coleman.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_deming.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_mazama.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_rainbow.html && \
 
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_coleman_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_deming_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_mazama_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_rainbow_filtering_simple.html && \
 
-## Run uncertainty notebooks and xdem notebooks for LARGER AREA
-    ## MUST SWITCH TO LARGER_AREA = TRUE FOR THIS TO WORK!!
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_coleman_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_deming_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_mazama_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty.ipynb  --output outputs/uncertainty_rainbow_largerarea.html && \
+export HSFM_GEOMORPH_DATA_PATH='/storage/elilouis/'
 
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_deming_largerarea_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_coleman_largerarea_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_mazama_largerarea_filtering_simple.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem.ipynb  --output outputs/xdem_rainbow_largerarea_filtering_simple.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' python uncertainty.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' python uncertainty.py
 
-# Xdem Process NBs
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_coleman.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_deming.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_mazama.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_rainbow.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' python xdem_create.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' python xdem_create.py
 
-# Xdem Process BOUNDING NBs
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes_bounding.ipynb --output outputs/xdem_processes_coleman_bounding.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes_bounding.ipynb --output outputs/xdem_processes_deming_bounding.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes_bounding.ipynb --output outputs/xdem_processes_mazama_bounding.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='no' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes_bounding.ipynb --output outputs/xdem_processes_rainbow_bounding.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' python xdem_processes.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' python xdem_processes.py
 
-# # Xdem Process NBs LARGER AREA
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_coleman_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_deming_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_mazama_largerarea.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' RUN_LARGER_AREA='yes' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_processes.ipynb --output outputs/xdem_processes_rainbow_largerarea.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python xdem_processes_bounding.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python xdem_processes_bounding.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python xdem_processes_bounding.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python xdem_processes_bounding.py
 
-# ## Run Xsections notebooks
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xsections.ipynb  --output outputs/xsections_coleman.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xsections.ipynb  --output outputs/xsections_deming.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xsections.ipynb  --output outputs/xsections_mazama.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xsections.ipynb  --output outputs/xsections_rainbow.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python xsections.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python xsections.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python xsections.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python xsections.py
 
-# Run Transects notebooks
-HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_coleman.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_deming.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_mazama.html && \
-HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_rainbow.html && \
+HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python transects.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python transects.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python transects.py
+HSFM_GEOMORPH_INPUT_FILE='inputs/rainbow_inputs.json' python transects.py
 
-# "extra" NBs
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/dem_dataset_info.ipynb  --output outputs/dem_dataset_info.html && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/uncertainty_whole_mountain_combined.ipynb --output outputs/uncertainty_whole_mountain_combined.html && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_whole_mountain_combined.ipynb  --output outputs/xdem_whole_mountain_combined.html && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/slope_drainagearea_xdem.ipynb  --output outputs/slope_drainagearea_xdem.html && \
+python dem_dataset_info.py
 
-# Run xdem_plot NB
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/xdem_plot.ipynb  --output outputs/xdem_plot.html  && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/power_law_relationships.ipynb  --output outputs/power_law_relationships.html && \
+python uncertainty_whole_mountain_combined.py
 
-# More "extra" NBs
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/terrace_erosion_reanalysis.ipynb  --output outputs/terrace_erosion_reanalysis.html && \
-jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/create_supplemental_tables.ipynb --output outputs/create_supplemental_tables.html 
+python xdem_create_whole_mountain_combined.py
+
+python slope_drainagearea_xdem.py
+
+python xdem_plot.py
+
+python create_glacier_area_change_table.py
+
+python power_law_relationships.py
+
+python terrace_erosion_reanalysis.py
+
+python create_supplemental_tables.py

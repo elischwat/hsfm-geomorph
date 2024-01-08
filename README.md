@@ -1,12 +1,14 @@
 # hsfm-geomorph
-Using HSFM DEMs to understand decadal-scale geomorphology in the PNW.
+Using HSFM (historical structure from motion) DEMs to understand decadal-scale geomorphology in the PNW.
 
-1. identify-imagery\t\t Examing NAGAP (and other?) image datasets and creating subsets for DEM processing
-2. create_dems\t\t Create DEMs using https://github.com/friedrichknuth/hsfm/
-3. ...
+This library is composed of a number of scripts that you can run to analyze DEMs and produce plots, as published in the paper
 
-All python scripts/notebooks in the repository depend on a large and locally hosted dataset.
+https://doi.org/10.1016/j.geomorph.2023.108805
 
-Note the `data_dir` variable set at the beginning of all scripts/notebooks. You can set in manually or rely on an environmental variable `data_dir`.
+To run the scripts, you need the dataset. You can download the dataset here:
 
-I can use the `download-data.sh` script but you cannot. Future improvements will have the dataset publically available.
+___
+
+Once you have the dataset downloaded (and uncompressed, if it came compressed), you are ready to run the scripts. 
+
+Run the scripts as shown in the run_all.sh script.
