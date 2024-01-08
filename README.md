@@ -5,10 +5,28 @@ This library is composed of a number of scripts that you can run to analyze DEMs
 
 https://doi.org/10.1016/j.geomorph.2023.108805
 
-To run the scripts, you need the dataset. You can download the dataset here:
+## Prerequisites
+To run the scripts, you need:
+1. A dataset, which is published (and downloadable) here: 
+2. A forked and modified version of the `xdem` library, which can be cloned from here: https://github.com/elischwat/xdem
 
-___
+## Instructions
+Once you have the dataset downloaded and the forked version of xdem downloaded, follow these steps:
 
-Once you have the dataset downloaded (and uncompressed, if it came compressed), you are ready to run the scripts. 
+1. Install the conda environment, `conda env create -f environment.yml` or `mamba env create -f environment.yml`
+2. Install the local version of xdem, `conda activate hsfm; pip install ~/xdem/` (you may need to modify the path to xdem for your system)
+3. Navigate to the working directory and run the python scripts using the `run_all.sh` script:
+    ```
+    $ cd dem-analysis/mt_baker_mass_wasted/
+    $ chmod +x run_all.sh
+    $ ./run_all.sh
+    ```
+4. To reproduce the published figures, you can open the python scripts as jupyter notebooks and run them. To convert .py scripts to jupyter notebooks, see the documentation for jupytext, https://jupytext.readthedocs.io, which should already be installed as it's in the environment.yml.
 
-Run the scripts as shown in the run_all.sh script.
+## Notes
+To closely reproduce the published numbers, you will need to make some changes to the python scripts and input files. Some parameter values were modified in this version of the code so that when the scripts are run, computational resources are not overwhelmed. To run the scripts with the modifications described below, we recommend using a machine with at least 64Gb RAM and with enough cores to run 64 parallel threads.
+1. Change the following variables in all of the input files (files in dem-analysis/mt_baker_mass_wasted/inputs/). Note that these variables were modified to accomodate computer system limitations. This large subsample allows accurate estimation of spatial autocorrelation. For more information on this, see the documentation for xdem (https://xdem.readthedocs.io/en/stable/), we utilize the function `xdem.spatialstats.sample_empirical_variogram`. 
+    a. Set ["uncertainty"]["VARIOGRAM_SUBSAMPLE"] to 10000 (currently 100)
+    b. Set ["uncertainty"]["PARALLELISM"] to 64 (currently 10)
+2. Change the value of the variables `VARIOGRAM_SUBSAMPLE` and `PARALLELISM` in the script `uncertainty_whole_mountain_combined.py` to match the values described above, 10000 and 64, respectively.
+3. Change the value of the variable `RESAMPLING_RES` to 2 (from the current value of 10).
