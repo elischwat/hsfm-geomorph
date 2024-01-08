@@ -117,7 +117,7 @@ modeling_powerlaw_data
 
 if not os.path.exists("outputs/supplemental_tables"):
     os.mkdir("outputs/supplemental_tables")
-time_series_annualized_gross.to_csv("outputs/supplemental_tables/time_series_annualized_gross.csv")
+time_series_annualized_gross.q("outputs/supplemental_tables/time_series_annualized_gross.csv")
 time_series_cumulative.to_csv("outputs/supplemental_tables/time_series_cumulative.csv")
 modeling_powerlaw_data.to_csv("outputs/supplemental_tables/modeling_powerlaw_data.csv")
 

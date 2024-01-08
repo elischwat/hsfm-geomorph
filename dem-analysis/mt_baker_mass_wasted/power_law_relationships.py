@@ -192,7 +192,7 @@ terrain_attrs_erosionarea
 
 # %%
 # ### Load longitudinal slope measurements
-long_slopes_df = pd.read_csv("outputs/slopes.csv")
+long_slopes_df = pd.read_csv(os.path.join(BASE_PATH, "hsfm-geomorph/data/slopes.csv"))
 long_slopes_df
 
 # %% [markdown]
