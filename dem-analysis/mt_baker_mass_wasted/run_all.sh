@@ -1,8 +1,3 @@
-
-
-
-export HSFM_GEOMORPH_DATA_PATH='/storage/elilouis/'
-
 HSFM_GEOMORPH_INPUT_FILE='inputs/coleman_inputs.json' python uncertainty.py
 HSFM_GEOMORPH_INPUT_FILE='inputs/deming_inputs.json' python uncertainty.py
 HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' python uncertainty.py
