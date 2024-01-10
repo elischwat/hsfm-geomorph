@@ -4,12 +4,12 @@
         "TO_DROP" : ["1970_09_09", "1974_08_10", "1977_09_27", "1987_08_21", "1990_09_05", "2013_09_13", "2019_10_11"],
         "TO_DROP_LARGER_AREA": ["1970_09_09", "1970_09_29", "1974_08_10", "1977_09_27", "1987_08_21", "1990_09_05", "1991_09_09", "2013_09_13", "2019_10_11"],
         "XSECTIONS_INCLUDE": null,
-        "erosion_polygon_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/erosion.geojson",
+        "erosion_polygon_file" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/erosion.geojson",
         "erosion_by_date_polygon_file": null,
-        "glacier_polygons_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/glaciers.geojson",
-        "dems_path" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/dems",
-        "valley_bounds_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_bounds.geojson",
-        "plot_output_dir": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/plots/",
+        "glacier_polygons_file" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/glaciers.geojson",
+        "dems_path" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/dems",
+        "valley_bounds_file" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_bounds.geojson",
+        "plot_output_dir": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/plots/",
         "uncertainty_file" : "outputs/uncertainty_deming.pcl",
         "uncertainty_file_largearea": "outputs/uncertainty_largearea_deming.pcl",
 
@@ -35,30 +35,30 @@
         "interpolation_max_search_distance": 50
     },
     "outputs": {
-        "erosion_polygons_cropped_by_glaciers_output_file" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/erosion_glaciers_removed.geojson",
-        "dods_output_path" : "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/dods"
+        "erosion_polygons_cropped_by_glaciers_output_file" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/erosion_glaciers_removed.geojson",
+        "dods_output_path" : "hsfm-geomorph/data/mt_baker_mass_wasted/deming/dods"
     },
     "uncertainty": {
-        "gcas_polygon_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/gcas.geojson",
-        "VARIOGRAM_SUBSAMPLE": 10000,
+        "gcas_polygon_file": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/gcas.geojson",
+        "VARIOGRAM_SUBSAMPLE": 100,
         "VARIOGRAM_N_VARIOGRAMS": 10,
-        "PARALLELISM": 64,
+        "PARALLELISM": 10,
         "XSCALE_RANGE_SPLIT": [200],
         "MAX_LAG": 1000,
         "RESAMPLING_RES": 2
     },
     "copy": {
-        "original_dems_path": "/data2/elilouis/timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems_by_watershed_and_date/upper_middle_fork_nooksack_river"
+        "original_dems_path": "timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems_by_watershed_and_date/upper_middle_fork_nooksack_river"
     },
     "xsections": {
-        "input_xsections_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_xsections_from_glaciers.geojson",
-        "output_lowpoints_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_xsections_lowpoints.geojson",
-        "output_streamlines_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_streamlines.geojson",
+        "input_xsections_file": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_xsections_from_glaciers.geojson",
+        "output_lowpoints_file": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_xsections_lowpoints.geojson",
+        "output_streamlines_file": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/valley_streamlines.geojson",
         "line_complexity": 150,
         "group_slope_meters": 500
     },
     "transects": {
-        "input_transects_file": "/data2/elilouis/hsfm-geomorph/data/mt_baker_mass_wasted/deming/transects.geojson",
+        "input_transects_file": "hsfm-geomorph/data/mt_baker_mass_wasted/deming/transects.geojson",
         "line_complexity": 500
     }
 }
