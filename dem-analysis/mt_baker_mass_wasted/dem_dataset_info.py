@@ -1,17 +1,19 @@
 # ---
 # jupyter:
 #   jupytext:
+#     custom_cell_magics: kql
 #     text_representation:
 #       extension: .py
-#       format_name: light
-#       format_version: '1.5'
-#       jupytext_version: 1.16.0
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
 #   kernelspec:
 #     display_name: Python 3.9.2 ('xdem')
 #     language: python
 #     name: python3
 # ---
 
+# %%
 import os
 import glob
 import pandas as pd
@@ -24,6 +26,7 @@ import rioxarray as rix
 from xrspatial import hillshade
 import matplotlib.pyplot as plt
 
+# %%
 if __name__ == "__main__":   
 
     BASE_PATH = os.environ.get("HSFM_GEOMORPH_DATA_PATH")
@@ -47,7 +50,8 @@ if __name__ == "__main__":
         'Valley': ['Whole Mountain', 'Whole Mountain', 'Whole Mountain', 'Whole Mountain']
     })
 
-    dems_mosaic_path = os.path.join(BASE_PATH, "timesift/baker-ee-many/mixed_timesift/individual_clouds/final_products/dems_mosaiced/")
+    # CHANGE THIS
+    dems_mosaic_path = os.path.join(BASE_PATH, "hsfm-geomorph/data/dems_mosaiced")
 
     inputs_dict = {}
     for input_file in os.listdir(inputs_dir):
@@ -66,7 +70,7 @@ if __name__ == "__main__":
     dem_data_df = pd.DataFrame()
     for valley, params in inputs_dict.items():
         all_dem_dates = [Path(f).stem for f in 
-            glob.glob(os.path.join(params['inputs']['dems_path'], "*.tif"))
+            glob.glob(os.path.join(BASE_PATH, params['inputs']['dems_path'], "*.tif"))
         ]
         valid_dem_dates = [date for date in all_dem_dates if date not in params['inputs']['TO_DROP']]
         valid_dem_dates_largearea = [date for date in all_dem_dates if date not in params['inputs']['TO_DROP_LARGER_AREA']]
@@ -74,8 +78,11 @@ if __name__ == "__main__":
         df['Date'] = valid_dem_dates
         df['Larger Area'] = df['Date'].apply(lambda date: date in valid_dem_dates_largearea)
         df['Valley'] = valley
-        dem_data_df = pd.concat([dem_data_df, df])
+        dem_data_df = pd.concat([
+            dem_data_df, df])
 
+
+    # %%
     dem_data_df = pd.concat([dem_data_df, whole_mtn_data_manual])
 
     dem_data_df['Date'] = dem_data_df['Date'].apply(lambda d: datetime.strptime(d, strip_time_format))   
@@ -87,92 +94,9 @@ if __name__ == "__main__":
     dem_data_df['Valley'] = dem_data_df['Valley'].apply(lambda x: x.title())
     # -
 
-    dem_data_df
-
-    # +
-    alt.Chart(dem_data_df).mark_bar(
-        opacity = 0.5
-    ).encode(
-        alt.X('Valley:N', axis=alt.Axis(labelAngle=0)),
-        alt.Y('Graph Start Date:T'),
-        alt.Y2('Graph End Date:T'),
-        alt.Color('Description:N',
-        legend=alt.Legend(
-            orient='none',
-            legendX=0, legendY=-40,
-            direction='horizontal',
-            titleAnchor='middle'
-        )
-        )
-    ).properties(
-        width=400,
-        height=600
-
-    ) + alt.Chart(dem_data_df).transform_filter(
-        alt.FieldEqualPredicate(field='Larger Area', equal=True)
-    ).mark_bar(
-        color='black',
-        filled=False
-    ).encode(
-        alt.X('Valley:N', axis=alt.Axis(labelAngle=0)),
-        alt.Y('Graph Start Date:T'),
-        alt.Y2('Graph End Date:T'),
-        # alt.Color('Description:N')
-    ).properties(
-        width=400,
-        height=600
-
-    )
-
-    # +
-    src = dem_data_df.query("Valley != 'Easton'")
-    src = src[
-        ~((src.Valley == 'Whole Mountain') & (src['Graph Start Date'].dt.year == 1977))
-    ]
-
-    src = src[
-        ~((src.Valley == 'Whole Mountain') & (src['Graph Start Date'].dt.year == 1979))
-    ]
-    (
-        alt.Chart(src).mark_bar(
-            opacity = 0.5
-        ).encode(
-            alt.X('Valley:N', axis=alt.Axis(labelAngle=-20)),
-            alt.Y('Graph Start Date:T'),
-            alt.Y2('Graph End Date:T'),
-            alt.Color('Description:N',
-            legend=alt.Legend(
-                orient='top',
-                # legendX=0, legendY=-40,
-                # direction='horizontal',
-                titleAnchor='middle',
-                columns=1,
-                symbolLimit=0,
-                labelLimit=0
-            )
-            )
-        ).properties(
-            width=400,
-            height=600
-
-        ) + alt.Chart(src).transform_filter(
-            alt.FieldEqualPredicate(field='Larger Area', equal=True)
-        ).mark_bar(
-            color='black',
-            filled=False
-        ).encode(
-            alt.X('Valley:N', axis=alt.Axis(labelAngle=-20)),
-            alt.Y('Graph Start Date:T'),
-            alt.Y2('Graph End Date:T'),
-            # alt.Color('Description:N')
-        ).properties(
-            width=400,
-            height=600
-        )
-    ).configure_legend(labelFontSize=18, titleFontSize=18).configure_axis(labelFontSize=18, titleFontSize=18)
-    # -
 
 
+    # %%
 
     # +
     src = dem_data_df.query("Valley != 'Easton'")
@@ -194,7 +118,7 @@ if __name__ == "__main__":
     'Description']].rename(columns={'Valley':'Watershed'})
     src['Watershed'] = src['Watershed'].apply(lambda x: '10 Watersheds' if x == 'Whole Mountain' else x)
 
-    alt.Chart(src).mark_bar(
+    figure2b = alt.Chart(src).mark_bar(
         opacity = 0.5
     ).encode(
         alt.Y('Watershed:N', axis=alt.Axis(labelAngle=0), sort=['Whole Mountain']),
@@ -220,46 +144,15 @@ if __name__ == "__main__":
         height=200
     )
 
-    # +
-    src = dem_data_df.query("Valley != 'Easton'")
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    figure2b.save("outputs/final_figures/figure2b.png")
 
-    src['Graph End Date'] = src['Graph End Date'].apply(lambda d: d + timedelta(days=90))
+    # %%
+    figure2b
 
 
-    (alt.Chart(src).mark_bar(
-        opacity = 0.5
-    ).encode(
-        alt.X('Valley:N', axis=alt.Axis(labelAngle=-20, tickCount=5)),
-        alt.Y('Graph Start Date:T'),
-        alt.Y2('Graph End Date:T'),
-        alt.Color('Description:N',
-        legend=alt.Legend(
-            orient='top',
-            # legendX=0, legendY=-40,
-            # direction='horizontal',
-            # titleAnchor='middle'
-        )
-        )
-    ).properties(
-        width=400,
-        height=400
-
-    ) + alt.Chart(src).transform_filter(
-        alt.FieldEqualPredicate(field='Larger Area', equal=True)
-    ).mark_bar(
-        color='black',
-        filled=False
-    ).encode(
-        alt.X('Valley:N', axis=alt.Axis(labelAngle=-20)),
-        alt.Y('Graph Start Date:T', title='', axis=alt.Axis(tickCount=5)),
-        alt.Y2('Graph End Date:T'),
-        # alt.Color('Description:N')
-    ).properties(
-        width=400,
-        height=400
-    )).configure_axis(labelFontSize=20, titleFontSize=20).configure_legend(labelFontSize=20, titleFontSize=20)
-    # -
-
+    # %%
     # # Plot DEM Gallery
     def create_dataset(individual_clouds_path):
         """
@@ -281,49 +174,10 @@ if __name__ == "__main__":
 
 
 
+
+    # %%
+
     dem_lowres_dataset = create_dataset(dems_mosaic_path)
-
-    # ## Plot all DEM mosaics
-
-    # +
-    bounds = dem_lowres_dataset['1977_09_27'].rio.bounds()
-
-    rows = 3
-    columns = 6
-
-    fig = plt.figure(figsize=(15,7))
-
-
-    items = list((dem_lowres_dataset.items()))
-    items.sort(key=lambda x: x[0])
-
-    for i, (key, raster) in enumerate(items):
-        raster_clipped = raster.rio.clip_box(*bounds)
-        raster_clipped = raster_clipped.rio.pad_box(*bounds)
-        
-        ax = plt.subplot(rows, columns, i + 1, aspect='auto')
-        ax.imshow(raster_clipped.squeeze(), interpolation='none')
-        ax.imshow(hillshade(raster_clipped.squeeze()), interpolation='none', cmap='gray_r', alpha=0.5)
-        
-        # ax.set_xlim(bounds[0],bounds[2])
-        # ax.set_ylim(bounds[1],bounds[3])
-        ax.set_xticks(())
-        ax.set_yticks(())
-        ax.set_title(key.replace('.0',''),size=18)
-        ax.set_facecolor('black')
-
-    fig.suptitle('Mount Baker DEM Gallery', fontsize=18)
-    fig.set_facecolor("w")
-    plt.tight_layout()
-    plt.savefig('dem_gallery_filtered_dems_by_date.png')
-    plt.show(block=False)
-
-    # -
-
-
-
-
-    # +
     vmin = np.nanmin(dem_lowres_dataset['2015_09_01'].values)
     vmax = np.nanmax(dem_lowres_dataset['2015_09_01'].values)
     print(vmin)
@@ -406,136 +260,9 @@ if __name__ == "__main__":
     fig.suptitle('Mount Baker DEM Gallery', fontsize=36)
     fig.set_facecolor("w")
     # plt.tight_layout()
-    plt.savefig('dem_gallery_filtered_dems_by_date.png')
+
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    plt.savefig("outputs/final_figures/figure2a.png")
+
     plt.show(block=False)
-
-    # -
-
-
-
-    axes
-
-    # +
-    vmin = np.nanmin(dem_lowres_dataset['2015_09_01'].values)
-    vmax = np.nanmax(dem_lowres_dataset['2015_09_01'].values)
-    print(vmin)
-    print(vmax)
-    bounds = dem_lowres_dataset['1977_09_27'].rio.bounds()
-
-    rows = 1
-    columns = 10
-
-
-
-    items = list((dem_lowres_dataset.items()))
-    items.sort(key=lambda x: x[0])
-
-
-    locations = list(range(0,10))
-
-
-
-    used_dates = dem_data_df['Date'].apply(lambda x: x.strftime(strip_time_format))
-    items = [i for i in items if i[0] in list(used_dates)]
-
-
-
-    ###### NEW ###### 
-    fig, axes = plt.subplots(rows, columns, figsize=(44, 5))
-    ###### NEW ###### 
-
-
-    for i, (key, raster) in enumerate(items):
-        raster_clipped = raster.rio.clip_box(*bounds)
-        raster_clipped = raster_clipped.rio.pad_box(*bounds)
-
-        ###### NEW ###### 
-        ax = axes[
-            i
-        ]
-        ###### NEW ###### 
-        
-        ###### OLD ###### 
-        # ax = plt.subplot(rows, columns, i + 1, aspect='auto')
-
-        
-        ax.imshow(raster_clipped.squeeze(), interpolation='none', vmin=vmin, vmax=vmax)
-        ax.imshow(hillshade(raster_clipped.squeeze()), interpolation='none', cmap='gray_r', alpha=0.5)
-        
-        # ax.set_xlim(bounds[0],bounds[2])
-        # ax.set_ylim(bounds[1],bounds[3])
-        ax.set_xticks(())
-        ax.set_yticks(())
-        ax.set_title(key.replace('.0','').replace('_', '/').split('/')[0],size=36)
-        ax.set_facecolor('black')
-
-    # fig.suptitle('Mount Baker DEM Gallery', fontsize=36)
-    fig.set_facecolor("w")
-    # plt.tight_layout()
-    plt.savefig('dem_gallery_filtered_dems_by_date.png')
-    plt.show(block=False)
-
-
-    # +
-    vmin = np.nanmin(dem_lowres_dataset['2015_09_01'].values)
-    vmax = np.nanmax(dem_lowres_dataset['2015_09_01'].values)
-    print(vmin)
-    print(vmax)
-    bounds = dem_lowres_dataset['1977_09_27'].rio.bounds()
-
-    rows = 10
-    columns = 1
-
-
-
-    items = list((dem_lowres_dataset.items()))
-    items.sort(key=lambda x: x[0])
-
-
-    locations = list(range(0,10))
-
-
-
-    used_dates = dem_data_df['Date'].apply(lambda x: x.strftime(strip_time_format))
-    items = [i for i in items if i[0] in list(used_dates)]
-
-
-
-    ###### NEW ###### 
-    fig, axes = plt.subplots(rows, columns, figsize=(5, 44))
-    ###### NEW ###### 
-
-
-    for i, (key, raster) in enumerate(items):
-        raster_clipped = raster.rio.clip_box(*bounds)
-        raster_clipped = raster_clipped.rio.pad_box(*bounds)
-
-        ###### NEW ###### 
-        ax = axes[
-            i
-        ]
-        ###### NEW ###### 
-        
-        ###### OLD ###### 
-        # ax = plt.subplot(rows, columns, i + 1, aspect='auto')
-
-        
-        ax.imshow(raster_clipped.squeeze(), interpolation='none', vmin=vmin, vmax=vmax)
-        ax.imshow(hillshade(raster_clipped.squeeze()), interpolation='none', cmap='gray_r', alpha=0.5)
-        
-        # ax.set_xlim(bounds[0],bounds[2])
-        # ax.set_ylim(bounds[1],bounds[3])
-        ax.set_xticks(())
-        ax.set_yticks(())
-        ax.set_title(key.replace('.0','').replace('_', '/').split('/')[0],size=36)
-        ax.set_facecolor('black')
-
-    # fig.suptitle('Mount Baker DEM Gallery', fontsize=36)
-    fig.set_facecolor("w")
-    # plt.tight_layout()
-    plt.savefig('dem_gallery_filtered_dems_by_date.png')
-    plt.show(block=False)
-
-    # -
-
-

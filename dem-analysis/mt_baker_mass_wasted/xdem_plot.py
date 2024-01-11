@@ -86,11 +86,11 @@ if __name__ == "__main__":
 
 	# %%
 	threshold_pos_df = pd.concat(
-	    [pd.read_pickle(f) for f in threshold_pos_files]
+		[pd.read_pickle(f) for f in threshold_pos_files]
 	)
 	threshold_pos_df['type'] = "positive"
 	threshold_neg_df = pd.concat(
-	    [pd.read_pickle(f) for f in threshold_neg_files]
+		[pd.read_pickle(f) for f in threshold_neg_files]
 	)
 	threshold_neg_df['type'] = "negative"
 	gross_data_df = pd.concat([threshold_neg_df, threshold_pos_df])
@@ -101,11 +101,11 @@ if __name__ == "__main__":
 	# %%
 
 	cum_df = pd.concat(
-	    [pd.read_pickle(f) for f in cum_files]
+		[pd.read_pickle(f) for f in cum_files]
 	)
 
 	bounding_cum_df = pd.concat(
-	    [pd.read_pickle(f) for f in bounding_cum_files]
+		[pd.read_pickle(f) for f in bounding_cum_files]
 	)
 
 	bounding_cum_df['bounding'] = True
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 	# %%
 
 	largerarea_cum_df = pd.concat(
-	    [pd.read_pickle(f) for f in largerarea_cum_files]
+		[pd.read_pickle(f) for f in largerarea_cum_files]
 	)
 
 	# %% [markdown]
@@ -172,13 +172,13 @@ if __name__ == "__main__":
 
 	# %%
 	slope_halfkm_df = pd.concat(
-	    [pd.read_pickle(f) for f in slope_halfkm_files]
+		[pd.read_pickle(f) for f in slope_halfkm_files]
 	)
 	slope_km_df = pd.concat(
-	    [pd.read_pickle(f) for f in slope_km_files]
+		[pd.read_pickle(f) for f in slope_km_files]
 	)
 	elevation_df = pd.concat(
-	    [pd.read_pickle(f) for f in elevation_files]
+		[pd.read_pickle(f) for f in elevation_files]
 	)
 
 	# %% [markdown]
@@ -186,42 +186,42 @@ if __name__ == "__main__":
 
 	# %%
 	bars = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
+		strokeWidth = 2,
+		stroke="white",
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
-	    alt.Color('type',
-	        scale=alt.Scale(
-	            domain=['negative', 'positive'],
-	            range=['#d62728', '#1f77b4']
-	        )
-	    )
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
+		alt.Color('type',
+			scale=alt.Scale(
+				domain=['negative', 'positive'],
+				range=['#d62728', '#1f77b4']
+			)
+		)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	)
 
 	alt.layer(
-	    bars, 
-	    error_bars.transform_filter(alt.datum.type == 'negative'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive'),
-	    data=gross_data_df.drop(columns=['index'])
+		bars, 
+		error_bars.transform_filter(alt.datum.type == 'negative'), 
+		error_bars.transform_filter(alt.datum.type == 'positive'),
+		data=gross_data_df.drop(columns=['index'])
 	).properties(
-	    height=100
+		height=100
 	).facet(
-	    row=alt.Row(
-	        'valley:N', 
-	        header=alt.Header(labelOrient='top',labelFontWeight="bold"),
-	        title="Annualized rate of volumetric change, in 1,000s of m³/yr"
-	    )
+		row=alt.Row(
+			'valley:N', 
+			header=alt.Header(labelOrient='top',labelFontWeight="bold"),
+			title="Annualized rate of volumetric change, in 1,000s of m³/yr"
+		)
 	).resolve_scale(y='shared')
 
 	# %% [markdown]
@@ -229,26 +229,26 @@ if __name__ == "__main__":
 
 	# %%
 	cum_plot = alt.Chart().mark_line(point=True).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q'),
-	    alt.Color("valley:N")
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q'),
+		alt.Color("valley:N")
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr",),
-	    alt.Y2("Upper CI"),
-	    alt.Color("valley:N")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr",),
+		alt.Y2("Upper CI"),
+		alt.Color("valley:N")
 	)
 
 	alt.layer(
-	    cum_plot,
-	    error_bars,
-	    data=cum_df.drop(columns='index')
+		cum_plot,
+		error_bars,
+		data=cum_df.drop(columns='index')
 	).properties(
-	    # height=100
+		# height=100
 	)
 
 	# %% [markdown]
@@ -266,199 +266,199 @@ if __name__ == "__main__":
 
 	# %%
 	cum_and_bounding_cum_w_largerarea_df.loc[
-	    cum_and_bounding_cum_w_largerarea_df['bounding'],
-	    'end_time'
+		cum_and_bounding_cum_w_largerarea_df['bounding'],
+		'end_time'
 	] = cum_and_bounding_cum_w_largerarea_df.loc[
-	    cum_and_bounding_cum_w_largerarea_df['bounding'],
-	    'end_time'
+		cum_and_bounding_cum_w_largerarea_df['bounding'],
+		'end_time'
 	].apply(lambda date: date + timedelta(days=500))
 
 	# %%
 	cum_plot = alt.Chart().mark_line(point=True).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q')
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q')
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == False)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == False)
 	)
 
 	largerarea_cum_plot = alt.Chart().mark_line(
-	    point=alt.OverlayMarkDef(color="grey", opacity=0.5),
-	    color='grey',
-	    opacity=0.5
+		point=alt.OverlayMarkDef(color="grey", opacity=0.5),
+		color='grey',
+		opacity=0.5
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q')
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q')
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == True)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == True)
 	)
 
 	largerarea_error_bars = alt.Chart().mark_bar(
-	    width=6,
-	    color='grey',
-	    opacity=0.5
+		width=6,
+		color='grey',
+		opacity=0.5
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		alt.Y2("Upper CI")
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == True)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == True)
 	)
 
 	bounding_point = alt.Chart().mark_square(shape='triangle', color='red', size=50).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("volume:Q"),
+		alt.X("end_time:T"),
+		alt.Y("volume:Q"),
 	).transform_filter(
-	    (alt.datum.bounding == True) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == True) & (alt.datum.larger_area == False)
 	)
 
 	bounding_point_error_bars = alt.Chart().mark_bar(
-	    color="red",
-	    width=2
+		color="red",
+		width=2
 	).encode(
-	    alt.X("end_time:T", title=""),
-	    alt.Y("Lower CI"),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T", title=""),
+		alt.Y("Lower CI"),
+		alt.Y2("Upper CI")
 	).transform_filter(
-	    (alt.datum.bounding == True) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == True) & (alt.datum.larger_area == False)
 	)
 
 	y_chart = alt.layer(
-	    largerarea_cum_plot,
-	    largerarea_error_bars,
-	    bounding_point,
-	    bounding_point_error_bars,
-	    cum_plot,
-	    error_bars,
-	    data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
+		largerarea_cum_plot,
+		largerarea_error_bars,
+		bounding_point,
+		bounding_point_error_bars,
+		cum_plot,
+		error_bars,
+		data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
 	).properties(
-	    width=300, height=100
+		width=300, height=100
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labelOrient='top',
-	            labelFontWeight="bold",
-	            # labelPadding=-10
-	        ),
-	        title="Cumulative net change, in 1,000s of m³/yr",  
-	        
-	    ),
-	    spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labelOrient='top',
+				labelFontWeight="bold",
+				# labelPadding=-10
+			),
+			title="Cumulative net change, in 1,000s of m³/yr",  
+			
+		),
+		spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	y_chart
 
 	# %%
 	cum_plot = alt.Chart().mark_line(point=True).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q')
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q')
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == False)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		alt.Y2("Upper CI")
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == False)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == False)
 	)
 
 	largerarea_cum_plot = alt.Chart().mark_line(
-	    point=alt.OverlayMarkDef(color="grey", opacity=0.5),
-	    color='grey',
-	    opacity=0.5
+		point=alt.OverlayMarkDef(color="grey", opacity=0.5),
+		color='grey',
+		opacity=0.5
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q')
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q')
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == True)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == True)
 	)
 
 	largerarea_error_bars = alt.Chart().mark_bar(
-	    width=6,
-	    color='grey',
-	    opacity=0.5
+		width=6,
+		color='grey',
+		opacity=0.5
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	).transform_filter(
-	    (alt.datum.bounding == False) & (alt.datum.larger_area == True)
+		(alt.datum.bounding == False) & (alt.datum.larger_area == True)
 	)
 
 	alt.layer(
-	    largerarea_cum_plot,
-	    largerarea_error_bars,
-	    cum_plot,
-	    error_bars,
-	    data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
+		largerarea_cum_plot,
+		largerarea_error_bars,
+		cum_plot,
+		error_bars,
+		data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
 	).properties(
-	    width=300, height=100
+		width=300, height=100
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labelOrient='top',
-	            labelFontWeight="bold",
-	            # labelPadding=-10
-	        ),
-	        title="Cumulative net change, in 1,000s of m³/yr",
-	        
-	    ),
-	    spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labelOrient='top',
+				labelFontWeight="bold",
+				# labelPadding=-10
+			),
+			title="Cumulative net change, in 1,000s of m³/yr",
+			
+		),
+		spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	# %%
 	cum_plot = alt.Chart().mark_line(point=True).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q')
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q')
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		alt.Y2("Upper CI")
 	)
 
 	simple_cum_chart = alt.layer(
-	    cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
+		cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
 	).properties(
-	    width=300, height=100
+		width=300, height=100
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labelOrient='top',
-	            labelFontWeight="bold",
-	            # labelPadding=-10
-	        ),
-	        title="Cumulative net change, in 1,000s of m³/yr",
-	        
-	    ),
-	    # spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labelOrient='top',
+				labelFontWeight="bold",
+				# labelPadding=-10
+			),
+			title="Cumulative net change, in 1,000s of m³/yr",
+			
+		),
+		# spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	simple_cum_chart
@@ -476,9 +476,9 @@ if __name__ == "__main__":
 
 	# %%
 	bareground_polys_gdf = gpd.GeoDataFrame(
-	    terrain_attrs_erosionarea,
-	    geometry = terrain_attrs_erosionarea['geometry'].apply(wkt.loads),
-	    crs='EPSG:32610'
+		terrain_attrs_erosionarea,
+		geometry = terrain_attrs_erosionarea['geometry'].apply(wkt.loads),
+		crs='EPSG:32610'
 	)
 
 	# %%
@@ -490,14 +490,14 @@ if __name__ == "__main__":
 	glacial_debutressing_polygons_fn = os.path.join(BASE_PATH, "hsfm-geomorph/data/mt_baker_mass_wasted/whole_mountain/debutressing.shp")
 
 	erosion_polygons_gdf = pd.concat([
-	    gpd.read_file(gully_polygons_fn),
-	    gpd.read_file(wasting_polygons_fn),
-	    gpd.read_file(glacial_debutressing_polygons_fn)
+		gpd.read_file(gully_polygons_fn),
+		gpd.read_file(wasting_polygons_fn),
+		gpd.read_file(glacial_debutressing_polygons_fn)
 	])
 
 	# %%
 	import fiona
-	lithology_gdf = gpd.read_file(os.path.join(BASE_PATH, "geology/q111shp_cropped_mtbaker/gunit_polygon.shp"))
+	lithology_gdf = gpd.read_file(os.path.join(BASE_PATH, "hsfm-geomorph/data/geology/q111shp_cropped_mtbaker/gunit_polygon.shp"))
 
 	# %%
 	lithology_gdf.plot(column='GUNIT_LABE')
@@ -538,23 +538,23 @@ if __name__ == "__main__":
 	# }
 
 	gunit_convert = {
-	    'Qat': "Pleistocene,at,alpine glacial till,Pleistocene glaciogenic material",
-	    'Qva(b)': "Holocene-Pleistocene,va,andesite flows,Igneous",
-	    'KJm(n1)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
-	    'Qad': "Pleistocene,ad,alpine glacial drift,Pleistocene glaciogenic material",
-	    'Kigb': "Cretaceous,igb,gabbro,Igneous",
-	    'JPMhmc(b)': "Jurassic-Permian,hmc,heterogeneous metamorphic rocks,Metamorphic",
-	    'Qvx(b)': "Quaternary,vx,volcanic breccia,Volcanic",
-	    'KJm(n2)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
-	    'Qls': "Quaternary,ls,mass-wasting deposits,Quaternary mass wasting deposits",
-	    'Migd': "Miocene,igd,granodiorite,Igneous",
-	    'Qta': "Holocene-Pleistocene,ta,talus deposits,Holocene-pleistocene talus",
-	    'Qva(p)': "Quaternary,va,andesite flows,Igneous",
-	    'Qvt(ks)': "Pleistocene,vt,tuffs and tuff breccias,Volcanic",
-	    'KJm(n4)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
-	    'Qva(ld)': "Quaternary,va,andesite flows,Igneous",
-	    'PMvb(c)': "Permian,vb,basalt flows,Igneous",
-	    'Qva(bb)': "Quaternary,va,andesite flows,Igneous",
+		'Qat': "Pleistocene,at,alpine glacial till,Pleistocene glaciogenic material",
+		'Qva(b)': "Holocene-Pleistocene,va,andesite flows,Igneous",
+		'KJm(n1)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
+		'Qad': "Pleistocene,ad,alpine glacial drift,Pleistocene glaciogenic material",
+		'Kigb': "Cretaceous,igb,gabbro,Igneous",
+		'JPMhmc(b)': "Jurassic-Permian,hmc,heterogeneous metamorphic rocks,Metamorphic",
+		'Qvx(b)': "Quaternary,vx,volcanic breccia,Volcanic",
+		'KJm(n2)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
+		'Qls': "Quaternary,ls,mass-wasting deposits,Quaternary mass wasting deposits",
+		'Migd': "Miocene,igd,granodiorite,Igneous",
+		'Qta': "Holocene-Pleistocene,ta,talus deposits,Holocene-pleistocene talus",
+		'Qva(p)': "Quaternary,va,andesite flows,Igneous",
+		'Qvt(ks)': "Pleistocene,vt,tuffs and tuff breccias,Volcanic",
+		'KJm(n4)': "Cretaceous-Jurassic,m,marine sedimentary rocks,Sedimentary",
+		'Qva(ld)': "Quaternary,va,andesite flows,Igneous",
+		'PMvb(c)': "Permian,vb,basalt flows,Igneous",
+		'Qva(bb)': "Quaternary,va,andesite flows,Igneous",
 	}
 
 	# %%
@@ -573,20 +573,20 @@ if __name__ == "__main__":
 	src['AREA'] = src['AREA'] / src.groupby('name')['AREA'].transform('sum')
 
 	alt.Chart(src).mark_arc().encode(
-	    alt.Theta("AREA:Q"),
-	    alt.Color("unit description:N"),
-	    alt.Facet("name:N", columns=5)
+		alt.Theta("AREA:Q"),
+		alt.Color("unit description:N"),
+		alt.Facet("name:N", columns=5)
 	).properties(width=100, height=100).configure_view(strokeWidth=0).configure_legend(labelLimit=0)
 
 	# %%
 	alt.Chart(
-	    pd.DataFrame(bareground_lithology_by_valley.groupby(['description', 'unit description'])['AREA'].sum()).reset_index()
+		pd.DataFrame(bareground_lithology_by_valley.groupby(['description', 'unit description'])['AREA'].sum()).reset_index()
 	).mark_bar().encode(
-	    alt.Y("unit description:N", sort='x', axis=alt.Axis(labelLimit=500, title='')),
-	    alt.X("AREA:Q", title='Area (m²)'),
-	    alt.Color("description:N")
+		alt.Y("unit description:N", sort='x', axis=alt.Axis(labelLimit=500, title='')),
+		alt.X("AREA:Q", title='Area (m²)'),
+		alt.Color("description:N")
 	).properties(
-	    title = 'Total area covered by surface lithology units in measured bareground area in 10 watersheds'
+		title = 'Total area covered by surface lithology units in measured bareground area in 10 watersheds'
 	)
 
 	# %%
@@ -604,12 +604,12 @@ if __name__ == "__main__":
 	src['AREA'] = src['AREA'] / src.groupby('Valley Name')['AREA'].transform('sum')
 
 	alt.Chart(src).mark_arc().encode(
-	    alt.Theta("AREA:Q"),
-	    alt.Color("unit description:N"),
-	    alt.Facet("Valley Name:N", columns=5)
+		alt.Theta("AREA:Q"),
+		alt.Color("unit description:N"),
+		alt.Facet("Valley Name:N", columns=5)
 	).properties(
-	    width=100, height=100,
-	    title = 'Relative prevalence of surface lithology units in measured bareground area'
+		width=100, height=100,
+		title = 'Relative prevalence of surface lithology units in measured bareground area'
 	).configure_view(strokeWidth=0).configure_legend(labelLimit=0)
 
 	# %%
@@ -619,12 +619,12 @@ if __name__ == "__main__":
 	res['AREA'] = res['AREA'] / denom
 	res = res.reset_index()
 	alt.Chart(
-	    res
+		res
 	).mark_arc().encode(
-	    theta=alt.Theta(field="AREA", type="quantitative"),
-	    color=alt.Color(field="description", type="nominal"),
-	    facet=alt.Facet("Valley Name:N", columns=5),
-	    # groupby = "Valley Name:N"
+		theta=alt.Theta(field="AREA", type="quantitative"),
+		color=alt.Color(field="description", type="nominal"),
+		facet=alt.Facet("Valley Name:N", columns=5),
+		# groupby = "Valley Name:N"
 	).properties(width=100, height=100).configure_view(strokeWidth=0)
 
 	# %%
@@ -635,9 +635,9 @@ if __name__ == "__main__":
 
 	# %%
 	process_polys_gdf = gpd.GeoDataFrame(
-	    pd.read_csv("outputs/terrain_attributes_processpolygons.csv"),
-	    geometry = pd.read_csv("outputs/terrain_attributes_processpolygons.csv")['geometry'].apply(wkt.loads),
-	    crs='EPSG:32610'
+		pd.read_csv("outputs/terrain_attributes_processpolygons.csv"),
+		geometry = pd.read_csv("outputs/terrain_attributes_processpolygons.csv")['geometry'].apply(wkt.loads),
+		crs='EPSG:32610'
 	)
 
 	# %%
@@ -649,11 +649,11 @@ if __name__ == "__main__":
 
 	# %%
 	def process_geometry(row):
-	    res = lithology_gdf.clip(row.geometry)
-	    res['AREA'] = res.geometry.area
-	    res['volume'] = res['AREA']*row['ddem']
-	    res['type'] = row['type']
-	    return res
+		res = lithology_gdf.clip(row.geometry)
+		res['AREA'] = res.geometry.area
+		res['volume'] = res['AREA']*row['ddem']
+		res['type'] = row['type']
+		return res
 
 	results = process_polys_gdf.apply(process_geometry, axis=1)
 	lithology_by_process = pd.concat(list(results))
@@ -671,12 +671,12 @@ if __name__ == "__main__":
 	res['volume'] = res['volume'] / denom
 	res = res.reset_index()
 	alt.Chart(
-	    res
+		res
 	).mark_arc().encode(
-	    theta=alt.Theta(field="volume", type="quantitative"),
-	    color=alt.Color(field="description", type="nominal"),
-	    facet=alt.Facet("type:N", columns=5),
-	    # groupby = "Valley Name:N"
+		theta=alt.Theta(field="volume", type="quantitative"),
+		color=alt.Color(field="description", type="nominal"),
+		facet=alt.Facet("type:N", columns=5),
+		# groupby = "Valley Name:N"
 	).properties(width=100, height=100).configure_view(strokeWidth=0)
 
 	# %%
@@ -688,12 +688,12 @@ if __name__ == "__main__":
 	res['AREA'] = res['AREA'] / denom
 	res = res.reset_index()
 	alt.Chart(
-	    res
+		res
 	).mark_arc().encode(
-	    theta=alt.Theta(field="AREA", type="quantitative"),
-	    color=alt.Color(field="description", type="nominal"),
-	    facet=alt.Facet("type:N", columns=5),
-	    # groupby = "Valley Name:N"
+		theta=alt.Theta(field="AREA", type="quantitative"),
+		color=alt.Color(field="description", type="nominal"),
+		facet=alt.Facet("type:N", columns=5),
+		# groupby = "Valley Name:N"
 	).properties(width=100, height=100).configure_view(strokeWidth=0)
 
 	# %% [markdown]
@@ -701,50 +701,50 @@ if __name__ == "__main__":
 
 	# %%
 	bars = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
+		strokeWidth = 2,
+		stroke="white",
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
-	    alt.Color('type',
-	        scale=alt.Scale(
-	            domain=['negative', 'positive'],
-	            range=['#d62728', '#1f77b4']
-	        )
-	    )
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
+		alt.Color('type',
+			scale=alt.Scale(
+				domain=['negative', 'positive'],
+				range=['#d62728', '#1f77b4']
+			)
+		)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	)
 
 	alt.layer(
-	    bars, 
-	    error_bars.transform_filter(alt.datum.type == 'negative'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive'),
-	    data=gross_data_bytype_df.drop(columns=['index'])
+		bars, 
+		error_bars.transform_filter(alt.datum.type == 'negative'), 
+		error_bars.transform_filter(alt.datum.type == 'positive'),
+		data=gross_data_bytype_df.drop(columns=['index'])
 	).properties(
-	    height=200
+		height=200
 	).facet(
-	    row=alt.Row(
-	        'valley:N', 
-	        header=alt.Header(
-	            # labelOrient='top',
-	            labelFontWeight="bold", 
-	            labelPadding=0
-	        ),
-	        title="Annualized rate of volumetric change, in 1,000s of m³/yr"
-	    ),
-	    column=alt.Column("process:N"),
-	    spacing=1
+		row=alt.Row(
+			'valley:N', 
+			header=alt.Header(
+				# labelOrient='top',
+				labelFontWeight="bold", 
+				labelPadding=0
+			),
+			title="Annualized rate of volumetric change, in 1,000s of m³/yr"
+		),
+		column=alt.Column("process:N"),
+		spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	# %%
@@ -754,98 +754,98 @@ if __name__ == "__main__":
 
 	# %%
 	bars = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
+		strokeWidth = 2,
+		stroke="white",
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
-	    alt.Color('type',
-	        scale=alt.Scale(
-	            domain=['negative', 'positive'],
-	            range=['#d62728', '#1f77b4']
-	        )
-	    )
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
+		alt.Color('type',
+			scale=alt.Scale(
+				domain=['negative', 'positive'],
+				range=['#d62728', '#1f77b4']
+			)
+		)
 	)
 
 	error_bars = alt.Chart().encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	)
 
 	alt.layer(
-	    bars, 
-	    error_bars.transform_filter(alt.datum.type == 'negative').mark_bar(color="black", width=2).encode(alt.X('Average Date Minus:T')), 
-	    error_bars.transform_filter(alt.datum.type == 'positive').mark_bar(color="black", width=2).encode(alt.X('Average Date Plus:T')),
-	    data=gross_data_bytype_df.drop(columns=['index'])
+		bars, 
+		error_bars.transform_filter(alt.datum.type == 'negative').mark_bar(color="black", width=2).encode(alt.X('Average Date Minus:T')), 
+		error_bars.transform_filter(alt.datum.type == 'positive').mark_bar(color="black", width=2).encode(alt.X('Average Date Plus:T')),
+		data=gross_data_bytype_df.drop(columns=['index'])
 	).properties(
-	    height=200
+		height=200
 	).facet(
-	    row=alt.Row(
-	        'valley:N', 
-	        header=alt.Header(
-	            # labelOrient='top',
-	            labelFontWeight="bold", 
-	            labelPadding=0
-	        ),
-	        title="Annualized rate of volumetric change, in 1,000s of m³/yr"
-	    ),
-	    column=alt.Column("process:N"),
-	    spacing=1
+		row=alt.Row(
+			'valley:N', 
+			header=alt.Header(
+				# labelOrient='top',
+				labelFontWeight="bold", 
+				labelPadding=0
+			),
+			title="Annualized rate of volumetric change, in 1,000s of m³/yr"
+		),
+		column=alt.Column("process:N"),
+		spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	# %%
 	bars = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
+		strokeWidth = 2,
+		stroke="white",
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
-	    alt.Color('type',
-	        scale=alt.Scale(
-	            domain=['negative', 'positive'],
-	            range=['#d62728', '#1f77b4']
-	        )
-	    )
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
+		alt.Color('type',
+			scale=alt.Scale(
+				domain=['negative', 'positive'],
+				range=['#d62728', '#1f77b4']
+			)
+		)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=""),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=""),
+		alt.Y2("Upper CI")
 	)
 
 	layer = alt.layer(
-	    bars, 
-	    error_bars.transform_filter(alt.datum.type == 'negative'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive'),
-	    data=gross_data_bytype_df.drop(columns=['index'])
+		bars, 
+		error_bars.transform_filter(alt.datum.type == 'negative'), 
+		error_bars.transform_filter(alt.datum.type == 'positive'),
+		data=gross_data_bytype_df.drop(columns=['index'])
 	).properties(
-	    height=100
+		height=100
 	).facet(
-	    row=alt.Row(
-	        'valley:N', 
-	        header=alt.Header(
-	            # labelOrient='top',
-	            labelFontWeight="bold", 
-	            # labelPadding=-10
-	        ),
-	        title="Annualized rate of volumetric change, in 1,000s of m³/yr"
-	    ),
-	    spacing=1
+		row=alt.Row(
+			'valley:N', 
+			header=alt.Header(
+				# labelOrient='top',
+				labelFontWeight="bold", 
+				# labelPadding=-10
+			),
+			title="Annualized rate of volumetric change, in 1,000s of m³/yr"
+		),
+		spacing=1
 	)
 
 	layer.transform_filter(
-	    alt.datum.process == 'fluvial'
+		alt.datum.process == 'fluvial'
 	).properties(title='fluvial') | layer.transform_filter(
-	    alt.datum.process == 'hillslope'
+		alt.datum.process == 'hillslope'
 	).properties(title='hillslope')
 
 	# %% [markdown]
@@ -860,77 +860,77 @@ if __name__ == "__main__":
 
 	# %%
 	df = elevation_df.query("valley == 'Rainbow'").query(
-	    "n_from_glacial_max > 0"
+		"n_from_glacial_max > 0"
 	).query(
-	    "n_from_glacial_max < 72"
+		"n_from_glacial_max < 72"
 	).sort_values(
-	    "n_from_glacial_max"
+		"n_from_glacial_max"
 	).query("time == '2015_09_01'")
 
 	np.degrees(np.arctan(
-	    (df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
-	        df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
-	    )
+		(df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
+			df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
+		)
 	))
 
 	# %%
 	df = elevation_df.query("valley == 'Mazama'").query(
-	    "n_from_glacial_max > 0"
+		"n_from_glacial_max > 0"
 	).query(
-	    "n_from_glacial_max < 63"
+		"n_from_glacial_max < 63"
 	).sort_values(
-	    "n_from_glacial_max"
+		"n_from_glacial_max"
 	).query("time == '2015_09_01'")
 
 	np.degrees(np.arctan(
-	    (df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
-	        df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
-	    )
+		(df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
+			df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
+		)
 	))
 
 	# %%
 	df = elevation_df.query("valley == 'Deming'").query(
-	    "n_from_glacial_max > 0"
+		"n_from_glacial_max > 0"
 	).query(
-	    "n_from_glacial_max < 69"
+		"n_from_glacial_max < 69"
 	).sort_values(
-	    "n_from_glacial_max"
+		"n_from_glacial_max"
 	).query("time == '2015_09_01'")
 
 	np.degrees(np.arctan(
-	    (df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
-	        df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
-	    )
+		(df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
+			df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
+		)
 	))
 
 	# %%
 	df = elevation_df.query("valley == 'Coleman'").query(
-	    "n_from_glacial_max > 0"
+		"n_from_glacial_max > 0"
 	).sort_values(
-	    "n_from_glacial_max"
+		"n_from_glacial_max"
 	).query("time == '2015_09_01'")
 
 	np.degrees(np.arctan(
-	    (df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
-	        df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
-	    )
+		(df.iloc[-1]['elevation'] - df.iloc[0]['elevation']) / (
+			df.iloc[-1]['path_distance_from_glacier'] - df.iloc[0]['path_distance_from_glacier']
+		)
 	))
 
 	# %%
 	alt.Chart(slope_halfkm_df).mark_line(point=True).encode(
-	    alt.X('time:T', title=""),
-	    alt.Y('slope:Q', title="Valley floor slope"),
-	    alt.Color("valley:N"),
-	    alt.Facet('Half kilometer downstream from glacier:O', title='Half kilometer downstream from glacier')
+		alt.X('time:T', title=""),
+		alt.Y('slope:Q', title="Valley floor slope"),
+		alt.Color("valley:N"),
+		alt.Facet('Half kilometer downstream from glacier:O', title='Half kilometer downstream from glacier')
 	).properties(width=200)
 
 
 	# %%
 	alt.Chart(slope_km_df).mark_line(point=True).encode(
-	    alt.X('time:T', title=""),
-	    alt.Y('slope:Q', title="Valley floor slope"),
-	    alt.Color("valley:N"),
-	    alt.Facet('Kilometer downstream from glacier:O', title='Kilometer downstream from glacier')
+		alt.X('time:T', title=""),
+		alt.Y('slope:Q', title="Valley floor slope"),
+		alt.Color("valley:N"),
+		alt.Facet('Kilometer downstream from glacier:O', title='Kilometer downstream from glacier')
 	).properties(width=200)
 
 	# %%
@@ -964,34 +964,34 @@ if __name__ == "__main__":
 	# %%
 	src = elevation_df[[ "time", "path_distance_from_glacier", "elevation", "glacial", "valley"]].reset_index()
 	alt.Chart(
-	    src
+		src
 	).mark_line(
-	    strokeWidth=1, clip=True
+		strokeWidth=1, clip=True
 	).transform_filter(
-	    {'field': 'valley', 'oneOf': ['Deming', 'Mazama', 'Rainbow']}
+		{'field': 'valley', 'oneOf': ['Deming', 'Mazama', 'Rainbow']}
 	).transform_filter(
-	    alt.datum.glacial==False
+		alt.datum.glacial==False
 	).encode(
-	    alt.X(
-	        "path_distance_from_glacier:Q", 
-	        title="Distance downstream from observed glacial maximum", 
-	        scale=alt.Scale(domain=[-800, 1800])
-	    ),
-	    alt.Y(
-	        "elevation:Q", 
-	        scale=alt.Scale(domain=[950, 1200]), 
-	        title="Valley floor elevation, in meters"
-	    ),
-	    alt.StrokeDash("time:O", scale=alt.Scale(
-	            domain = ['1947_09_14', '1970_09_29', '1977_09_27', '1979_10_06', '2015_09_01'],
-	            range= [[6,1.5], [4, 2.5], [1, 2],[1, 2], [1, 0]]
-	        )
-	    ),
-	    alt.Color("valley:N"),
+		alt.X(
+			"path_distance_from_glacier:Q", 
+			title="Distance downstream from observed glacial maximum", 
+			scale=alt.Scale(domain=[-800, 1800])
+		),
+		alt.Y(
+			"elevation:Q", 
+			scale=alt.Scale(domain=[950, 1200]), 
+			title="Valley floor elevation, in meters"
+		),
+		alt.StrokeDash("time:O", scale=alt.Scale(
+				domain = ['1947_09_14', '1970_09_29', '1977_09_27', '1979_10_06', '2015_09_01'],
+				range= [[6,1.5], [4, 2.5], [1, 2],[1, 2], [1, 0]]
+			)
+		),
+		alt.Color("valley:N"),
 	).properties(
-	    width = 500,
-	    height = 500,
-	    title='Elevation profile of main stream channel downstream of glaciers'
+		width = 500,
+		height = 500,
+		title='Elevation profile of main stream channel downstream of glaciers'
 	).configure_axis(grid=False)
 
 	# %%
@@ -1000,91 +1000,91 @@ if __name__ == "__main__":
 	src.loc[src.valley == 'Rainbow', 'elevation'] = src.loc[src.valley == 'Rainbow', 'elevation'] + 30
 	src.loc[src.valley == 'Deming', 'elevation'] = src.loc[src.valley == 'Deming', 'elevation'] + 10
 	alt.Chart(
-	    src
+		src
 	).mark_line(
-	    strokeWidth=1, clip=True
+		strokeWidth=1, clip=True
 	).transform_filter(
-	    {'field': 'valley', 'oneOf': ['Deming', 'Mazama', 'Rainbow']}
+		{'field': 'valley', 'oneOf': ['Deming', 'Mazama', 'Rainbow']}
 	).transform_filter(
-	    alt.datum.glacial==False
+		alt.datum.glacial==False
 	).encode(
-	    alt.X(
-	        "path_distance_from_glacier:Q", 
-	        title="Distance downstream from observed glacial maximum", 
-	        scale=alt.Scale(domain=[-400, 1900])
-	    ),
-	    alt.Y(
-	        "elevation:Q", 
-	        scale=alt.Scale(domain=[950, 1200]), 
-	        title="Valley floor elevation, in meters"
-	    ),
-	    alt.StrokeDash("time:O", scale=alt.Scale(
-	            domain = ['1947_09_14', '1970_09_29', '1977_09_27', '1979_10_06', '2015_09_01'],
-	            range= [[8,1.5], [4, 2.5], [1, 2],[1, 2], [1, 0]]
-	        )
-	    ),
-	    alt.Color("valley:N"),
+		alt.X(
+			"path_distance_from_glacier:Q", 
+			title="Distance downstream from observed glacial maximum", 
+			scale=alt.Scale(domain=[-400, 1900])
+		),
+		alt.Y(
+			"elevation:Q", 
+			scale=alt.Scale(domain=[950, 1200]), 
+			title="Valley floor elevation, in meters"
+		),
+		alt.StrokeDash("time:O", scale=alt.Scale(
+				domain = ['1947_09_14', '1970_09_29', '1977_09_27', '1979_10_06', '2015_09_01'],
+				range= [[8,1.5], [4, 2.5], [1, 2],[1, 2], [1, 0]]
+			)
+		),
+		alt.Color("valley:N"),
 	).properties(
-	    width = 1000,
-	    height = 500,
-	    title={
-	        "text":'Elevation profile of main stream channel downstream of glaciers',
-	        "subtitle": "Rainbow data shifted upwards 30 meters, Deming data shifted upwards 10 meters for clarity."
-	    }
+		width = 1000,
+		height = 500,
+		title={
+			"text":'Elevation profile of main stream channel downstream of glaciers',
+			"subtitle": "Rainbow data shifted upwards 30 meters, Deming data shifted upwards 10 meters for clarity."
+		}
 	).configure_axis(grid=False)
 
 	# %%
 	for date in [
-	    '2015_09_01',
-	    '1970_09_29',
-	    '1947_09_14'
+		'2015_09_01',
+		'1970_09_29',
+		'1947_09_14'
 	]:
-	    rainbow_slope = src.query("valley == 'Rainbow'").query(f"time == '{date}'").query(
-	    "path_distance_from_glacier < 1200").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
+		rainbow_slope = src.query("valley == 'Rainbow'").query(f"time == '{date}'").query(
+		"path_distance_from_glacier < 1200").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
 
-	    print(np.degrees(np.arctan(
-	    (rainbow_slope['elevation'].iloc[-1] - rainbow_slope['elevation'].iloc[0]) / (
-	        rainbow_slope['path_distance_from_glacier'].iloc[-1] - rainbow_slope['path_distance_from_glacier'].iloc[0]
-	    )
-	    )))
+		print(np.degrees(np.arctan(
+		(rainbow_slope['elevation'].iloc[-1] - rainbow_slope['elevation'].iloc[0]) / (
+			rainbow_slope['path_distance_from_glacier'].iloc[-1] - rainbow_slope['path_distance_from_glacier'].iloc[0]
+		)
+		)))
 
 	# %%
 	for date in [
-	    '2015_09_01',
-	    '1970_09_29',
-	    '1947_09_14'
+		'2015_09_01',
+		'1970_09_29',
+		'1947_09_14'
 	]:
-	    mazama_slope = src.query("valley == 'Mazama'").query(f"time == '{date}'").query(
-	        "path_distance_from_glacier < 400").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
+		mazama_slope = src.query("valley == 'Mazama'").query(f"time == '{date}'").query(
+			"path_distance_from_glacier < 400").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
 
-	    print(np.degrees(np.arctan(
-	    (mazama_slope['elevation'].iloc[-1] - mazama_slope['elevation'].iloc[0]) / (
-	        mazama_slope['path_distance_from_glacier'].iloc[-1] - mazama_slope['path_distance_from_glacier'].iloc[0]
-	    )
-	    )))
+		print(np.degrees(np.arctan(
+		(mazama_slope['elevation'].iloc[-1] - mazama_slope['elevation'].iloc[0]) / (
+			mazama_slope['path_distance_from_glacier'].iloc[-1] - mazama_slope['path_distance_from_glacier'].iloc[0]
+		)
+		)))
 
 	# %%
 	for date in [
-	    '2015_09_01',
-	    '1979_10_06',
-	    '1970_09_29',
-	    '1947_09_14'
+		'2015_09_01',
+		'1979_10_06',
+		'1970_09_29',
+		'1947_09_14'
 	]:
-	    deming_slope = src.query("valley == 'Deming'").query(f"time == '{date}'").query(
-	        "path_distance_from_glacier < 1400").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
-	    print(
-	    np.degrees(np.arctan(
-	    (deming_slope['elevation'].iloc[-1] - deming_slope['elevation'].iloc[0]) / (
-	        deming_slope['path_distance_from_glacier'].iloc[-1] - deming_slope['path_distance_from_glacier'].iloc[0]
-	    )
-	    )))
+		deming_slope = src.query("valley == 'Deming'").query(f"time == '{date}'").query(
+			"path_distance_from_glacier < 1400").query("path_distance_from_glacier > 0").sort_values("path_distance_from_glacier")
+		print(
+		np.degrees(np.arctan(
+		(deming_slope['elevation'].iloc[-1] - deming_slope['elevation'].iloc[0]) / (
+			deming_slope['path_distance_from_glacier'].iloc[-1] - deming_slope['path_distance_from_glacier'].iloc[0]
+		)
+		)))
 
 	# %% [markdown]
 	# # Cumulative net erosion plots by process
 
 	# %%
 	cum_process_df = pd.concat(
-	    [pd.read_pickle(f) for f in cum_process_files]
+		[pd.read_pickle(f) for f in cum_process_files]
 	)
 
 	cum_process_df['cumulative volume'] = cum_process_df['cumulative volume']/1000
@@ -1098,7 +1098,7 @@ if __name__ == "__main__":
 
 	# %%
 	cum_process_bounding_df = pd.concat(
-	    [pd.read_pickle(f) for f in cum_process_bounding_files]
+		[pd.read_pickle(f) for f in cum_process_bounding_files]
 	)
 
 	cum_process_bounding_df['cumulative volume'] = cum_process_bounding_df['cumulative volume']/1000
@@ -1124,38 +1124,38 @@ if __name__ == "__main__":
 
 	# %%
 	cum_plot = alt.Chart().mark_line(point=True).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q'),
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q'),
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    alt.Y2("Upper CI")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		alt.Y2("Upper CI")
 	)
 
 	simple_cum_chart = alt.layer(
-	    cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
+		cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		data=cum_and_bounding_cum_w_largerarea_df.drop(columns='index')
 	).properties(
-	    width=300, height=100
+		width=300, height=100
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labelOrient='top',
-	            labelFontWeight="bold",
-	            # labelPadding=-10
-	        ),
-	        title="Cumulative net change, in 1,000s of m³/yr",
-	        
-	    ),
-	    # spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labelOrient='top',
+				labelFontWeight="bold",
+				# labelPadding=-10
+			),
+			title="Cumulative net change, in 1,000s of m³/yr",
+			
+		),
+		# spacing=1
 	).resolve_scale(
-	    y='independent'
+		y='independent'
 	)
 
 	simple_cum_chart
@@ -1177,26 +1177,26 @@ if __name__ == "__main__":
 	domain = ["1940", "2020"]
 
 	cum_plot = alt.Chart().mark_line().encode(
-	    # alt.X('end_time:T', title='Time', timeUnit='yearmonthdate', scale=alt.Scale(domain=domain)),
-	    alt.X('end_time:T', title='Time', timeUnit='year', scale=alt.Scale(domain=domain)),
-	    alt.Y('cumulative volume:Q'),
-	    alt.Color('valley:N')
+		# alt.X('end_time:T', title='Time', timeUnit='yearmonthdate', scale=alt.Scale(domain=domain)),
+		alt.X('end_time:T', title='Time', timeUnit='year', scale=alt.Scale(domain=domain)),
+		alt.Y('cumulative volume:Q'),
+		alt.Color('valley:N')
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    # alt.Color('valley:N')
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		# alt.Color('valley:N')
 	)
 
 	simple_cum_chart = alt.layer(
-	    cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    # error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
-	    data=src
+		cum_plot.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		# error_bars.transform_filter((alt.datum.bounding == False) & (alt.datum.larger_area == False)),
+		data=src
 	).properties(
-	    width=350, height=200
+		width=350, height=200
 	)
 
 	simple_cum_chart
@@ -1217,60 +1217,60 @@ if __name__ == "__main__":
 	src['Lower CI'] = - src['Lower CI']
 
 	bars_neg = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
+		strokeWidth = 2,
+		stroke="white",
 	).encode(
-	    alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted', scale=alt.Scale(domain=[-50,100], nice=False)),
-	    alt.Color("valley:N")
+		alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted', scale=alt.Scale(domain=[-50,100], nice=False)),
+		alt.Color("valley:N")
 	)
 
 	bars_pos = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
-	    opacity=0.5
+		strokeWidth = 2,
+		stroke="white",
+		opacity=0.5
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
-	    alt.Color("valley:N")
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
+		alt.Color("valley:N")
 
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=[
-	        # "Annualized rate of volumetric change,", "in 1,000s of m³/yr"
-	        ]),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=[
+			# "Annualized rate of volumetric change,", "in 1,000s of m³/yr"
+			]),
+		alt.Y2("Upper CI")
 	)
 
 	hillslope_combo_gross_bars_chart = alt.layer(
-	    bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
-	    bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'), 
-	    error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'),
-	    data=src
+		bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
+		bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'), 
+		error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
+		error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'),
+		data=src
 	).properties(
-	    width=350,
-	    height=150
+		width=350,
+		height=150
 	).facet(
-	    row=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labels=False,
-	            labelFontSize=16
-	            # labelOrient='top',
-	            # labelFontWeight="bold", 
-	            # labelPadding=0
-	        ),
-	        title=None
-	    ),
-	    # spacing=1
+		row=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labels=False,
+				labelFontSize=16
+				# labelOrient='top',
+				# labelFontWeight="bold", 
+				# labelPadding=0
+			),
+			title=None
+		),
+		# spacing=1
 	)
 
 	hillslope_combo_gross_bars_chart
@@ -1278,17 +1278,17 @@ if __name__ == "__main__":
 	# %%
 	# (hillslope_combo_gross_bars_chart.transform_filter(alt.datum.valley != 'Coleman') & simple_cum_chart).configure_legend(
 	(hillslope_combo_gross_bars_chart.transform_filter(alt.datum.valley != 'Coleman').transform_filter(alt.datum.valley != 'Rainbow')
-	 & simple_cum_chart).configure_legend(
-	    titleFontSize=18, 
-	    labelFontSize=18, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		& simple_cum_chart).configure_legend(
+		titleFontSize=18, 
+		labelFontSize=18, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	).configure_axis(
-	    labelFontSize=18, 
-	    titleFontSize=18,
+		labelFontSize=18, 
+		titleFontSize=18,
 	).resolve_scale(
-	    x='shared'
+		x='shared'
 	)
 
 	# %%
@@ -1308,57 +1308,57 @@ if __name__ == "__main__":
 	src = pd.concat([part1, part2])
 
 	src = pd.concat([
-	    src,
-	    pd.DataFrame({
-	        'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
-	        'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
-	        'cumulative volume': [0,0,0,0],
-	        'bounding': [False, False, False, False],
-	        'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
-	    })
+		src,
+		pd.DataFrame({
+			'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
+			'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
+			'cumulative volume': [0,0,0,0],
+			'bounding': [False, False, False, False],
+			'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
+		})
 	])
 
 	cum_plot = alt.Chart().mark_line(
-	    point={'size':20},
-	     strokeWidth=2.5,
+		point={'size':20},
+			strokeWidth=2.5,
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        scale=alt.Scale(domain=[-4000, 500])
-	    ),
-	    # alt.Color("type:N")
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    ),
-	    alt.StrokeDash("type:N")
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			scale=alt.Scale(domain=[-4000, 500])
+		),
+		# alt.Color("type:N")
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		),
+		alt.StrokeDash("type:N")
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", ),
-	    alt.Y2("Upper CI"),
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    )
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", ),
+		alt.Y2("Upper CI"),
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		)
 	)
 
 
 	cumulative_by_process_chart_no_glacial = alt.layer(
-	    cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
-	    error_bars.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
-	    # cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
-	    # error_bars2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
-	    # bounding_points.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['fluvial', 'hillslope', 'all'])).transform_filter(alt.datum.bounding == True),
-	    # bounding_points2.transform_filter(alt.datum.type == 'glacial').transform_filter(alt.datum.bounding == True),
-	    data=src
+		cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
+		error_bars.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
+		# cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
+		# error_bars2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
+		# bounding_points.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['fluvial', 'hillslope', 'all'])).transform_filter(alt.datum.bounding == True),
+		# bounding_points2.transform_filter(alt.datum.type == 'glacial').transform_filter(alt.datum.bounding == True),
+		data=src
 	).properties(
-	    width=350
+		width=350
 	).facet(
-	    column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
+		column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
 	)
 	cumulative_by_process_chart_no_glacial
 
@@ -1370,102 +1370,102 @@ if __name__ == "__main__":
 	src = pd.concat([part1, part2])
 
 	src = pd.concat([
-	    src,
-	    pd.DataFrame({
-	        'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
-	        'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
-	        'cumulative volume': [0,0,0,0],
-	        'bounding': [False, False, False, False],
-	        'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
-	    })
+		src,
+		pd.DataFrame({
+			'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
+			'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
+			'cumulative volume': [0,0,0,0],
+			'bounding': [False, False, False, False],
+			'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
+		})
 	])
 
 	cum_plot = alt.Chart().mark_line(
-	        point={'size':20},
-	     strokeWidth=2.5,
+			point={'size':20},
+			strokeWidth=2.5,
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        scale=alt.Scale(domain=[-4000, 500])
-	    ),
-	    # alt.Color("type:N")
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    )
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			scale=alt.Scale(domain=[-4000, 500])
+		),
+		# alt.Color("type:N")
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		)
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", ),
-	    alt.Y2("Upper CI"),
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    )
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", ),
+		alt.Y2("Upper CI"),
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		)
 	)
 
 	cum_plot2 = alt.Chart().mark_line(
-	    # color='black', 
-	    strokeWidth=2.5, 
-	    strokeDash=[7, 7]
-	    # point={'size':20, 'color': 'black'}
+		# color='black', 
+		strokeWidth=2.5, 
+		strokeDash=[7, 7]
+		# point={'size':20, 'color': 'black'}
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        # scale=alt.Scale(domain=[-5000, 1000])
-	    ),
-	    alt.Color(
-	        "type:N",
-	    )
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			# scale=alt.Scale(domain=[-5000, 1000])
+		),
+		alt.Color(
+			"type:N",
+		)
 	)
 
 	error_bars2 = alt.Chart().mark_bar(
-	    width=2,
-	    # color='black'
+		width=2,
+		# color='black'
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title=["Cumulative net volumetric change", "(10³ m³/yr)"]),
-	    alt.Y2("Upper CI"),
-	    alt.Color(
-	        "type:N",
-	    )
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title=["Cumulative net volumetric change", "(10³ m³/yr)"]),
+		alt.Y2("Upper CI"),
+		alt.Color(
+			"type:N",
+		)
 	)
 
 	bounding_points = alt.Chart().mark_circle(size=100, ).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("cumulative volume:Q"),
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    )
+		alt.X("end_time:T"),
+		alt.Y("cumulative volume:Q"),
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		)
 	)
 
 	bounding_points2 = alt.Chart().mark_circle(size=100, color='#17becf').encode(
-	    alt.X("end_time:T"),
-	    alt.Y("cumulative volume:Q")
+		alt.X("end_time:T"),
+		alt.Y("cumulative volume:Q")
 	)
 
 	cumulative_by_process_chart = alt.layer(
-	    cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
-	    error_bars.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
-	    cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
-	    error_bars2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
-	    # bounding_points.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['fluvial', 'hillslope', 'all'])).transform_filter(alt.datum.bounding == True),
-	    bounding_points2.transform_filter(alt.datum.type == 'glacial').transform_filter(alt.datum.bounding == True),
-	    data=src
+		cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
+		error_bars.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
+		cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
+		error_bars2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
+		# bounding_points.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['fluvial', 'hillslope', 'all'])).transform_filter(alt.datum.bounding == True),
+		bounding_points2.transform_filter(alt.datum.type == 'glacial').transform_filter(alt.datum.bounding == True),
+		data=src
 	).properties(
-	    width=350
+		width=350
 	).facet(
-	    column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
+		column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
 	)
 	cumulative_by_process_chart
 
 	# %%
 	if not os.path.exists('outputs/final_figures_data'):
-	    os.mkdir('outputs/final_figures_data')
+		os.mkdir('outputs/final_figures_data')
 	src.to_csv('outputs/final_figures_data/time_series_cumulative.csv')
 
 	# %%
@@ -1476,63 +1476,63 @@ if __name__ == "__main__":
 	src = pd.concat([part1, part2])
 
 	src = pd.concat([
-	    src,
-	    pd.DataFrame({
-	        'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
-	        'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
-	        'cumulative volume': [0,0,0,0],
-	        'bounding': [False, False, False, False],
-	        'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
-	    })
+		src,
+		pd.DataFrame({
+			'valley': ['Coleman', 'Deming', 'Mazama', 'Rainbow'],
+			'end_time': [datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14), datetime(1947, 9, 14)],
+			'cumulative volume': [0,0,0,0],
+			'bounding': [False, False, False, False],
+			'type': ['not glacial', 'not glacial', 'not glacial', 'not glacial']
+		})
 	])
 
 	cum_plot = alt.Chart().mark_line(
-	     strokeWidth=2.5,
+			strokeWidth=2.5,
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        scale=alt.Scale(domain=[-4000, 500])
-	    ),
-	    # alt.Color("type:N")
-	    alt.Color(
-	        "type:N", 
-	        scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
-	    )
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			scale=alt.Scale(domain=[-4000, 500])
+		),
+		# alt.Color("type:N")
+		alt.Color(
+			"type:N", 
+			scale=alt.Scale(domain=['fluvial', 'hillslope', 'all', 'glacial', 'not glacial'], range=['#1f77b4', '#d62728', '#000000', '#17becf', '#2ca02c'])
+		)
 	)
 
 	cum_plot2 = alt.Chart().mark_line(
-	    # color='black', 
-	    strokeWidth=2.5, 
-	    strokeDash=[7, 7]
+		# color='black', 
+		strokeWidth=2.5, 
+		strokeDash=[7, 7]
 
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        # scale=alt.Scale(domain=[-5000, 1000])
-	    ),
-	    alt.Color(
-	        "type:N",
-	    )
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			# scale=alt.Scale(domain=[-5000, 1000])
+		),
+		alt.Color(
+			"type:N",
+		)
 	)
 
 
 
 	alt.layer(
-	    cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
-	    
-	    cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
-	    
-	    data=src
+		cum_plot.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['all', 'fluvial', 'hillslope'])).transform_filter(alt.datum.bounding == False),
+		
+		cum_plot2.transform_filter(alt.FieldOneOfPredicate(field='type', oneOf=['not glacial', 'glacial'])).transform_filter(alt.datum.bounding == False),
+		
+		data=src
 	).properties(
-	    width=350
+		width=350
 	).facet(
-	    column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
+		column=alt.Column('valley:N', header=alt.Header(labels=False, labelFontSize=16), title=''),
 	).configure_legend(
-	    titleFontSize=16, 
-	    labelFontSize=14, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		titleFontSize=16, 
+		labelFontSize=14, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	)
 
 	# %%
@@ -1542,36 +1542,36 @@ if __name__ == "__main__":
 
 
 	cum_plot = alt.Chart().mark_line(
-	        point={'size':20},
-	     strokeWidth=2.5,
+			point={'size':20},
+			strokeWidth=2.5,
 	).encode(
-	    alt.X('end_time:T', title='Time'),
-	    alt.Y('cumulative volume:Q', 
-	        # scale=alt.Scale(domain=[-4000, 500])
-	    ),
-	    # alt.Color("type:N")
-	    alt.Color("valley:N")
+		alt.X('end_time:T', title='Time'),
+		alt.Y('cumulative volume:Q', 
+			# scale=alt.Scale(domain=[-4000, 500])
+		),
+		# alt.Color("type:N")
+		alt.Color("valley:N")
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    width=2
+		width=2
 	).encode(
-	    alt.X("end_time:T"),
-	    alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
-	    alt.Y2("Upper CI"),
-	    alt.Color("valley:N")
+		alt.X("end_time:T"),
+		alt.Y("Lower CI", title="Cumulative net change, in 1,000s of m³/yr"),
+		alt.Y2("Upper CI"),
+		alt.Color("valley:N")
 	)
 
 
 	cumulative_process_facet_valley_color = alt.layer(
-	    cum_plot.transform_filter(alt.datum.bounding == False),
-	    error_bars.transform_filter(alt.datum.bounding == False),
-	    data=src
+		cum_plot.transform_filter(alt.datum.bounding == False),
+		error_bars.transform_filter(alt.datum.bounding == False),
+		data=src
 	).properties(
-	    width=350
+		width=350
 	).facet(
-	    column=alt.Column('type:N', 
-	    header=alt.Header(labelFontSize=16), title=''),
+		column=alt.Column('type:N', 
+		header=alt.Header(labelFontSize=16), title=''),
 	).resolve_scale(y='independent')
 	cumulative_process_facet_valley_color
 
@@ -1585,56 +1585,56 @@ if __name__ == "__main__":
 	src['Lower CI'] = src['Lower CI'].apply(lambda x: 1 if x == 0 else x)
 
 	bars_neg = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
-	    color='#1f77b4'
+		strokeWidth = 2,
+		stroke="white",
+		color='#1f77b4'
 	).encode(
-	    alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
+		alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
 	)
 
 	bars_pos = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
-	    color='#1f77b4',
-	    opacity=0.3
+		strokeWidth = 2,
+		stroke="white",
+		color='#1f77b4',
+		opacity=0.3
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=["Annual volumetric change", "(10³ m³/yr)"]),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=["Annual volumetric change", "(10³ m³/yr)"]),
+		alt.Y2("Upper CI")
 	)
 
 	fluvial_combo_gross_bars_chart = alt.layer(
-	    bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'fluvial'), 
-	    bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'fluvial'), 
-	    error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'fluvial'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'fluvial'),
-	    data=src
+		bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'fluvial'), 
+		bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'fluvial'), 
+		error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'fluvial'), 
+		error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'fluvial'),
+		data=src
 	).properties(
-	    width=350,
-	    height=200
+		width=350,
+		height=200
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labelFontSize=24
-	            # labelOrient='top',
-	            # labelFontWeight="bold", 
-	            # labelPadding=0
-	        ),
-	        title=None
-	    ),
-	    # spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labelFontSize=24
+				# labelOrient='top',
+				# labelFontWeight="bold", 
+				# labelPadding=0
+			),
+			title=None
+		),
+		# spacing=1
 	)
 	fluvial_combo_gross_bars_chart 
 
@@ -1650,94 +1650,101 @@ if __name__ == "__main__":
 	src['Lower CI'] = src['Lower CI'].apply(lambda x: 1 if x == 0 else x)
 
 	bars_neg = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
-	    color='#d62728'
+		strokeWidth = 2,
+		stroke="white",
+		color='#d62728'
 	).encode(
-	    alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
+		alt.X('start_time:T', axis=alt.Axis(labels=False), title=None),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
 	)
 
 	bars_pos = alt.Chart().mark_bar(
-	    strokeWidth = 2,
-	    stroke="white",
-	    color='#d62728',
-	    opacity=0.3
+		strokeWidth = 2,
+		stroke="white",
+		color='#d62728',
+		opacity=0.3
 	).encode(
-	    alt.X('start_time:T'),
-	    alt.X2('end_time:T'),
-	    alt.Y('Annual Mass Wasted'),
+		alt.X('start_time:T'),
+		alt.X2('end_time:T'),
+		alt.Y('Annual Mass Wasted'),
 	)
 
 	error_bars = alt.Chart().mark_bar(
-	    color="black",
-	    width=2
+		color="black",
+		width=2
 	).encode(
-	    alt.X('Average Date:T'),
-	    alt.Y("Lower CI", title=[
-	        # "Annualized rate of volumetric change,", "in 1,000s of m³/yr"
-	        ]),
-	    alt.Y2("Upper CI")
+		alt.X('Average Date:T'),
+		alt.Y("Lower CI", title=[
+			# "Annualized rate of volumetric change,", "in 1,000s of m³/yr"
+			]),
+		alt.Y2("Upper CI")
 	)
 
 	hillslope_combo_gross_bars_chart = alt.layer(
-	    bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
-	    bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'), 
-	    error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
-	    error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'),
-	    data=src
+		bars_neg.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
+		bars_pos.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'), 
+		error_bars.transform_filter(alt.datum.type == 'negative').transform_filter(alt.datum.process == 'hillslope'), 
+		error_bars.transform_filter(alt.datum.type == 'positive').transform_filter(alt.datum.process == 'hillslope'),
+		data=src
 	).properties(
-	    width=350,
-	    height=200
+		width=350,
+		height=200
 	).facet(
-	    column=alt.Column(
-	        'valley:N', 
-	        header=alt.Header(
-	            labels=False,
-	            labelFontSize=16
-	            # labelOrient='top',
-	            # labelFontWeight="bold", 
-	            # labelPadding=0
-	        ),
-	        title=None
-	    ),
-	    # spacing=1
+		column=alt.Column(
+			'valley:N', 
+			header=alt.Header(
+				labels=False,
+				labelFontSize=16
+				# labelOrient='top',
+				# labelFontWeight="bold", 
+				# labelPadding=0
+			),
+			title=None
+		),
+		# spacing=1
 	)
 
 	hillslope_combo_gross_bars_chart
 
 	# %%
 	(
-	    fluvial_combo_gross_bars_chart & hillslope_combo_gross_bars_chart & cumulative_by_process_chart
+		fluvial_combo_gross_bars_chart & hillslope_combo_gross_bars_chart & cumulative_by_process_chart
 	).configure_legend(
-	    titleFontSize=16, 
-	    labelFontSize=14, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		titleFontSize=16, 
+		labelFontSize=14, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	).configure_axis(
-	    labelFontSize=24, 
-	    titleFontSize=24
+		labelFontSize=24, 
+		titleFontSize=24
 	).resolve_scale(
-	    x='shared'
+		x='shared'
 	)
 
 	# %%
-	(
-	    fluvial_combo_gross_bars_chart & hillslope_combo_gross_bars_chart & cumulative_by_process_chart_no_glacial
+	figure7 = (
+		fluvial_combo_gross_bars_chart & hillslope_combo_gross_bars_chart & cumulative_by_process_chart_no_glacial
 	).configure_legend(
-	    titleFontSize=16, 
-	    labelFontSize=14, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		titleFontSize=16, 
+		labelFontSize=14, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	).configure_axis(
-	    labelFontSize=24, 
-	    titleFontSize=24
+		labelFontSize=24, 
+		titleFontSize=24
 	).resolve_scale(
-	    x='shared'
+		x='shared'
 	)
+	figure7
+
+
+	# %%
+	if not os.path.exists("outputs/final_figures/"):
+		os.makedirs("outputs/final_figures/")
+	figure7.save("outputs/final_figures/figure7.png")
 
 	# %%
 	src = cum_data_alltogether
@@ -1751,37 +1758,37 @@ if __name__ == "__main__":
 
 	# %%
 	def type_chart(
-	    src, 
-	    type, 
-	    x_axis=alt.Axis(), 
-	    facet_column=alt.Column('valley:N')
+		src, 
+		type, 
+		x_axis=alt.Axis(), 
+		facet_column=alt.Column('valley:N')
 	):
-	    return alt.Chart(src).transform_filter(
-	        alt.datum.bounding == False
-	    ).transform_filter(
-	        alt.datum.type == type
-	    ).mark_bar(
-	        strokeWidth = 2,
-	        stroke="white"
-	    ).encode(
-	        alt.X('start_time:T', axis=x_axis),
-	        alt.X2('end_time:T'),
-	        alt.Y('Annual Mass Wasted')
-	    ).properties(
-	        height=175
-	    ).facet(
-	        column=facet_column
-	    )
+		return alt.Chart(src).transform_filter(
+			alt.datum.bounding == False
+		).transform_filter(
+			alt.datum.type == type
+		).mark_bar(
+			strokeWidth = 2,
+			stroke="white"
+		).encode(
+			alt.X('start_time:T', axis=x_axis),
+			alt.X2('end_time:T'),
+			alt.Y('Annual Mass Wasted')
+		).properties(
+			height=175
+		).facet(
+			column=facet_column
+		)
 
 
 	# %%
 	alt_col = alt.Column('valley:N', title=None, header=alt.Header(labels=False))
 	alt.vconcat(
-	    type_chart(src.sample(src.shape[0]), 'hillslope', x_axis=None),
-	    type_chart(src.sample(src.shape[0]), 'fluvial', x_axis=None, facet_column=alt_col),
-	    type_chart(src.sample(src.shape[0]), 'mass wasting', x_axis=None, facet_column=alt_col),
-	    type_chart(src.sample(src.shape[0]), 'gully', x_axis=None, facet_column=alt_col),
-	    type_chart(src.sample(src.shape[0]), 'glacial', facet_column=alt_col),
+		type_chart(src.sample(src.shape[0]), 'hillslope', x_axis=None),
+		type_chart(src.sample(src.shape[0]), 'fluvial', x_axis=None, facet_column=alt_col),
+		type_chart(src.sample(src.shape[0]), 'mass wasting', x_axis=None, facet_column=alt_col),
+		type_chart(src.sample(src.shape[0]), 'gully', x_axis=None, facet_column=alt_col),
+		type_chart(src.sample(src.shape[0]), 'glacial', facet_column=alt_col),
 	).resolve_scale(x='shared')
 
 
@@ -1799,19 +1806,19 @@ if __name__ == "__main__":
 
 	# %%
 	alt.Chart(
-	    src_bar
+		src_bar
 	).mark_bar().encode(
-	    alt.X('type:N', axis=alt.Axis(labelAngle=0)),
-	    alt.Y("cumulative volume:Q", axis=alt.Axis(tickCount=5), title='Total volumetric change (1,000s m³/yr)')
+		alt.X('type:N', axis=alt.Axis(labelAngle=0)),
+		alt.Y("cumulative volume:Q", axis=alt.Axis(tickCount=5), title='Total volumetric change (1,000s m³/yr)')
 	).properties(width=600, height=400).configure_legend(
-	    titleFontSize=16, 
-	    labelFontSize=14, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		titleFontSize=16, 
+		labelFontSize=14, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	).configure_axis(
-	    labelFontSize=24, 
-	    titleFontSize=16
+		labelFontSize=24, 
+		titleFontSize=16
 	)
 
 	# %%
@@ -1820,24 +1827,24 @@ if __name__ == "__main__":
 	# %%
 	src_bar['is_glacial'] = src_bar['type'] == 'glacial'
 	alt.Chart(
-	    src_bar
+		src_bar
 	).mark_bar().encode(
-	    alt.X('is_glacial:N'),
-	    alt.Color("type:N", ),
-	    alt.Y("cumulative volume:Q", axis=alt.Axis(tickCount=5))
+		alt.X('is_glacial:N'),
+		alt.Color("type:N", ),
+		alt.Y("cumulative volume:Q", axis=alt.Axis(tickCount=5))
 	).properties(width=600, height=400).configure_legend(
-	    titleFontSize=16, 
-	    labelFontSize=14, 
-	    orient='top', 
-	    symbolSize=1000, 
-	    symbolStrokeWidth=2
+		titleFontSize=16, 
+		labelFontSize=14, 
+		orient='top', 
+		symbolSize=1000, 
+		symbolStrokeWidth=2
 	).configure_axis(
-	    labelFontSize=24, 
-	    titleFontSize=16
+		labelFontSize=24, 
+		titleFontSize=16
 	)
 
 	# %%
-	yield_df = pd.read_csv(os.path.join(BASE_PATH, "yield_table.csv"))
+	yield_df = pd.read_csv(os.path.join(BASE_PATH, "hsfm-geomorph/data/yield_table.csv"))
 
 	# %%
 	yield_df.head(3)
@@ -1847,15 +1854,15 @@ if __name__ == "__main__":
 
 	# %%
 	gross_data_bytype_df[[
-	    'Annual Mass Wasted',
-	    'Upper CI',
-	    'Lower CI',
-	    'start_time',
-	    'end_time',
-	    'Average Date',
-	    "process",
-	    "type",
-	    "valley",
+		'Annual Mass Wasted',
+		'Upper CI',
+		'Lower CI',
+		'start_time',
+		'end_time',
+		'Average Date',
+		"process",
+		"type",
+		"valley",
 	]].to_csv('outputs/final_figures_data/time_series_annualized_gross.csv')
 
 	# %% [markdown]

@@ -1,0 +1,15 @@
+**.DS_Store
+**/.ipynb_checkpoints/**
+.jupyter_symlinks/**
+**.tif
+**.png
+**.tif
+**.kml
+**.geojson
+**.lic
+.vscode/*
+**routine_outputs0
+data/*
+create_dems/**/input_data
+**.csv
+**.out

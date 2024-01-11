@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import os
 
 if __name__ == "__main__":   
-    # %%
+# %%
     BASE_PATH = os.environ.get("HSFM_GEOMORPH_DATA_PATH")
     print(f"retrieved base path: {BASE_PATH}")
 
@@ -237,7 +237,7 @@ if __name__ == "__main__":
     handles = [
         mpatches.Patch(facecolor = 'none', edgecolor = 'purple', linewidth=2, label='Watershed boundaries\n(this study)'),
         mpatches.Patch(facecolor = 'none', edgecolor = 'black', linewidth=2, label='Watershed boundaries\n(Nooksack River Forks, HUC10)'),
-        Line2D([4], [0], color='blue', label='Nooksack River'),
+        # Line2D([4], [0], color='blue', label='Nooksack River'),
         Line2D([0], [0], marker='o', color='none', markeredgecolor='none', markerfacecolor='red', label='Terrace erosion site', markersize=8),
         Line2D([0], [0], marker='o', color='none', markeredgecolor='none', markerfacecolor='green', label='Stream gage', markersize=8),
         
@@ -251,7 +251,7 @@ if __name__ == "__main__":
         path_effects=[pe.withStroke(linewidth=4,foreground="white")]
     )
 
-    plt.legend(handles=handles, ncols=2)
+    plt.legend(handles=handles, ncols=1)
 
     ctx.add_basemap(ax, crs = wsheds_gdf_just3.crs)
     plt.ticklabel_format(style='plain')
@@ -265,6 +265,9 @@ if __name__ == "__main__":
     )
     plt.xlim(548965.5616015878, 610837.19530237)
     plt.ylim(5377715.576250239, 5434687.776431516)
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    plt.savefig("outputs/final_figures/figure4.png")
     plt.show(block=False)
 
     # %% [markdown]

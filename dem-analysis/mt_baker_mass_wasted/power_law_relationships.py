@@ -152,11 +152,10 @@ if __name__ == "__main__":
     row = glacier_change_df[glacier_change_df['Valley Name'].isin(['Coleman', 'Roosevelt'])].sum()
     row['Valley Name'] = 'Coleman'
     glacier_change_df = pd.concat([
-            glacier_change_df[~glacier_change_df['Valley Name'].isin(['Coleman', 'Roosevelt'])],
-            row
-        ], 
-        ignore_index=True
-    )
+        glacier_change_df[~glacier_change_df['Valley Name'].isin(['Coleman', 'Roosevelt'])],
+        pd.DataFrame(row).transpose()
+    ], ignore_index=True)
+    glacier_change_df
 
     # %% [markdown]
     # ### Load terrain attribute data
@@ -249,9 +248,6 @@ if __name__ == "__main__":
     pd.concat([pd.read_pickle(f) for f in glob.glob("outputs/larger_area/threshold_pos_dv_df/*.pickle")]).dropna(subset='Annual Mass Wasted')
 
     # %%
-    # ls -lah outputs/larger_area/bounding_dv_df/
-
-    # %%
     casestudy_netmeasurements_bounding = pd.concat([pd.read_pickle(f) for f in glob.glob("outputs/larger_area/bounding_dv_df/*.pickle")]).dropna(subset='Annual Mass Wasted')
     # casestudy_negmeasurements_bounding = pd.concat([pd.read_pickle(f) for f in glob.glob("outputs/larger_area/threshold_neg_dv_df/*.pickle")]).dropna(subset='Annual Mass Wasted')
     # casestudy_posmeasurements_bounding = pd.concat([pd.read_pickle(f) for f in glob.glob("outputs/larger_area/threshold_pos_dv_df/*.pickle")]).dropna(subset='Annual Mass Wasted')
@@ -305,9 +301,6 @@ if __name__ == "__main__":
 
     net_measurements['named interval'] = net_measurements['time interval'].apply(date_interval_to_named_interval.get)
 
-    # %%
-    len(net_measurements['Valley Name'].unique())
-
     # %% [markdown]
     # ## Merge Datasets
 
@@ -337,6 +330,9 @@ if __name__ == "__main__":
 
     # %% [markdown]
     # ### Merge in glacier change data
+
+    # %%
+    glacier_change_df
 
     # %%
     net_measurements = net_measurements.merge(
@@ -397,12 +393,15 @@ if __name__ == "__main__":
     valley_sorting = ['Coleman','Deming','Rainbow','Mazama','Park','Easton','Boulder','Thunder','Squak','Talum']
 
     # %%
+    net_measurements
+
+    # %%
     fig_width=200
     fig_height=300
     yield_domain = [-11.8310517529, 8.4507512520868]
     volume_domain = [-0.007, 0.005]
 
-    src_bounding = net_measurements[net_measurements['named interval'] == 'bounding'].drop(columns=['time interval']).drop(columns='index').drop(columns=[0])
+    src_bounding = net_measurements[net_measurements['named interval'] == 'bounding'].drop(columns=['time interval']).drop(columns='index')
 
     src_bounding['Annual Mass Wasted normalized'] = -src_bounding['Annual Mass Wasted normalized']
     src_bounding['Lower CI normalized'] = -src_bounding['Lower CI normalized']
@@ -442,7 +441,8 @@ if __name__ == "__main__":
             ),
         alt.Y2("Upper CI normalized:Q", title='')
     )
-    alt.layer(
+
+    figure8 = alt.layer(
         volume, 
         sedyield, 
         error_bars
@@ -456,6 +456,10 @@ if __name__ == "__main__":
         titleFontWeight='normal'
     )
 
+    if not os.path.exists('outputs/final_figures'):
+        os.mkdir('outputs/final_figures')
+    figure8.save('outputs/final_figures/figure8b.png')
+
     # %%
 
 
@@ -464,7 +468,7 @@ if __name__ == "__main__":
     yield_domain = [-50, 168.99999999999997]
     volume_domain = [-29585.79881656805/1000, 100]
 
-    src = net_measurements.drop(columns=['time interval']).drop(columns='index').drop(columns=[0])
+    src = net_measurements.drop(columns=['time interval']).drop(columns='index')
     src['Annual Mass Wasted'] = -src['Annual Mass Wasted']/1000
     src['Lower CI'] = -src['Lower CI']/1000
     src['Upper CI'] = -src['Upper CI']/1000
@@ -529,11 +533,18 @@ if __name__ == "__main__":
     )
     retreat_chart = alt.layer(volume, sedyield, error_bars).resolve_scale(y='independent')
 
-    (
+    figure8_2 = (
         bounding_chart | 
         advance_chart | 
         retreat_chart
     ).configure_legend(titleFontSize=12, labelFontSize=12, orient='top').configure_axis(labelFontSize=12, titleFontSize=14, titleFontWeight='normal')
+
+    if not os.path.exists('outputs/final_figures'):
+        os.mkdir('outputs/final_figures')
+    figure8_2.save('outputs/final_figures/figure8a.png')
+
+    # %%
+    figure8_2
 
     # %% [markdown]
     # ## Save data to csv
@@ -559,9 +570,6 @@ if __name__ == "__main__":
         long_slopes_df, 
         on='Valley Name'
     )
-
-    # %%
-    net_measurements
 
     # %% [markdown]
     # ## Keep only the bounding data
@@ -748,7 +756,7 @@ if __name__ == "__main__":
     # ## Plot explanatory variables interactions
 
     # %%
-    (
+    figure12 = (
         alt.Chart(net_measurements).mark_circle(size=100).encode(
             alt.Y('Drainage area (square km):Q', title='Drainage area (km²)', scale=alt.Scale(zero=False)),
             alt.X("Nonigneous fraction:Q",),
@@ -786,6 +794,10 @@ if __name__ == "__main__":
     ).configure_title(
         fontSize=22
     )
+
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    figure12.save("outputs/final_figures/figure12.png")
 
     # %% [markdown]
     # # Modeling
@@ -1608,13 +1620,17 @@ if __name__ == "__main__":
         alt.Y(title='Observed sediment yield (ton/yr)')
     )
 
-    (model_6_ssy_results | model_6_results).configure_legend(
+    figure10 = (model_6_ssy_results | model_6_results).configure_legend(
         titleFontSize=22, labelFontSize=22, orient='right'
     ).configure_axis(
         labelFontSize=16, titleFontSize=16
     ).configure_title(
         fontSize=22
     )
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    figure10.save("outputs/final_figures/figure10.png")
+    figure10
 
 
     # %% [markdown]
@@ -1960,7 +1976,7 @@ if __name__ == "__main__":
     def no_title(plot):
         return plot.properties(title="")
 
-    (
+    figure9 = (
         (no_title(model_1_scatterplot).encode(alt.Y(title="Sediment Yield (ton/yr)")) | y_label_none(no_title(model_2_scatterplot)) | y_label_none(no_title(model_3_scatterplot)) | y_label_none(no_title(model_4_scatterplot)) | y_label_none(no_title(model_5_scatterplot)))
         &
         (no_title(model_1_scatterplot_normed).encode(alt.Y(title="Specific Sediment Yield (ton/km²/yr)")) | y_label_none(no_title(model_2_scatterplot_normed)) | y_label_none(no_title(model_3_scatterplot_normed)) | y_label_none(no_title(model_4_scatterplot_normed)) | y_label_none(no_title(model_5_scatterplot_normed)))
@@ -1971,6 +1987,10 @@ if __name__ == "__main__":
     ).configure_title(
         fontSize=22
     )
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    figure9.save("outputs/final_figures/figure9.png")
+    figure9
 
 
     # %%

@@ -19,7 +19,7 @@ Once you have the dataset downloaded and the forked version of xdem downloaded, 
     ```
     $ export HSFM_GEOMORPH_DATA_PATH='/storage/username/'
     ```
-    The downloaded dataset should be placed at this path, e.g. `/storage/username/hsfm-geomorph`
+    The downloaded dataset should be placed at this path, such that this path exists `/storage/username/hsfm-geomorph/`
 
 4. Navigate to the working directory and run the python scripts using the `run_all.sh` script:
     ```
@@ -28,7 +28,7 @@ Once you have the dataset downloaded and the forked version of xdem downloaded, 
     $ ./run_all.sh
     ```
 
-5. To reproduce the published figures, you can open the python scripts as jupyter notebooks and run them. To convert .py scripts to jupyter notebooks, see the documentation for jupytext, https://jupytext.readthedocs.io, which should already be installed as it's in the environment.yml.
+5. Figures will be saved to the path `dem-analysis/mt_baker_mass_wasted/outputs/final_figures/`. Additional figures were generated using QGIS projects, which can be found as qgz files in the provided dataset. DEM products are available in the dataset at the path `hsfm-geomorph/data/dems_mosaiced/`. Note that supplemental figures in the publication are produced within the scripts, but not saved as files.
 
 ## Notes
 To closely reproduce the published numbers, you will need to make some changes to the python scripts and input files. Some parameter values were modified in this version of the code so that when the scripts are run, computational resources are not overwhelmed. To run the scripts with the modifications described below, we recommend using a machine with at least 64Gb RAM and with enough cores to run 64 parallel threads.

@@ -60,8 +60,8 @@ if __name__ == "__main__":
     strip_time_format = "%Y_%m_%d"
     reference_dem_date = "2015_09_01"
     reference_dem_date = datetime.strptime(
-        reference_dem_date, 
-        strip_time_format
+    reference_dem_date, 
+    strip_time_format
     )
 
     streamstats_watersheds_fns = glob.glob(os.path.join(BASE_PATH, "hsfm-geomorph/data/mt_baker_mass_wasted/streamstats_watersheds/*.geojson"))
@@ -76,14 +76,14 @@ if __name__ == "__main__":
     reasonable_bounds = (580000, 5395000, 595000, 5413000)
 
     # %% [markdown]
-    # # Prepare DDEMs
+    #     # # Prepare DDEMs
 
     # %%
     dem_fn_list = [early_dem_fn, late_dem_fn]
     datetimes = [datetime.strptime(Path(f).stem, strip_time_format) for f in dem_fn_list]
 
     # %% [markdown]
-    # #### Create DEMCollection and calculate DDEMs
+    #     # #### Create DEMCollection and calculate DDEMs
 
     # %%
     demcollection = xdem.DEMCollection.from_files(
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     _ = demcollection.subtract_dems_intervalwise()
 
     # %% [markdown]
-    # #### Remove outliers and then interpolate
+    #     # #### Remove outliers and then interpolate
 
     # %%
     if FILTER_OUTLIERS:
@@ -129,7 +129,7 @@ if __name__ == "__main__":
         demcollection.set_ddem_filled_data()
 
     # %% [markdown]
-    # #### Open glacier polygons and remove glacier signals
+    #     # #### Open glacier polygons and remove glacier signals
 
     # %%
     from pprint import pprint
@@ -156,10 +156,10 @@ if __name__ == "__main__":
     plt.gca().set_aspect('equal')
 
     # %% [markdown]
-    # # Prepare terrain attributes
+    #     # # Prepare terrain attributes
 
     # %% [markdown]
-    # #### Use xdem for some
+    #     # #### Use xdem for some
 
     # %%
     dtm = xdem.DEM(dtm_fn)
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     plot_attribute(curvature, label='curvature'.title(), vlim=1)
 
     # %% [markdown]
-    # #### Use pysheds for drainage area
+    #     # #### Use pysheds for drainage area
 
     # %%
     # grid_pysheds = Grid.from_raster(dtm_fn, 'dem')
@@ -226,21 +226,16 @@ if __name__ == "__main__":
     #     darea = rix.open_rasterio(tmp.name)
 
     # %% [markdown]
-    # ### Adjust drainage area by pixel area
-
-    # %%
-    # darea = darea*np.abs(dtm.res[0]*dtm.res[1])
-
-    # %%
-    # darea.rio.to_raster('drainage_area.tif')
+    #     # ### Adjust drainage area by pixel area
 
     # %%
     darea = rix.open_rasterio(
         os.path.join(BASE_PATH, "hsfm-geomorph/data/mt_baker_mass_wasted/whole_mountain/drainage_area_2015.tif")
     )
+    darea = darea*np.abs(dtm.res[0]*dtm.res[1])
 
     # %% [markdown]
-    # # Create Dataset
+    #     # # Create Dataset
 
     # %%
     # ddem = demcollection.ddems[0].to_xarray(masked=True)
@@ -279,14 +274,14 @@ if __name__ == "__main__":
     })
 
     # %% [markdown]
-    # # Clip dataset to bounds and remove glacier signals
+    #     # # Clip dataset to bounds and remove glacier signals
 
     # %%
     dataset = dataset.rio.clip_box(*reasonable_bounds)
     dataset = dataset.rio.clip(glaciers_gdf.geometry, invert=True)
 
     # %% [markdown]
-    # # Plot Rasters
+    #     # # Plot Rasters
 
     # %%
     fig, axes = plt.subplots(2, len(dataset.data_vars), figsize=(6*len(dataset.data_vars), 6*2))
@@ -312,7 +307,7 @@ if __name__ == "__main__":
     plt.show(block=False)
 
     # %% [markdown]
-    # # Open erosion polygons
+    #     # # Open erosion polygons
 
     # %%
     erosion_gdf = pd.concat([gpd.read_file(f) for f in erosion_polys_fns])
@@ -324,10 +319,10 @@ if __name__ == "__main__":
     dataset
 
     # %% [markdown]
-    # # Slope-Area Analysis
+    #     # # Slope-Area Analysis
 
     # %% [markdown]
-    # ## Terrain Characteristics of Hillslope and Fluvial areas
+    #     # ## Terrain Characteristics of Hillslope and Fluvial areas
 
     # %%
     import numpy as np
@@ -409,7 +404,7 @@ if __name__ == "__main__":
     plt.show(block=False)
 
     # %% [markdown]
-    # ## Terrain Characteristics of Erosion Initiation Sites
+    #     # ## Terrain Characteristics of Erosion Initiation Sites
 
     # %%
     initiation_gdf = gpd.read_file(initiation_polygons_fn)
@@ -495,7 +490,7 @@ if __name__ == "__main__":
     plt.show(block=False)
 
     # %% [markdown]
-    # ## Terrain Characteristics of Process Polygons (Gully, Mass Wasting, Fluvial, Glacial  and Mass Wasting sies
+    #     # ## Terrain Characteristics of Process Polygons (Gully, Mass Wasting, Fluvial, Glacial  and Mass Wasting sies
 
     # %%
     gully_gdf = gpd.read_file(gully_polygons_fn)
@@ -739,6 +734,9 @@ if __name__ == "__main__":
     lgnd1.legendHandles[1]._sizes = [30]
     # plt.grid(True, which='both', alpha=0.5)
     plt.gca().set_axisbelow(True)
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    plt.savefig("outputs/final_figures/figure3a.png")
     plt.show(block=False)
 
     # %%
@@ -765,6 +763,9 @@ if __name__ == "__main__":
     plt.xlabel("Slope", fontsize=12)
     plt.ylabel('Density', fontsize=12)
     plt.xlim(0,80)
+    if not os.path.exists("outputs/final_figures/"):
+        os.makedirs("outputs/final_figures/")
+    plt.savefig("outputs/final_figures/figure3bc.png")
 
     # %%
     len(points_src.query("slope > 34")), len(points_src.query("slope <= 34"))
@@ -778,22 +779,22 @@ if __name__ == "__main__":
     lia_outlet_intersections_gdf
 
     # %% [markdown]
-    # for i, row in lia_outlet_intersections_gdf.iterrows():
-    #     print(row['valley'])
-    #     print(dataset['drainage area'].rio.clip([row['geometry']]).max())
-    #     print(dataset['slope'].rio.clip([row['geometry']]).max())
+    #     # for i, row in lia_outlet_intersections_gdf.iterrows():
+    #     #     print(row['valley'])
+    #     #     print(dataset['drainage area'].rio.clip([row['geometry']]).max())
+    #     #     print(dataset['slope'].rio.clip([row['geometry']]).max())
 
     # %%
     src
 
     # %% [markdown]
-    # ## Terrain characteristics of watersheds, considering all area within watershed
+    #     # ## Terrain characteristics of watersheds, considering all area within watershed
 
     # %% [markdown]
-    # ### Prep some DDEM raster datasets
+    #     # ### Prep some DDEM raster datasets
 
     # %% [markdown]
-    # #### Read in uncertainty parameters for thresholding
+    #     # #### Read in uncertainty parameters for thresholding
 
     # %%
     uncertainty_df = pd.read_pickle(dod_uncertainty_fn)
@@ -804,15 +805,15 @@ if __name__ == "__main__":
     hi = uncertainty_df['90% CI Upper Bound'].iloc[0]
 
     # %% [markdown]
-    # #### Create new datasets: 
-    #
-    # * ddem erosion (elevation changes in erosion areas only)
-    # * ddem hillslope (elevation changes in hillslope erosion areas only)
-    # * ddem fluvial (elevation changes in fluvial erosion areas only)
-    # * ddem negative (negative elevation changes in all areas)
-    # * ddem erosion negative (negative elevation changes in erosion areas only all areas)
-    # * ddem hillslope negative (negative elevation changes in hillslope erosion areas only all areas)
-    # * ddem fluvial negative (negative elevation changes in fluvial erosion areas only all areas)
+    #     # #### Create new datasets: 
+    #     #
+    #     # * ddem erosion (elevation changes in erosion areas only)
+    #     # * ddem hillslope (elevation changes in hillslope erosion areas only)
+    #     # * ddem fluvial (elevation changes in fluvial erosion areas only)
+    #     # * ddem negative (negative elevation changes in all areas)
+    #     # * ddem erosion negative (negative elevation changes in erosion areas only all areas)
+    #     # * ddem hillslope negative (negative elevation changes in hillslope erosion areas only all areas)
+    #     # * ddem fluvial negative (negative elevation changes in fluvial erosion areas only all areas)
 
     # %%
     dataset
@@ -854,7 +855,7 @@ if __name__ == "__main__":
     )
 
     # %% [markdown]
-    # #### Plot new dataset variables
+    #     # #### Plot new dataset variables
 
     # %%
     fig, axes = plt.subplots(
@@ -880,8 +881,8 @@ if __name__ == "__main__":
     plt.show(block=False)
 
     # %% [markdown]
-    # ### Open StreamStats watersheds
-    #
+    #     # ### Open StreamStats watersheds
+    #     #
 
     # %%
     gdf = gpd.GeoDataFrame()
@@ -905,7 +906,7 @@ if __name__ == "__main__":
         dataset[var].values = values
 
     # %% [markdown]
-    # ### Calculate watershed statistics with watershed polygons
+    #     # ### Calculate watershed statistics with watershed polygons
 
     # %%
     mean_results = nhd_df.apply(
@@ -932,7 +933,7 @@ if __name__ == "__main__":
     nhd_df[mean_results.columns] = mean_results
 
     # %% [markdown]
-    # ### Calculate glacial area in start year, end year, max year (1979) and changes in that area
+    #     # ### Calculate glacial area in start year, end year, max year (1979) and changes in that area
 
     # %%
     glaciers_start = all_glaciers_gdf[all_glaciers_gdf.year == datetime.strftime(pd.to_datetime(demcollection.timestamps[0]), strip_time_format)]
@@ -972,7 +973,7 @@ if __name__ == "__main__":
     nhd_df['ddem fluvial negative'] = nhd_df['ddem fluvial negative']*pixel_area
 
     # %% [markdown]
-    # ### Calculate erosion measurement area and incision rates
+    #     # ### Calculate erosion measurement area and incision rates
 
     # %%
     # np.count_nonzero(~np.isnan(data))
@@ -1004,7 +1005,7 @@ if __name__ == "__main__":
     nhd_df
 
     # %% [markdown]
-    # ### Plot: pair plots
+    #     # ### Plot: pair plots
 
     # %%
     src = nhd_df[[
@@ -1116,10 +1117,10 @@ if __name__ == "__main__":
     (chart + annotations1 + annotations2).configure_axis(grid=False)
 
     # %% [markdown]
-    # ## Terrain characteristics of watersheds, hillslope + fluvial erosion area only
+    #     # ## Terrain characteristics of watersheds, hillslope + fluvial erosion area only
 
     # %% [markdown]
-    # ### Calculate watershed statistics within erosion polygons only
+    #     # ### Calculate watershed statistics within erosion polygons only
 
     # %%
     limited_erosion_gdf = erosion_gdf.dissolve(by='name')

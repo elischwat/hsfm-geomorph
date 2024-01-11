@@ -1,17 +1,19 @@
 # ---
 # jupyter:
 #   jupytext:
+#     custom_cell_magics: kql
 #     text_representation:
 #       extension: .py
-#       format_name: light
-#       format_version: '1.5'
-#       jupytext_version: 1.16.0
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.2
 #   kernelspec:
 #     display_name: Python 3.8.6 ('hsfm-test-backup')
 #     language: python
 #     name: python3
 # ---
 
+# %%
 import geopandas as gpd
 import shapely
 import shapely
@@ -30,8 +32,10 @@ from altair import datum
 import json
 alt.data_transformers.disable_max_rows()
 
+# %% [markdown]
 if __name__ == "__main__":   
 
+    # %% [markdown]
     # # Inputs
     # Provide:
     # - Input file path to file with cross section lines/polygons to extract low points/stream profile from
@@ -39,30 +43,33 @@ if __name__ == "__main__":
     # - Input directory path to location of DEMs
     # - Parameter `LINE_COMPLEXITY` which is the number of points that each cross-section line is split into. `LINE_COMPLEXITY` elevation points will be extracted from the DEM for each cross section line
 
+    # %% [markdown]
     # If you use the arg, you must run from CLI like this
     #
     # ```
     # HSFM_GEOMORPH_INPUT_FILE='inputs/mazama_inputs.json' jupyter nbconvert --execute --to html dem-analysis/mt_baker_mass_wasted/transects.ipynb  --output outputs/transects_mazama.html
     # ```
 
+    # %%
     BASE_PATH = os.environ.get("HSFM_GEOMORPH_DATA_PATH")
     print(f"retrieved base path: {BASE_PATH}")
 
-    # +
+    # %%
 
     # Or set an env arg:
     if os.environ.get('HSFM_GEOMORPH_INPUT_FILE'):
         json_file_path = os.environ['HSFM_GEOMORPH_INPUT_FILE']
     else:
         json_file_path = 'inputs/rainbow_inputs.json'
-    # -
 
+    # %%
     with open(json_file_path, 'r') as j:
         params = json.loads(j.read())
 
+    # %%
     params
 
-    # +
+    # %%
     TO_DROP = params['inputs']['TO_DROP']
     input_transects_file = os.path.join(BASE_PATH, params['transects']['input_transects_file'])
     input_dems_path = os.path.join(BASE_PATH, params['inputs']['dems_path'])
@@ -77,17 +84,17 @@ if __name__ == "__main__":
         strip_time_format
     )
 
-    # +
+    # %%
 
     raster_fns = [fn for fn in raster_fns if Path(fn).stem not in TO_DROP]
     raster_fns
-    # -
 
+    # %% [markdown]
     # # Extract profiles from DEMs 
     #
     # Along each cross-section, extract point with lowest elevation and calculate "path distance", the distance from the furthest downstream cross section line.
 
-    # +
+    # %%
     # read cross sections file into GeoDataframe
     gdf = gpd.read_file(input_transects_file)
     # Increase the number of points in each line
@@ -119,26 +126,31 @@ if __name__ == "__main__":
     combined_gdf.crs = crs
     combined_gdf
 
-    # +
+    # %%
 
     for key, group in combined_gdf.groupby(["id", "time"]):
         group.geometry = group['coords']
         group['path_distance'] = pd.Series(group.distance(group.shift(1)).fillna(0)).cumsum()
         new_gdf = pd.concat([new_gdf, group])
     new_gdf.crs = crs
-    # -
 
+    # %% [markdown]
     # # Mark points as (non)glacial
 
+    # %%
     glaciers_gdf = gpd.read_file(glacier_polygons_file)
     glaciers_gdf = glaciers_gdf.to_crs(new_gdf.crs)
     glaciers_gdf['time'] = glaciers_gdf['year'].apply(lambda d: datetime.datetime.strptime(d, strip_time_format))
 
+    # %%
     new_gdf['glacial'] = new_gdf.apply(
         lambda row: any(glaciers_gdf.loc[glaciers_gdf['time'] == row["time"], 'geometry'].apply(lambda g: g.contains(row['coords']))),
         axis=1
     )
 
+    # %%
+
+    # %%
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
     alt.Chart(
@@ -164,6 +176,7 @@ if __name__ == "__main__":
         symbolStrokeWidth=4
     )
 
+    # %%
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
     alt.Chart(
@@ -193,15 +206,16 @@ if __name__ == "__main__":
         symbolStrokeWidth=4
     )
 
+    # %% [markdown]
     # ## Deming transect 1
 
-    # +
+    # %%
 
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
     src = src.query("id == 1")
     src = src.query("path_distance < 80")
-    alt.Chart(
+    transect_figure = alt.Chart(
         src
     ).transform_filter(
         datum.glacial==False
@@ -222,16 +236,21 @@ if __name__ == "__main__":
         labelFontSize=16, 
         symbolStrokeWidth=4
     )
-    # -
 
+    if 'deming' in json_file_path:
+        if not os.path.exists("outputs/final_figures/"):
+            os.makedirs("outputs/final_figures/")
+        transect_figure.save("outputs/final_figures/figure6_1.png")
+
+    # %% [markdown]
     # ## Deming transect 2
 
-    # +
+    # %%
 
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
     src = src.query("id == 2")
-    alt.Chart(
+    transect_figure = alt.Chart(
         src
     ).transform_filter(
         datum.glacial==False
@@ -256,12 +275,17 @@ if __name__ == "__main__":
         labelFontSize=16, 
         symbolStrokeWidth=4
     )
-    # -
 
+    if 'deming' in json_file_path:
+        if not os.path.exists("outputs/final_figures/"):
+            os.makedirs("outputs/final_figures/")
+        transect_figure.save("outputs/final_figures/figure6_2.png")
+
+    # %% [markdown]
     # ## Rainbow transect 1
     #
 
-    # +
+    # %%
 
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
@@ -286,11 +310,11 @@ if __name__ == "__main__":
         width = 320,
         height = 200
     )
-    # -
 
+    # %% [markdown]
     # ## Rainbow transect 2
 
-    # +
+    # %%
 
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
@@ -315,9 +339,9 @@ if __name__ == "__main__":
         width = 325,
         height = 200
     )
-    # -
 
-    (tran1 | tran2).configure_legend(
+    # %%
+    transect_figure = (tran1 | tran2).configure_legend(
         titleColor='black', 
         titleFontSize=12, 
         labelFontSize=16, 
@@ -327,20 +351,26 @@ if __name__ == "__main__":
         titleFontSize=14, 
         labelFontSize=16
     )
+    if 'rainbow' in json_file_path:
+        if not os.path.exists("outputs/final_figures/"):
+            os.makedirs("outputs/final_figures/")
+        transect_figure.save("outputs/final_figures/figure5.png")
+    transect_figure
 
-    # +
+    # %%
     width = 320, 
     height = 200
 
     width_distance = 65
     height_distance = 40
-    # -
 
+    # %%
     320 * 40/65
 
+    # %% [markdown]
     # ## Rainbow transect 3
 
-    # +
+    # %%
 
     src = new_gdf[[ "time", "path_distance", "elevation", "id", "glacial"]].reset_index()
     src['time'] = src['time'].apply(lambda x: x.strftime("%Y-%m-%d"))
@@ -378,6 +408,5 @@ if __name__ == "__main__":
         titleFontSize=14, 
         labelFontSize=16
     )
-    # -
-
+    # %%
 

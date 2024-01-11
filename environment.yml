@@ -6,6 +6,7 @@ dependencies:
   - pandas
   - scipy
   - altair
+  - vl-convert-python
   - rasterio
   - shapely
   - geopandas
