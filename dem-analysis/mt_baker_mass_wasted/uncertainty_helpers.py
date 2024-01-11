@@ -5,6 +5,7 @@ import matplotlib.cm
 import xdem
 from scipy import stats
 
+
 def uncertainty_analysis(
     dh,
     ground_control_vector,
@@ -59,7 +60,7 @@ def uncertainty_analysis(
     cmap = copy.copy(matplotlib.cm.get_cmap("RdYlBu"))
     cmap.set_bad('grey',1.)
     
-    # maybe plot something else here?
+    # # maybe plot something else here?
     _ = plt.gca().imshow(stable_values_masked.squeeze(),cmap=cmap, vmin=-4, vmax=4)
     plt.gca().set_title('Elevation differences (m)')
     figs.append(plt.gcf())
@@ -100,7 +101,7 @@ def uncertainty_analysis(
             xscale_range_split=xscale_range_split
         )
     figs.append(plt.gcf())
-    plt.show()
+    # plt.show(block=False)
     fun, params = xdem.spatialstats.fit_sum_model_variogram(['Sph'], empirical_variogram=df)
     if ylim:
         xdem.spatialstats.plot_variogram(
@@ -118,7 +119,7 @@ def uncertainty_analysis(
             xscale_range_split=xscale_range_split
         )
     figs.append(plt.gcf())
-    plt.show()
+    # plt.show(block=False)
 
     results_dict = {
         "Range": params['range'].iloc[0],
